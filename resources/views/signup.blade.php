@@ -2,7 +2,9 @@
 @section('content')
     <div class="container padding">
         <h1 class="title margin-bottom">Regístrate</h1>
-        <form name="signupForm" role="form" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
+        <form method="POST" action="" name="signupForm" role="form" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
+              {{csrf_field()}}
+
             <div class="row">
             <div class="col-md-12">
                 <div class="form-group form-control-default required">
@@ -26,7 +28,7 @@
             <div class="clearfix">
             <div class="row">
                 <div class="col-md-12">
-                <button type="submit" class="btn btn-primary btn-xl pull-right" ng-click="doSignUp(signup)" data-ng-disabled="signupForm.$invalid" disabled="disabled">
+                <button type="submit" class="btn btn-primary btn-xl pull-right" ng-click="doSignUp(signup)" >
                 <i class="ace-icon fa fa-user"></i>
                 Regístrame
                 </button>
