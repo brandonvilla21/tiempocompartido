@@ -10,9 +10,10 @@ Route::get('/busqueda', function () {
 Route::get('/login', function () {
     return view('login');
 });
-Route::get('/signup', function () {
-    return view('signup');
-});
+
+Route::get('/signup', 'RegistrationController@create');
+Route::post('/signup', 'RegistrationController@store');
+
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');
 });
