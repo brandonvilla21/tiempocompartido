@@ -17,7 +17,7 @@ class SessionsController extends Controller
      */
     public function create()
     {
-        return view('login');
+        return view('session.login');
     }
 
     /**
@@ -31,8 +31,8 @@ class SessionsController extends Controller
     {
         // Validation form from server side
          $this->validate($request, [
-            'email'             => 'required',
-            'password'          => 'required'
+            'email'     => 'required',
+            'password'  => 'required'
         ]);
 
         // Get the instance to make HTTP Requests        
@@ -49,18 +49,23 @@ class SessionsController extends Controller
             return view('login'); 
         }
 
-        // echo $response->getBody();
-        
-        // Get the body from request response
-        $body = (string) $response->getBody();
-        
-        // Get the token from the string
-        $token = User::getTokenFromString($body);
-        
+        // Get the response body from HTTP Request and parse to Object        
+        $requestObj = json_decode($response->getBody()->getContents());
+        // Save the ACCESS_TOKEN in Session
+        Session::put([
+            'ACCESS_TOKEN'  => $requestObj,
+            'USER_ID'        => $requestObj->userId
+        ]);
+         
+        // Make the request to get User information
+        $response = User::getUserInformation($client, $requestObj->userId, $requestObj->id);
+
+        // Get the response body from HTTP Request and parse to Object        
+        $requestObj = json_decode($response->getBody()->getContents());
         // Save the token and user information in Session
         Session::put([
-            'token' => $token,
-            'email' => $request->email
+            'NAME'   => $requestObj->realm,
+            'EMAIL'  => $requestObj->email,
         ]);
 
         return redirect()->home();
