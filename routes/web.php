@@ -3,14 +3,17 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 Route::get('/busqueda', function () {
     return view('busqueda');
 });
-Route::get('/login', function () {
-    return view('login');
-});
 
+// SESSION
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@destroy');
+
+// REGISTRATION
 Route::get('/signup', 'RegistrationController@create');
 Route::post('/signup', 'RegistrationController@store');
 
