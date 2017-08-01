@@ -1,6 +1,6 @@
 <header class="encabezado navbar-fixed-top" role="banner" id="encabezado" >
     <div class="container">
-        <a href="/home" class="logo text-white" style="text-decoration:none">
+        <a href="/" class="logo text-white" style="text-decoration:none">
             <span class="hidden-md-up"><figure class="img"><img src="assets/img/logo_nb.png" alt="www.tiempocompartido.com"></figure></span>
             <span class="hidden-md-down"><figure class="img"><img src="assets/img/logo_nw.png" alt="www.tiempocompartido.com"></figure></span>
         </a>
@@ -8,13 +8,13 @@
             <i class="fa fa-bars" aria-hidden="true"></i></button>
         <nav id="menu-principal" class="collapse">
             <ul>
-                @if(Session::has('email'))
-                    <li><a class="border-rigth">{{ Session::get('email') }}</a></li>
+                @if(Session::has('EMAIL'))
+                    <li><a class="border-rigth">{{ Session::get('NAME') }}</a></li>
                 @endif
                 <li><a href="/busqueda" class="border-rigth"><i  class="fa fa-search"></i> Búsqueda</a></li>
                 <li><a href="/promociones" class="border-rigth"><i  class="fa fa-star"></i> Promociones</a></li>
                 <li><a href="/listados" class="border-rigth"><i  class="fa fa-list"></i> Listados</a></li>
-                @if(!Session::has('token'))
+                @if(!Session::has('ACCESS_TOKEN'))
                     <li><a href="/login" class="border-rigth"> Ingresa </a></li>
                     <li><a href="/signup" class="border-rigth">Regístrate</a></li>
                 @else
