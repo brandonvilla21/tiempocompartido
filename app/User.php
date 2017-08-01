@@ -70,13 +70,27 @@ class User extends Authenticatable
     {
         return $client->request('POST', 'Users/login', [
             'form_params' => [
-                'email'         => $request->email,
-                'password'      => $request->password,
+                'email'     => $request->email,
+                'password'  => $request->password,
+            ],
+            'decode_content' => false,
+            'headers' => [
+                // 'Content-Type'  => 'application/json',
+                'Accept'        => 'application/json'
+            ]
+        ]);
+
+    }
+
+    public static function getUserInformation($client, $id, $ACCESS_TOKEN)
+    {
+        return $client->request('GET', 'Users/'.$id, [
+            'form_params' => [
+                'id'  => $id,
             ],
             'decode_content' => true,
-            'header' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json'
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN
             ]
         ]);
     }
@@ -89,6 +103,45 @@ class User extends Authenticatable
         $token='';
         for($i = 0; $i < strlen($body) -1; $i++) 
             if($body{$i} . $body{$i+1} == 'id') {
+                $initPos = $i + 5;
+                while(true) 
+                    if($body{$initPos} == '"') break;
+                    else {
+                        $token = $token . $body{$initPos};                            
+                        $initPos = $initPos +1;
+                    } 
+            } 
+        return $token;
+    }
+
+    /**
+     * Temporal method
+     * Get the userId from body request
+     */
+    public static function getUserIdFromString($body)
+    {   
+        $token='';
+        for($i = 0; $i < strlen($body) -1; $i++) 
+            if($body{$i} . $body{$i+1} == 'Id') {
+                $initPos = $i + 5;
+                while(true) 
+                    if($body{$initPos} == '"') break;
+                    else {
+                        $token = $token . $body{$initPos};                            
+                        $initPos = $initPos +1;
+                    } 
+            } 
+        return $token;
+    }
+    /**
+     * Temporal method
+     * Get the realm from body request
+     */
+    public static function getNameFromString($body)
+    {   
+        $token='';
+        for($i = 0; $i < strlen($body) -1; $i++) 
+            if($body{$i} . $body{$i+1} == 'lm') {
                 $initPos = $i + 5;
                 while(true) 
                     if($body{$initPos} == '"') break;
