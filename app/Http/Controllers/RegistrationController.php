@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
+use App\User;
+use Session;
 
 class RegistrationController extends Controller
 {
-
 
     /**
      * Show the form for creating a new resource.
@@ -27,30 +29,41 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {   
-        // Example of how to use HTTP Requests with with Guzzle (create the correct HTTP Request)
-        $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => 'http://0.0.0.0:3000/api/',
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
+        // Validation form from server side
+         $this->validate($request, [
+            'user'              => 'required',
+            'email'             => 'required',
+            'password'          => 'required',
+            'password_confirm'  => 'required',
         ]);
-        // Send a request to http://0.0.0.0:3000/api/promociones
-        $response = $client->request('GET', 'promociones', [
-            'headers' => [
-                'User-Agent' => 'testing/1.0',
-                'Accept'     => 'application/json',
-            ]
-        ]);
-        echo $response->getBody() ;
-        
-        // Example from SoF
-        // $client = new Client(); //GuzzleHttp\Client
-        // $result = $client->post('your-request-uri', [
-        //     'form_params' => [
-        //         'sample-form-data' => 'value'
-        //     ]
-        // ]);
+        // Get the instance to make HTTP Requests        
+        $client = User::getClient();
+        // Register a new user
+        $response = User::registerUser($client, $request);
+
+        if ($response->getStatusCode() == 200)
+        {   
+            // Logs the new user
+            $response = User::logUser($client, $request);
+
+            // Get the body from request response
+            $body = (string) $response->getBody();
+            
+            // Get the token from the string ($body)
+            $token = User::getTokenFromString($body);
+            
+             // Save the token and user information in Session
+            Session::put([
+                'token' => $token,
+                'email' => $request->email,
+                'name' => $request->user
+            ]);
+
+
+            
+            session()->flash('message', '¡Bienvenido a Tiempo Compartido!');
+            //Redirect to the homepage.
+            return redirect()->home();
+        }       
     }
-
-
 }
