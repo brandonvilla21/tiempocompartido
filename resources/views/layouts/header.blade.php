@@ -8,14 +8,19 @@
             <i class="fa fa-bars" aria-hidden="true"></i></button>
         <nav id="menu-principal" class="collapse">
             <ul>
-                <li ng-show="logged">Username</li>
+                @if(Session::has('email'))
+                    <li><a class="border-rigth">{{ Session::get('email') }}</a></li>
+                @endif
                 <li><a href="/busqueda" class="border-rigth"><i  class="fa fa-search"></i> Búsqueda</a></li>
                 <li><a href="/promociones" class="border-rigth"><i  class="fa fa-star"></i> Promociones</a></li>
                 <li><a href="/listados" class="border-rigth"><i  class="fa fa-list"></i> Listados</a></li>
-                <li ng-hide="logged"><a href="/login" class="border-rigth"> Ingresa </a></li>
-                <li ng-hide="logged"><a href="/signup" class="border-rigth">Regístrate</a></li>
-                <li ng-show="logged"><a href="/mi-cuenta" class="border-rigth">Mi cuenta <span class="caret"></span></a></li>
-                <li ng-show="logged"><a ng-click="doLogout();"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                @if(!Session::has('token'))
+                    <li><a href="/login" class="border-rigth"> Ingresa </a></li>
+                    <li><a href="/signup" class="border-rigth">Regístrate</a></li>
+                @else
+                    <li><a href="/mi-cuenta" class="border-rigth">Mi cuenta <span class="caret"></span></a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                @endif    
             </ul>
         </nav>
     </div>
