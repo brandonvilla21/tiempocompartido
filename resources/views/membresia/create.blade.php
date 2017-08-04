@@ -2,23 +2,25 @@
 @section('content')
     <div class="container padding">
     <h1>Publica tu membresia</h1>
-    <form name="membresiaForm" class="form-horizontal padding" role="form">
+    <form method="POST" action="/new-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
+        {{csrf_field()}}
+
         <div class="form-group">
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="email"> Título </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="titulo" ng-model="membresia.titulo" required/>
+                <input type="text" class="form-control" placeholder="" id="titulo"name="titulo" ng-model="membresia.titulo" required/>
                 </span>
             </div>
         </div>
         </div>
         <div class="form-group">
         <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="email"> Title </label>
+            <label class="col-sm-3 control-label no-padding-right" for="email"> Título (Inglés) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="title" ng-model="membresia.title" />
+                <input type="text" class="form-control" placeholder="" id="title"name="title" ng-model="membresia.title" />
                 </span>
             </div>
         </div>
@@ -28,7 +30,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Nombre del Club </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="clubNombre" ng-model="membresia.clubNombre" required/>
+                <input type="text" class="form-control" placeholder="" id="clubNombre"name="clubNombre" ng-model="membresia.clubNombre" required/>
                 </span>
             </div>
         </div>
@@ -38,7 +40,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> URL del Club </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="clubUrl" ng-model="membresia.clubUrl" />
+                <input type="text" class="form-control" placeholder="" id="clubUrl"name="clubUrl" ng-model="membresia.clubUrl" />
                 </span>
             </div>
         </div>
@@ -48,7 +50,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Tipo de semana </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="semanaTipo" ng-model="membresia.semanaTipo" required>
+                <select class="form-control" placeholder="" id="semanaTipo"name="semanaTipo" ng-model="membresia.semanaTipo" required>
                 <option value="FIJA">Fija</option>
                 <option value="FLOTANTE">Flotante</option>
                 <option value="PUNTOS">Puntos</option>
@@ -63,7 +65,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="cualTemporadaflotante" ng-model="membresia.cualTemporadaflotante" >
+                <select class="form-control" placeholder="" id="cualTemporadaflotante"name="cualTemporadaflotante" ng-model="membresia.cualTemporadaflotante" >
                     <option value="ALTA">Alta</option>
                     <option value="BAJA">Baja</option>
                 </select>
@@ -76,7 +78,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" min="1" step="1" max="52" placeholder="" name="cualSemanaFija" ng-model="membresia.cualSemanaFija" />
+                <input type="number" class="form-control" min="1" step="1" max="52" placeholder="" id="cualSemanaFija"name="cualSemanaFija" ng-model="membresia.cualSemanaFija" />
                 </span>
             </div>
         </div>
@@ -86,7 +88,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="cuantosPuntos" ng-model="membresia.cuantosPuntos" />
+                <input type="number" class="form-control" placeholder="" id="cuantosPuntos"name="cuantosPuntos" ng-model="membresia.cuantosPuntos" />
                 </span>
             </div>
         </div>
@@ -96,7 +98,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="cuantasNoches" ng-model="membresia.cuantasNoches" />
+                <input type="number" class="form-control" placeholder="" id="cuantasNoches"name="cuantasNoches" ng-model="membresia.cuantasNoches" />
                 </span>
             </div>
         </div>
@@ -106,17 +108,17 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Descripción </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="descripcion" ng-model="membresia.descripcion" required/>
+                <input type="text" class="form-control" placeholder="" id="descripcion"name="descripcion" ng-model="membresia.descripcion" required/>
                 </span>
             </div>
         </div>
         </div>
         <div class="form-group">
         <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="description"> Description </label>
+            <label class="col-sm-3 control-label no-padding-right" for="description"> Descripción (Inglés) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="description" ng-model="membresia.description" />
+                <input type="text" class="form-control" placeholder="" id="description"name="description" ng-model="membresia.description" />
                 </span>
             </div>
         </div>
@@ -126,7 +128,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="sala"> Sala </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" name="sala" ng-model="membresia.sala" />
+                <input type="checkbox" class="form-control" placeholder="" id="sala"name="sala" ng-model="membresia.sala" />
                 </span>
             </div>
         </div>
@@ -136,7 +138,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="dormitorios"> Dormitorios </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="dormitorios" ng-model="membresia.dormitorios" />
+                <input type="number" class="form-control" placeholder="" id="dormitorios"name="dormitorios" ng-model="membresia.dormitorios" />
                 </span>
             </div>
         </div>
@@ -146,7 +148,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="lockOff"> Lock Off </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" name="lockOff" ng-model="membresia.lockOff" />
+                <input type="checkbox" class="form-control" placeholder="" id="lockOff"name="lockOff" ng-model="membresia.lockOff" />
                 </span>
             </div>
         </div>
@@ -156,7 +158,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="tipoInmueble"> Tipo de inmueble </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="tipoInmueble" ng-model="membresia.tipoInmueble" required>
+                <select class="form-control" placeholder="" id="tipoInmueble"name="tipoInmueble" ng-model="membresia.tipoInmueble" required>
                 <option value="CABAÑA">Cabaña</option>
                 <option value="HOTEL">Hotelera</option>
                 <option value="BUNGALO">Bungalo</option>
@@ -173,17 +175,17 @@
             <label class="col-sm-3 control-label no-padding-right" for="banosCompletos"> Baños Completos </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="banosCompletos" ng-model="membresia.banosCompletos" />
+                <input type="number" class="form-control" placeholder="" id="banosCompletos" name="banosCompletos" ng-model="membresia.banosCompletos" />
                 </span>
             </div>
         </div>
         </div>
         <div class="form-group">
         <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="baniosMedios"> Baños Medios </label>
+            <label class="col-sm-3 control-label no-padding-right" for="banosMedios"> Baños Medios </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="baniosMedios" ng-model="membresia.baniosMedios" />
+                <input type="number" class="form-control" placeholder="" id="banosMedios" name="banosMedios" ng-model="membresia.baniosMedios" />
                 </span>
             </div>
         </div>
@@ -193,7 +195,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="tipoCocina"> Tipo de Cocina </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="tipoCocina" ng-model="membresia.tipoCocina" >
+                <select class="form-control" placeholder="" id="tipoCocina" name="tipoCocina" ng-model="membresia.tipoCocina" >
                 <option value="COMPLETA">Cocina Completa</option>
                 <option value="MEDIANA">Cocina Mediana</option>
                 <option value="CHICA">Cocina Chica</option>
@@ -207,7 +209,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="maxOcupantes"> Máximo de Ocupantes </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="maxOcupantes" ng-model="membresia.maxOcupantes" required/>
+                <input type="number" class="form-control" placeholder="" id="maxOcupantes" name="maxOcupantes" ng-model="membresia.maxOcupantes" required/>
                 </span>
             </div>
         </div>
@@ -217,7 +219,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="maxPrivacidad"> Máximo con Privacidad </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="maxPrivacidad" ng-model="membresia.maxPrivacidad" required/>
+                <input type="number" class="form-control" placeholder="" id="maxPrivacidad" name="maxPrivacidad" ng-model="membresia.maxPrivacidad" required/>
                 </span>
             </div>
         </div>
@@ -227,7 +229,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="numCamas"> Número de camas (ind/mat/king) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="numCamas" name="numCamas" ng-model="membresia.numCamas" />
+                <input type="number" class="form-control" placeholder="" id="numCamas" id="numCamas" name="numCamas" ng-model="membresia.numCamas" />
                 </span>
             </div>
         </div>
@@ -237,7 +239,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="frecSemanasPorAnio"> ¿Cuántas Semanas Por Año? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" min="1" max="10" step="1" placeholder="" name="frecSemanasPorAnio" ng-model="membresia.frecSemanasPorAnio" />
+                <input type="number" class="form-control" min="1" max="10" step="1" placeholder="" id="frecSemanasPorAnio" name="frecSemanasPorAnio" ng-model="membresia.frecSemanasPorAnio" />
                 </span>
             </div>
         </div>
@@ -247,7 +249,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="frecCadaAnios"> ¿Cada Cuantos Años? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="frecCadaAnios" name="frecCadaAnios" ng-model="membresia.frecCadaAnios" >
+                <select class="form-control" placeholder="frecCadaAnios" id="frecCadaAnios" name="frecCadaAnios" ng-model="membresia.frecCadaAnios" >
                     <option value="UNO">Cada Año</option>
                     <option value="DOS">Cada 2 años</option>
                     <option value="NONES">Años nones</option>
@@ -262,17 +264,17 @@
             <label class="col-sm-3 control-label no-padding-right" for="localidadNombre"> Destino, Ciudad y Pais </label>
             <div class="col-sm-4">
                 <span class="block input-icon input-icon-right">
-                    <input type="text" class="form-control" ng-model="membresia.localidadNombre" placeholder="Destino, Ciudad" list="localidadNombre" required>
-                    <datalist id="localidadNombre">
+                    <input  name="localidadNombre" type="text" class="form-control" ng-model="membresia.localidadNombre" placeholder="Destino, Ciudad" list="localidadNombre" required>
+                    <datalist id="localidadNombre" >
 
-        <optgroup label="Argentina"><option value="Bariloche">Bariloche</option><option value="Buenos Aires">Buenos Aires</option><option value="Cabalango">Cabalango</option><option value="Capital Federal">Capital Federal</option><option value="Carlos Paz">Carlos Paz</option><option value="Caviahue">Caviahue</option><option value="Chapadmalal">Chapadmalal</option><option value="Costa Del Este">Costa Del Este</option><option value="Las Grutas">Las Grutas</option><option value="Las Le&amp;ntilde;as">Las Leñas</option><option value="Maipu">Maipu</option><option value="Malargue">Malargue</option><option value="Mar Del Plata">Mar Del Plata</option><option value="Pinamar">Pinamar</option><option value="San Bernardo">San Bernardo</option><option value="San Carlos De Bariloche">San Carlos De Bariloche</option><option value="San Carolos De Bariloche">San Carolos De Bariloche</option><option value="San Martin De Los Andes">San Martin De Los Andes</option><option value="Villa Carlos Paz">Villa Carlos Paz</option><option value="Villa La Angostura">Villa La Angostura</option></optgroup><optgroup label="Aruba"><option value="Aruba">Aruba</option><option value="Aruba-oranjestad">Aruba-oranjestad</option><option value="Eagle Beach">Eagle Beach</option><option value="Oranjestad">Oranjestad</option></optgroup><optgroup label="Belice"><option value="Cayo Ambergris">Cayo Ambergris</option></optgroup><optgroup label="Brasil"><option value="Buzios">Buzios</option><option value="Fortaleza">Fortaleza</option><option value="Porto Belo">Porto Belo</option></optgroup><optgroup label="Canada"><option value="Whistler">Whistler</option></optgroup><optgroup label="Chile"><option value="Con Con">Con Con</option><option value="Pucon">Pucon</option><option value="Re&amp;ntilde;aca">Reñaca</option><option value="Santiago">Santiago</option><option value="Vi&amp;ntilde;a Del Mar">Viña Del Mar</option><option value="Villarrica">Villarrica</option></optgroup><optgroup label="Colombia"><option value="Baq">Baq</option><option value="Bogota">Bogota</option><option value="Cartagena">Cartagena</option><option value="Santa Marta">Santa Marta</option></optgroup><optgroup rica="" label="Costa"><option value="10 Minutos De El Coco">10 Minutos De El Coco</option><option value="Alajuela">Alajuela</option><option value="Carrillo">Carrillo</option><option value="El Roble">El Roble</option><option value="El Roble Puntarenas">El Roble Puntarenas</option><option value="Guanacaste">Guanacaste</option><option value="La Cruz">La Cruz</option><option value="Liberia">Liberia</option><option value="Nicoya">Nicoya</option><option value="Playa Hermosa">Playa Hermosa</option><option value="Playas Del Coco">Playas Del Coco</option><option value="Puntarenas">Puntarenas</option><option value="Santa Cruz Gte.">Santa Cruz Gte.</option></optgroup><optgroup label="Ecuador"><option value="Gal&amp;aacute;pagos">Galápagos</option><option value="Salinas">Salinas</option></optgroup><optgroup label="España"><option value="Alfas Del Pi  Alicante">Alfas Del Pi  Alicante</option><option value="Alicante">Alicante</option><option value="Almeria">Almeria</option><option value="Benalmadena">Benalmadena</option><option value="Benalmadena-malaga">Benalmadena-malaga</option><option value="Cambrils">Cambrils</option><option value="Denia">Denia</option><option value="Gran Canaria">Gran Canaria</option><option value="Ibiza">Ibiza</option><option value="La Manga Del Mar Menor">La Manga Del Mar Menor</option><option value="Madrid">Madrid</option><option value="Malaga">Malaga</option><option value="Malaga - Benalmadena Costa">Malaga - Benalmadena Costa</option><option value="Mijas Costa Malaga">Mijas Costa Malaga</option><option value="Mostoles">Mostoles</option><option value="Oropesa Del Mar (castellon)">Oropesa Del Mar (castellon)</option><option value="Pe&amp;ntilde;iscola">Peñiscola</option><option value="Pe&amp;ntilde;iscola(castellon)">Peñiscola(castellon)</option><option value="Salou">Salou</option><option value="Salou Tarragona">Salou Tarragona</option><option value="Santa Cruz De Tenerife">Santa Cruz De Tenerife</option><option value="Tenerife">Tenerife</option><option value="Torrevieja(alicante)">Torrevieja(alicante)</option></optgroup><optgroup unidos="" label="Estados"><option value="Breckenridge">Breckenridge</option><option value="Canyon Lake">Canyon Lake</option><option value="Cleremont">Cleremont</option><option value="Fairfield Bay">Fairfield Bay</option><option value="Fort Lauderdale">Fort Lauderdale</option><option value="Fourt Laudardele">Fourt Laudardele</option><option value="Isla Del Padre">Isla Del Padre</option><option value="Kissimmee">Kissimmee</option><option value="Lake Buena Vista">Lake Buena Vista</option><option value="Las Vegas">Las Vegas</option><option value="Manhattan">Manhattan</option><option value="Miami">Miami</option><option value="Orlando">Orlando</option><option value="Pompano Beach">Pompano Beach</option><option value="Rio Grande">Rio Grande</option><option value="South Padre Island-isla Del Padre">South Padre Island-isla Del Padre</option><option value="Vail">Vail</option><option value="Waikoloa">Waikoloa</option><option value="Weston">Weston</option></optgroup><optgroup label="Jamaica"><option value="Main Street">Main Street</option></optgroup><optgroup label="Martinique"></optgroup><optgroup label="Mexico"><option value="Acapulco">Acapulco</option><option value="Acapulco Diamante">Acapulco Diamante</option><option value="Cabo San Lucas">Cabo San Lucas</option><option value="Cacun">Cacun</option><option value="Canc&amp;uacute;n">Cancún</option><option value="Chihuahua">Chihuahua</option><option value="Ciudad De Mexico">Ciudad De Mexico</option><option value="Coacalco">Coacalco</option><option value="Congregacion Canoas">Congregacion Canoas</option><option value="Cordoba">Cordoba</option><option value="Coyoacan">Coyoacan</option><option value="Cozumel">Cozumel</option><option value="Cuautitlan Izcalli">Cuautitlan Izcalli</option><option value="Cuernavaca">Cuernavaca</option><option value="Distrito Federal">Distrito Federal</option><option value="Durango">Durango</option><option value="Guadalajara">Guadalajara</option><option value="Hermosillo">Hermosillo</option><option value="Irapuato">Irapuato</option><option value="Ixtapa">Ixtapa</option><option value="Ixtapa Zihuatanejo">Ixtapa Zihuatanejo</option><option value="Jalisco">Jalisco</option><option value="Juarez">Juarez</option><option value="Leon">Leon</option><option value="Los Cabos">Los Cabos</option><option value="Manzanillo">Manzanillo</option><option value="Mazatl&amp;aacute;n">Mazatlán</option><option value="MazatlÃ&nbsp;n">MazatlÃ&nbsp;n</option><option value="Mexicali">Mexicali</option><option value="Mexico">Mexico</option><option value="Monterrey">Monterrey</option><option value="Morelia">Morelia</option><option value="P. Pe&amp;ntilde;aco">P. Peñaco</option><option value="Para Ser Usado En Cualquier Desarrollo De Royal Holiday Club">Para Ser Usado En Cualquier Desarrollo De Royal Holiday Club</option><option value="Places In Mexico">Places In Mexico</option><option value="Playa Del Carmen">Playa Del Carmen</option><option value="Puerto Morelos">Puerto Morelos</option><option value="Puerto Pe&amp;ntilde;asco">Puerto Peñasco</option><option value="Puerto Vallarta">Puerto Vallarta</option><option value="Queretaro">Queretaro</option><option value="Rio Lagartos">Rio Lagartos</option><option value="Riviera Maya">Riviera Maya</option><option value="Salamanca">Salamanca</option><option value="San Jose Del Cabo">San Jose Del Cabo</option><option value="San Luis Potosi">San Luis Potosi</option><option value="Santiago N.l.">Santiago N.l.</option><option value="Solidaridad">Solidaridad</option><option value="Talquepaque">Talquepaque</option><option value="Tapachula">Tapachula</option><option value="Tequesquitengo">Tequesquitengo</option><option value="Tequisqiapan">Tequisqiapan</option><option value="Tlalnepantla">Tlalnepantla</option><option value="Varios Destinos">Varios Destinos</option><option value="Varios Sitios">Varios Sitios</option><option value="Venustiano Carranza">Venustiano Carranza</option><option value="Villahermosa">Villahermosa</option><option value="Zapopan">Zapopan</option></optgroup><optgroup dominicana="" label="Republica"><option value="Bavaro">Bavaro</option><option value="Bavaro-punta Cana">Bavaro-punta Cana</option><option value="Bayahibe">Bayahibe</option><option value="Higuey">Higuey</option><option value="Higuey - Punta Cana">Higuey - Punta Cana</option><option value="Playa Bavaro">Playa Bavaro</option><option value="Punta Cana">Punta Cana</option><option value="Punta Cana (playa Bavaro)">Punta Cana (playa Bavaro)</option></optgroup><optgroup label="Uruguay"><option value="Punta Del Este">Punta Del Este</option><option value="Solanas">Solanas</option></optgroup><optgroup label="Venezuela"><option value="Margarita">Margarita</option><option value="Pampatar">Pampatar</option><option value="Pampatar/ Isla Margarita">Pampatar/ Isla Margarita</option><option value="Porlamar">Porlamar</option></optgroup>
+                        <optgroup label="Argentina"><option value="Bariloche">Bariloche</option><option value="Buenos Aires">Buenos Aires</option><option value="Cabalango">Cabalango</option><option value="Capital Federal">Capital Federal</option><option value="Carlos Paz">Carlos Paz</option><option value="Caviahue">Caviahue</option><option value="Chapadmalal">Chapadmalal</option><option value="Costa Del Este">Costa Del Este</option><option value="Las Grutas">Las Grutas</option><option value="Las Le&amp;ntilde;as">Las Leñas</option><option value="Maipu">Maipu</option><option value="Malargue">Malargue</option><option value="Mar Del Plata">Mar Del Plata</option><option value="Pinamar">Pinamar</option><option value="San Bernardo">San Bernardo</option><option value="San Carlos De Bariloche">San Carlos De Bariloche</option><option value="San Carolos De Bariloche">San Carolos De Bariloche</option><option value="San Martin De Los Andes">San Martin De Los Andes</option><option value="Villa Carlos Paz">Villa Carlos Paz</option><option value="Villa La Angostura">Villa La Angostura</option></optgroup><optgroup label="Aruba"><option value="Aruba">Aruba</option><option value="Aruba-oranjestad">Aruba-oranjestad</option><option value="Eagle Beach">Eagle Beach</option><option value="Oranjestad">Oranjestad</option></optgroup><optgroup label="Belice"><option value="Cayo Ambergris">Cayo Ambergris</option></optgroup><optgroup label="Brasil"><option value="Buzios">Buzios</option><option value="Fortaleza">Fortaleza</option><option value="Porto Belo">Porto Belo</option></optgroup><optgroup label="Canada"><option value="Whistler">Whistler</option></optgroup><optgroup label="Chile"><option value="Con Con">Con Con</option><option value="Pucon">Pucon</option><option value="Re&amp;ntilde;aca">Reñaca</option><option value="Santiago">Santiago</option><option value="Vi&amp;ntilde;a Del Mar">Viña Del Mar</option><option value="Villarrica">Villarrica</option></optgroup><optgroup label="Colombia"><option value="Baq">Baq</option><option value="Bogota">Bogota</option><option value="Cartagena">Cartagena</option><option value="Santa Marta">Santa Marta</option></optgroup><optgroup rica="" label="Costa"><option value="10 Minutos De El Coco">10 Minutos De El Coco</option><option value="Alajuela">Alajuela</option><option value="Carrillo">Carrillo</option><option value="El Roble">El Roble</option><option value="El Roble Puntarenas">El Roble Puntarenas</option><option value="Guanacaste">Guanacaste</option><option value="La Cruz">La Cruz</option><option value="Liberia">Liberia</option><option value="Nicoya">Nicoya</option><option value="Playa Hermosa">Playa Hermosa</option><option value="Playas Del Coco">Playas Del Coco</option><option value="Puntarenas">Puntarenas</option><option value="Santa Cruz Gte.">Santa Cruz Gte.</option></optgroup><optgroup label="Ecuador"><option value="Gal&amp;aacute;pagos">Galápagos</option><option value="Salinas">Salinas</option></optgroup><optgroup label="España"><option value="Alfas Del Pi  Alicante">Alfas Del Pi  Alicante</option><option value="Alicante">Alicante</option><option value="Almeria">Almeria</option><option value="Benalmadena">Benalmadena</option><option value="Benalmadena-malaga">Benalmadena-malaga</option><option value="Cambrils">Cambrils</option><option value="Denia">Denia</option><option value="Gran Canaria">Gran Canaria</option><option value="Ibiza">Ibiza</option><option value="La Manga Del Mar Menor">La Manga Del Mar Menor</option><option value="Madrid">Madrid</option><option value="Malaga">Malaga</option><option value="Malaga - Benalmadena Costa">Malaga - Benalmadena Costa</option><option value="Mijas Costa Malaga">Mijas Costa Malaga</option><option value="Mostoles">Mostoles</option><option value="Oropesa Del Mar (castellon)">Oropesa Del Mar (castellon)</option><option value="Pe&amp;ntilde;iscola">Peñiscola</option><option value="Pe&amp;ntilde;iscola(castellon)">Peñiscola(castellon)</option><option value="Salou">Salou</option><option value="Salou Tarragona">Salou Tarragona</option><option value="Santa Cruz De Tenerife">Santa Cruz De Tenerife</option><option value="Tenerife">Tenerife</option><option value="Torrevieja(alicante)">Torrevieja(alicante)</option></optgroup><optgroup unidos="" label="Estados"><option value="Breckenridge">Breckenridge</option><option value="Canyon Lake">Canyon Lake</option><option value="Cleremont">Cleremont</option><option value="Fairfield Bay">Fairfield Bay</option><option value="Fort Lauderdale">Fort Lauderdale</option><option value="Fourt Laudardele">Fourt Laudardele</option><option value="Isla Del Padre">Isla Del Padre</option><option value="Kissimmee">Kissimmee</option><option value="Lake Buena Vista">Lake Buena Vista</option><option value="Las Vegas">Las Vegas</option><option value="Manhattan">Manhattan</option><option value="Miami">Miami</option><option value="Orlando">Orlando</option><option value="Pompano Beach">Pompano Beach</option><option value="Rio Grande">Rio Grande</option><option value="South Padre Island-isla Del Padre">South Padre Island-isla Del Padre</option><option value="Vail">Vail</option><option value="Waikoloa">Waikoloa</option><option value="Weston">Weston</option></optgroup><optgroup label="Jamaica"><option value="Main Street">Main Street</option></optgroup><optgroup label="Martinique"></optgroup><optgroup label="Mexico"><option value="Acapulco">Acapulco</option><option value="Acapulco Diamante">Acapulco Diamante</option><option value="Cabo San Lucas">Cabo San Lucas</option><option value="Cacun">Cacun</option><option value="Canc&amp;uacute;n">Cancún</option><option value="Chihuahua">Chihuahua</option><option value="Ciudad De Mexico">Ciudad De Mexico</option><option value="Coacalco">Coacalco</option><option value="Congregacion Canoas">Congregacion Canoas</option><option value="Cordoba">Cordoba</option><option value="Coyoacan">Coyoacan</option><option value="Cozumel">Cozumel</option><option value="Cuautitlan Izcalli">Cuautitlan Izcalli</option><option value="Cuernavaca">Cuernavaca</option><option value="Distrito Federal">Distrito Federal</option><option value="Durango">Durango</option><option value="Guadalajara">Guadalajara</option><option value="Hermosillo">Hermosillo</option><option value="Irapuato">Irapuato</option><option value="Ixtapa">Ixtapa</option><option value="Ixtapa Zihuatanejo">Ixtapa Zihuatanejo</option><option value="Jalisco">Jalisco</option><option value="Juarez">Juarez</option><option value="Leon">Leon</option><option value="Los Cabos">Los Cabos</option><option value="Manzanillo">Manzanillo</option><option value="Mazatl&amp;aacute;n">Mazatlán</option><option value="MazatlÃ&nbsp;n">MazatlÃ&nbsp;n</option><option value="Mexicali">Mexicali</option><option value="Mexico">Mexico</option><option value="Monterrey">Monterrey</option><option value="Morelia">Morelia</option><option value="P. Pe&amp;ntilde;aco">P. Peñaco</option><option value="Para Ser Usado En Cualquier Desarrollo De Royal Holiday Club">Para Ser Usado En Cualquier Desarrollo De Royal Holiday Club</option><option value="Places In Mexico">Places In Mexico</option><option value="Playa Del Carmen">Playa Del Carmen</option><option value="Puerto Morelos">Puerto Morelos</option><option value="Puerto Pe&amp;ntilde;asco">Puerto Peñasco</option><option value="Puerto Vallarta">Puerto Vallarta</option><option value="Queretaro">Queretaro</option><option value="Rio Lagartos">Rio Lagartos</option><option value="Riviera Maya">Riviera Maya</option><option value="Salamanca">Salamanca</option><option value="San Jose Del Cabo">San Jose Del Cabo</option><option value="San Luis Potosi">San Luis Potosi</option><option value="Santiago N.l.">Santiago N.l.</option><option value="Solidaridad">Solidaridad</option><option value="Talquepaque">Talquepaque</option><option value="Tapachula">Tapachula</option><option value="Tequesquitengo">Tequesquitengo</option><option value="Tequisqiapan">Tequisqiapan</option><option value="Tlalnepantla">Tlalnepantla</option><option value="Varios Destinos">Varios Destinos</option><option value="Varios Sitios">Varios Sitios</option><option value="Venustiano Carranza">Venustiano Carranza</option><option value="Villahermosa">Villahermosa</option><option value="Zapopan">Zapopan</option></optgroup><optgroup dominicana="" label="Republica"><option value="Bavaro">Bavaro</option><option value="Bavaro-punta Cana">Bavaro-punta Cana</option><option value="Bayahibe">Bayahibe</option><option value="Higuey">Higuey</option><option value="Higuey - Punta Cana">Higuey - Punta Cana</option><option value="Playa Bavaro">Playa Bavaro</option><option value="Punta Cana">Punta Cana</option><option value="Punta Cana (playa Bavaro)">Punta Cana (playa Bavaro)</option></optgroup><optgroup label="Uruguay"><option value="Punta Del Este">Punta Del Este</option><option value="Solanas">Solanas</option></optgroup><optgroup label="Venezuela"><option value="Margarita">Margarita</option><option value="Pampatar">Pampatar</option><option value="Pampatar/ Isla Margarita">Pampatar/ Isla Margarita</option><option value="Porlamar">Porlamar</option></optgroup>
         
-                </datalist>
+                    </datalist>
                 </span>
             </div>
             <div class="col-sm-3">     
                 <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="Pais" name="paisNombre" ng-model="membresia.paisNombre" required>
+                <select class="form-control" placeholder="Pais" id="paisNombre" name="paisNombre" ng-model="membresia.paisNombre" required>
                     <option value="MEXICO">México</option>
                 </select>
                 </span>
@@ -284,7 +286,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ubicadoEn"> Donde se encuentra ubicado</label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="ubicadoEn" ng-model="membresia.ubicadoEn" required>
+                <select class="form-control" placeholder="" id="ubicadoEn" name="ubicadoEn" ng-model="membresia.ubicadoEn" required>
                 <option value="MONTANA">En Montaña sin Nieve</option>
                 <option value="NIEVE">En Montaña Nevada</option>
                 <option value="PLAYA">Sobre la Playa</option>
@@ -303,7 +305,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="mantenimiento"> ¿Existe Cuota de Mantenimiento? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="mantenimiento" name="mantenimiento" ng-model="membresia.mantenimiento" />
+                <input type="checkbox" class="form-control" placeholder="mantenimiento" id="mantenimiento" name="mantenimiento" ng-model="membresia.mantenimiento" />
                 </span>
             </div>
         </div>
@@ -313,7 +315,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="mantenimientoImporte" name="mantenimientoImporte" ng-model="membresia.mantenimientoImporte" />
+                <input type="number" class="form-control" placeholder="mantenimientoImporte" id="mantenimientoImporte" name="mantenimientoImporte" ng-model="membresia.mantenimientoImporte" />
                 </span>
             </div>
         </div>
@@ -323,7 +325,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="mantenimientoMoneda" name="mantenimientoMoneda" ng-model="membresia.mantenimientoMoneda" >
+                <select class="form-control" placeholder="mantenimientoMoneda" id="mantenimientoMoneda" name="mantenimientoMoneda" ng-model="membresia.mantenimientoMoneda" >
                     <option value="DOLARES AMERICANOS">Dolares americanos</option>
                     <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                     <option value="EUROS">Euros</option>
@@ -337,7 +339,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="venta"> ¿Está en Venta? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="venta" name="venta" ng-model="membresia.venta" />
+                <input type="checkbox" class="form-control" placeholder="venta" id="venta" name="venta" ng-model="membresia.venta" />
                 </span>
             </div>
         </div>
@@ -347,7 +349,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="ventaPrecio" name="ventaPrecio" ng-model="membresia.ventaPrecio" />
+                <input type="number" class="form-control" placeholder="ventaPrecio" id="ventaPrecio" name="ventaPrecio" ng-model="membresia.ventaPrecio" />
                 </span>
             </div>
         </div>
@@ -357,7 +359,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="ventaMoneda" name="ventaMoneda" ng-model="membresia.ventaMoneda" >
+                <select class="form-control" placeholder="ventaMoneda" id="ventaMoneda" name="ventaMoneda" ng-model="membresia.ventaMoneda" >
                     <option value="DOLARES AMERICANOS">Dolares americanos</option>
                     <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                     <option value="EUROS">Euros</option>
@@ -371,7 +373,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" name="ventaOcultarImporte" ng-model="membresia.ventaOcultarImporte" />
+                <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" id="ventaOcultarImporte" name="ventaOcultarImporte" ng-model="membresia.ventaOcultarImporte" />
                 </span>
             </div>
         </div>
@@ -381,7 +383,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ventaNegociable" name="ventaNegociable" ng-model="membresia.ventaNegociable" />
+                <input type="checkbox" class="form-control" placeholder="ventaNegociable" id="ventaNegociable" name="ventaNegociable" ng-model="membresia.ventaNegociable" />
                 </span>
             </div>
         </div>
@@ -391,7 +393,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="date" class="form-control" placeholder="compraFecha" name="compraFecha" ng-model="membresia.compraFecha" />
+                <input type="date" class="form-control" placeholder="compraFecha" id="compraFecha" name="compraFecha" ng-model="membresia.compraFecha" />
                 </span>
             </div>
         </div>
@@ -401,7 +403,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ocultarFecha" name="ocultarFecha" ng-model="membresia.ocultarFecha" />
+                <input type="checkbox" class="form-control" placeholder="ocultarFecha" id="ocultarFecha" name="ocultarFecha" ng-model="membresia.ocultarFecha" />
                 </span>
             </div>
         </div>
@@ -411,7 +413,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" name="compraCaduca" ng-model="membresia.compraCaduca" />
+                <input type="checkbox" class="form-control" placeholder="" id="compraCaduca" name="compraCaduca" ng-model="membresia.compraCaduca" />
                 </span>
             </div>
         </div>
@@ -421,7 +423,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="date" class="form-control" placeholder="" name="compraCaducidad" ng-model="membresia.compraCaducidad" />
+                <input type="date" class="form-control" placeholder="" id="compraCaducidad" name="compraCaducidad" ng-model="membresia.compraCaducidad" />
                 </span>
             </div>
         </div>
@@ -431,7 +433,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="renta"> ¿Está en Renta? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" name="renta" ng-model="membresia.renta" />
+                <input type="checkbox" class="form-control" placeholder="" id="renta" name="renta" ng-model="membresia.renta" />
                 </span>
             </div>
         </div>
@@ -441,7 +443,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" name="rentaPrecio" ng-model="membresia.rentaPrecio" />
+                <input type="number" class="form-control" placeholder="" id="rentaPrecio" name="rentaPrecio" ng-model="membresia.rentaPrecio" />
                 </span>
             </div>
         </div>
@@ -451,7 +453,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
+                <select class="form-control" placeholder="" id="rentaMoneda" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
                     <option value="DOLARES AMERICANOS">Dolares americanos</option>
                     <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                     <option value="EUROS">Euros</option>
@@ -465,7 +467,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" name="rentaNegociable" ng-model="membresia.rentaNegociable" />
+                <input type="checkbox" class="form-control" placeholder="" id="rentaNegociable" name="rentaNegociable" ng-model="membresia.rentaNegociable" />
                 </span>
             </div>
         </div>
@@ -475,7 +477,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="telContacto"> Teléfono de Contacto </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" name="telContacto" ng-model="membresia.telContacto" required/>
+                <input type="text" class="form-control" placeholder="" id="telContacto" name="telContacto" ng-model="membresia.telContacto" required/>
                 </span>
             </div>
         </div>
@@ -485,7 +487,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="metodoPago"> Método(s) de pago que aceptas para la transacción </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select name="metodoPago" id="metodoPago" ng-model="membresia.metodoPago" class="form-control" multiple  required>
+                <select id="metodoPago" name="metodoPago" id="metodoPago" ng-model="membresia.metodoPago" class="form-control" multiple  required>
                     <option value="EFECTIVO">Efectivo</option>
                     <option value="CREDITO-DEBITO">Tarjeta Crédito/Débito</option>
                     <option value="TRANSFERENCIA">Transferencia</option>
