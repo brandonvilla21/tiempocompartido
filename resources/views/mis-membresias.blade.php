@@ -63,10 +63,10 @@
                             </div>
 
                             membresia.status
-                            <button type="submit" class="width-35 pull-right btn btn-success" ng-click="newMembresia()">
+                            <a href="/new-membresia" class="width-35 pull-right btn btn-success" ng-click="newMembresia()">
                             <i class="ace-icon fa fa-plus"></i>
                                 Crea nueva publicación
-                            </button>
+                            </a>
                         </div>
                     </div>
             </div>
