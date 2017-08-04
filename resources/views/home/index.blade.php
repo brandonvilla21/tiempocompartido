@@ -118,7 +118,7 @@
                 <div class="Latest__content">
                     {{--  <data-owl-carousel class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">  --}}
                     <div class="row">
-                        {{--  @foreach($membresias as $membresia)  --}}
+                        @foreach($membresias as $membresia)
                             {{--  <div class="item" owl-carousel-item=""  class="item">                          --}}
                                 <div class="Card col-md-4">
                                     {{--  <a ng-href="/membresia/tiempo-compartido-en-{{membresia.localidadNombre | slugify}}-{{membresia.clubNombre | slugify}}-{{membresia.paisNombre | slugify}}/{{membresia.id}}">  --}}
@@ -130,24 +130,24 @@
                                     </a>
                                     <div class="Card__Content">
                                         <h4 class="Card__Content__Title">
-                                            {{--  {{ $membresia->titulo }}    --}}
+                                            {{ $membresia->titulo }}  
                                         </h4>
                                         <p ng-show="membresia.renta" class="Card__Content__Description">
-                                            {{--  {{ $membresia->rentaPrecio }}   --}}
+                                            {{ $membresia->rentaPrecio }} 
                                         </p>
                                         <p ng-show="membresia.venta" class="Card__Content__Description">
-                                            {{--  {{ $membresia->ventaPrecio }}   --}}
+                                            {{ $membresia->ventaPrecio }} 
                                         </p>
                                         <div class="Card__Actions no-padding-sides">
                                             {{--  <a ng-href="/membresia/tiempo-compartido-en-{{membresia.localidadOrigen.nombre | slugify}}-{{membresia.clubNombre | slugify}}-{{membresia.paisOrigen.nombre | slugify}}/{{membresia.id}}" class="btn btn-primary-outline">  --}}
                                             <a  class="btn btn-primary-outline">
-                                                {{--  {{ $membresia->clubNombre }}   --}}
+                                                {{ $membresia->clubNombre }} 
                                             </a>
                                         </div>
                                     </div>
                                 </div> 
                             {{--  </div>                                                                                 --}}
-                        {{--  @endforeach  --}}
+                        @endforeach
                     </div>
                     {{--  </data-owl-carousel>  --}}
                 </div>
