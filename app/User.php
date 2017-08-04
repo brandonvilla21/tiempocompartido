@@ -13,7 +13,7 @@ class User extends Authenticatable
      * Endpoint for API 
      * @var string
      */
-    const BASE_URI = 'https://tiempocompartidolb.herokuapp.com/api/';
+    const BASE_URI = 'http://0.0.0.0:3000/api/';
         
     /**
      * The attributes that are mass assignable.
