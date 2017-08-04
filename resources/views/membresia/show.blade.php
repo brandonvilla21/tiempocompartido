@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col margin-bottom">
                         <h1 class="title">
-                        membresia.descripcion
+                        {{ $membresia->descripcion }}
                     </h1>
                 </div>
                 <div class="row">
@@ -30,6 +30,7 @@
                                     {{--  <img ng-src="{{carrusel_img_src}}" class="img-fluid">  --}}
                                     <img ng-src="carrusel_img_src" class="img-fluid">
                                 </figure>
+                                {{--  Fix this part  --}}
                                 <data-owl-carousel id="Profile__Gallery" class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">
                                     <div class="item" owl-carousel-item="" ng-repeat="imagen in membresia.imagenes" class="item">
                                         <figure class="img">
@@ -51,10 +52,18 @@
                                 <h2><i class="fa fa-dollar"></i> Precio</h2>
                             </div>
                             <div class="Profile__Title">
-                                <p class="lead" ng-show="membresia.venta">Venta <strong>membresia.ventaPrecio | currency</strong> <small>membresia.ventaMoneda</small></p>
-                                <div class="alert alert-warning" role="alert" ng-show="membresia.ventaNegociable">¡El precio de venta es Negociable!</div>
-                                <p class="lead" ng-show="membresia.renta">Renta <strong>membresia.rentaPrecio | currency</strong> <small>membresia.rentaMoneda</small></p>
-                                <div class="alert alert-warning" role="alert" ng-show="membresia.rentaNegociable">¡El precio de renta es Negociable!</div>
+                                @if( $membresia->venta )
+                                    <p class="lead" ng-show="membresia.venta">Venta <strong>{{ $membresia->ventaPrecio}} | currency</strong> <small>{{ $membresia->ventaMoneda }}</small></p>
+                                @endif
+                                @if( $membresia->ventaNegociable )
+                                    <div class="alert alert-warning" role="alert" ng-show="membresia.ventaNegociable">¡El precio de venta es Negociable!</div>
+                                @endif
+                                @if( $membresia->renta )
+                                    <p class="lead" ng-show="membresia.renta">Renta <strong>{{ $membresia->rentaPrecio }} | currency</strong> <small>{{ $membresia->rentaMoneda }}</small></p>
+                                @endif
+                                 {{--  @if( $membresia->rentaNegociable) )   --}}
+                                    <div class="alert alert-warning" role="alert" ng-show="membresia.rentaNegociable">¡El precio de renta es Negociable!</div>
+                                  {{--  @endif    --}}
                             </div>
                             <div class="Profile__Benefits">
                                 <div class="col-xs-12 col-md-12 col-lg-12">

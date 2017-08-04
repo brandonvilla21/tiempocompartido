@@ -66,7 +66,7 @@ class Membresia extends Model
                 'idPerson'              => $idPerson,
                 
             ],
-            'header' => [
+            'headers' => [
                 'Authorization' => $ACCESS_TOKEN
             ]
         ]);

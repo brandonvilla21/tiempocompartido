@@ -15,6 +15,7 @@ Route::post('/signup', 'RegistrationController@store');
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');
 Route::post('/new-membresia', 'MembresiaController@store');
+Route::get('/membresia/{titulo}/{id}', 'MembresiaController@show');
 
 // PROMOCIONES
 Route::get('/promociones', 'PromocionController@index');
@@ -26,9 +27,6 @@ Route::get('/edit-membresia/{id}', function () {
 });
 Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
     return view('membresia-ubicacion');
-});
-Route::get('/membresia/{titulo}/{id}', function () {
-    return view('membresia');
 });
 Route::get('/mis-membresias', function () {
     return view('mis-membresias');

@@ -42,7 +42,33 @@ class MembresiaController extends Controller
         }
 
         return view('mis-membresias');
+    }
 
+    /**
+     * Display the specified Membresia.
+     *
+     * @param  String  $titulo
+     * @param  String  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($titulo, $id)
+    {
+         // Get the instance to make HTTP Requests
+        $client = User::getClient();  
 
+        try {
+          // Get a single promocion
+            $response = Membresia::findById($client, $id);  
+        } catch (RequestException $e) {
+            // In case something went wrong it will redirect to /
+            session()->flash('error', 'Ocurrio un error al acceder a esta membresia, por favor, intente de nuevo.');
+            return view('home.index');
+        }
+
+        // Get the response body from HTTP Request and parse to Object
+        $membresia = json_decode($response->getBody()->getContents());
+
+        //Return to /membresias/{titulo}/{id} with the Object: $membresia
+        return view('membresia.show', compact('membresia'));
     }
 }
