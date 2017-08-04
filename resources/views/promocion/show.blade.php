@@ -14,10 +14,15 @@
             <div class="container">
 
                 <div class="row">
-                    <div class="col-xs-12 col-lg-12 margin-bottom">
+                    <div class="col-xs-12 col-lg-12 ">
                         <h1 class="title">
-                            promocion.descripcion
+                            {{ $promocion->titulo }}
                         </h1>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <p>
+                            {{ $promocion->descripcion }}
+                        </p>
                     </div>
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
                         <div class="Profile__Gallery">
@@ -26,7 +31,7 @@
                             </div>
                             <div class="Profile__GalleryImages">
                                 <figure class="img">
-                                    {{--  <img ng-src="{{carrusel_img_src}}" class="img-fluid">  --}}
+                                    {{--  DUDA: De donde saca esta imagen? <img ng-src="{{carrusel_img_src}}" class="img-fluid">  --}}
                                     <img ng-src="" class="img-fluid">
                                 </figure>
                                 <data-owl-carousel id="Profile__Gallery" class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">

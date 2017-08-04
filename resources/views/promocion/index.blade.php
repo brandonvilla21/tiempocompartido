@@ -36,20 +36,24 @@
                             Promociones del mes
                         </h2>
                         <div class="row padding" ng-repeat="promocion in promociones">
-                            <div class="col">
-                                <div class="media">
-                                    <div class="media-left">
-                                        {{--  <a ng-href="/promociones/{{promocion.titulo | slugify}}/{{promocion.id}}">  --}}
-                                        <a>
-                                        <img class="media-object" src="..." alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">promocion.titulo</h4>
-                                        promocion.descripcion
+                            @foreach($promociones as $promocion)
+
+                                <div class="col">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            {{--  <a ng-href="/promociones/{{promocion.titulo | slugify}}/{{promocion.id}}">  --}}
+                                            <a href="/promociones/{{ slugify($promocion->titulo) }}/{{$promocion->id}}"> 
+                                                <img class="media-object" src="..." alt="...">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{ $promocion->titulo }}</h4>
+                                            {{ $promocion->descripcion }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>
