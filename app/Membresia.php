@@ -86,4 +86,18 @@ class Membresia extends Model
         ]);
     }
 
+    /**
+     * Get a single Membresias by HTTP Request 
+     * Method: GET
+     * URI: http://0.0.0.0:3000/api/Membresia/{id} 
+     */
+    public static function findById($client, $membresiaId)
+    {
+        return $client->request('GET', 'Membresia/'. $membresiaId, [
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+    }
+
 }
