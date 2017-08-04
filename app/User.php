@@ -9,6 +9,10 @@ use GuzzleHttp\Client;
 class User extends Authenticatable
 {
     use Notifiable;
+    /**
+     * Endpoint for API 
+     * @var string
+     */
     const BASE_URI = 'http://0.0.0.0:3000/api/';
         
     /**
@@ -46,14 +50,13 @@ class User extends Authenticatable
     /**
      * Register a new User by HTTP Request 
      * Method: POST
-     * URI: http://0.0.0.0:3000/api/Users 
+     * URI: http://0.0.0.0:3000/api/People 
      */
     public static function registerUser($client, $request)
     {
-        return $client->request('POST', 'Users', [
+        return $client->request('POST', 'People', [
             'form_params' => [
-                'realm'         => $request->user,
-                'username'      => $request->username,
+                'nickname'      => $request->user,
                 'email'         => $request->email,
                 'password'      => $request->password,
                 'emailVerified' => true
@@ -64,11 +67,11 @@ class User extends Authenticatable
     /**
      * Logs a User by HTTP Request
      * Method: POST
-     * URI: http://0.0.0.0:3000/api/Users/login
+     * URI: http://0.0.0.0:3000/api/People/login
      */
     public static function logUser($client, $request)
     {
-        return $client->request('POST', 'Users/login', [
+        return $client->request('POST', 'People/login', [
             'form_params' => [
                 'email'     => $request->email,
                 'password'  => $request->password,
@@ -84,7 +87,7 @@ class User extends Authenticatable
 
     public static function getUserInformation($client, $id, $ACCESS_TOKEN)
     {
-        return $client->request('GET', 'Users/'.$id, [
+        return $client->request('GET', 'People/'.$id, [
             'form_params' => [
                 'id'  => $id,
             ],
@@ -94,64 +97,24 @@ class User extends Authenticatable
             ]
         ]);
     }
-    /**
-     * Temporal method
-     * Get the token from body request
-     */
-    public static function getTokenFromString($body)
-    {   
-        $token='';
-        for($i = 0; $i < strlen($body) -1; $i++) 
-            if($body{$i} . $body{$i+1} == 'id') {
-                $initPos = $i + 5;
-                while(true) 
-                    if($body{$initPos} == '"') break;
-                    else {
-                        $token = $token . $body{$initPos};                            
-                        $initPos = $initPos +1;
-                    } 
-            } 
-        return $token;
-    }
-
-    /**
-     * Temporal method
-     * Get the userId from body request
-     */
-    public static function getUserIdFromString($body)
-    {   
-        $token='';
-        for($i = 0; $i < strlen($body) -1; $i++) 
-            if($body{$i} . $body{$i+1} == 'Id') {
-                $initPos = $i + 5;
-                while(true) 
-                    if($body{$initPos} == '"') break;
-                    else {
-                        $token = $token . $body{$initPos};                            
-                        $initPos = $initPos +1;
-                    } 
-            } 
-        return $token;
-    }
-    /**
-     * Temporal method
-     * Get the realm from body request
-     */
-    public static function getNameFromString($body)
-    {   
-        $token='';
-        for($i = 0; $i < strlen($body) -1; $i++) 
-            if($body{$i} . $body{$i+1} == 'lm') {
-                $initPos = $i + 5;
-                while(true) 
-                    if($body{$initPos} == '"') break;
-                    else {
-                        $token = $token . $body{$initPos};                            
-                        $initPos = $initPos +1;
-                    } 
-            } 
-        return $token;
-    }
-
     
+    public static function logoutUser($client, $ACCESS_TOKEN)
+    {
+        return $client->request('POST', 'People/logout', [
+
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN
+            ]
+        ]);
+    }  
+
+    public static function getUserMembresias($client, $ACCESS_TOKEN, $userId)
+    {
+        return $client->request('GET', 'People/'. $userId . '/membresias', [
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN,
+                'Accept'        => 'application/json'
+            ]
+        ]);
+    }
 }
