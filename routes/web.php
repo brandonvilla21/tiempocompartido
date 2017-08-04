@@ -1,12 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
-Route::get('/busqueda', function () {
-    return view('busqueda');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 // SESSION
 Route::get('/login', 'SessionsController@create');
@@ -17,6 +12,30 @@ Route::get('/logout', 'SessionsController@destroy');
 Route::get('/signup', 'RegistrationController@create');
 Route::post('/signup', 'RegistrationController@store');
 
+// MEMBRESIAS
+Route::get('/new-membresia', 'MembresiaController@create');
+Route::post('/new-membresia', 'MembresiaController@store');
+
+// PROMOCIONES
+Route::get('/promociones', 'PromocionController@index');
+Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
+
+
+Route::get('/edit-membresia/{id}', function () {
+    return view('edit-membresia');
+});
+Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
+    return view('membresia-ubicacion');
+});
+Route::get('/membresia/{titulo}/{id}', function () {
+    return view('membresia');
+});
+Route::get('/mis-membresias', function () {
+    return view('mis-membresias');
+});
+Route::get('/busqueda', function () {
+    return view('busqueda');
+});
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');
 });
@@ -38,32 +57,11 @@ Route::get('/mi-cuenta', function () {
 Route::get('/mis-datos', function () {
     return view('mis-datos');
 });
-Route::get('/mis-membresias', function () {
-    return view('mis-membresias');
-});
 Route::get('/mis-mensajes', function () {
     return view('mis-mensajes');
 });
 Route::get('/mis-favoritos', function () {
     return view('mis-favoritos');
-});
-Route::get('/new-membresia', function () {
-    return view('new-membresia');
-});
-Route::get('/edit-membresia/{id}', function () {
-    return view('edit-membresia');
-});
-Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
-    return view('membresia-ubicacion');
-});
-Route::get('/membresia/{titulo}/{id}', function () {
-    return view('membresia-ubicacion');
-});
-Route::get('/promociones', function () {
-    return view('promociones');
-});
-Route::get('/promociones/{titulo}/{id}', function () {
-    return view('promociones-detail');
 });
 Route::get('/listados', function () {
     return view('listados');
