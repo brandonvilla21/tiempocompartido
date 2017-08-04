@@ -11,7 +11,7 @@ use Session;
 class SessionsController extends Controller
 {
     /**
-     * Show the form for creating a new resource.
+     * Show the form to Log a user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -46,15 +46,15 @@ class SessionsController extends Controller
             // In case email and password not matching it will throw an exception
             // And it will be redirected to login view with a message 
             session()->flash('error', 'El usuario o contraseña no coinciden');
-            return view('login'); 
+            return view('session.login'); 
         }
 
         // Get the response body from HTTP Request and parse to Object        
         $requestObj = json_decode($response->getBody()->getContents());
         // Save the ACCESS_TOKEN in Session
         Session::put([
-            'ACCESS_TOKEN'  => $requestObj,
-            'USER_ID'        => $requestObj->userId
+            'ACCESS_TOKEN'  => $requestObj->id,
+            'USER_ID'       => $requestObj->userId
         ]);
          
         // Make the request to get User information
@@ -62,18 +62,34 @@ class SessionsController extends Controller
 
         // Get the response body from HTTP Request and parse to Object        
         $requestObj = json_decode($response->getBody()->getContents());
+
         // Save the token and user information in Session
         Session::put([
-            'NAME'   => $requestObj->realm,
+            'NAME'   => $requestObj->nickname,
             'EMAIL'  => $requestObj->email,
         ]);
 
+        session()->flash('message', '¡Bienvenido de nuevo a Tiempo Compartido!');
         return redirect()->home();
         
     }
 
     public function destroy()
     {   
+       
+        // Request to logout from API
+        try {
+            // Get the instance to make HTTP Requests        
+            $client = User::getClient();
+            //Request to logout from back-end
+            $response = User::logoutUser($client, Session::get('ACCESS_TOKEN'));
+
+        } catch (RequestException $e) {       
+            // In case something went wrong it will redirect to homepage, with a error message 
+            session()->flash('error', 'Hubo un problema al intentar cerrar sesión, intentelo de nuevo');
+            return redirect()->home();   
+        }
+
         // Remove all from session
         Session::flush();
 
