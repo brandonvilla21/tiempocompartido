@@ -12,7 +12,7 @@ class RegistrationController extends Controller
 {
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,31 +36,42 @@ class RegistrationController extends Controller
             'password'          => 'required',
             'password_confirm'  => 'required',
         ]);
+
         // Get the instance to make HTTP Requests        
         $client = User::getClient();
-        // Register a new user
-        $response = User::registerUser($client, $request);
+        try {
+            // Register a new user
+            $response = User::registerUser($client, $request);
+
+        } catch (ClientException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error al registrarte, por favor intente de nuevo');
+            return view('registration.signup'); 
+        }
+
 
         if ($response->getStatusCode() == 200)
         {   
-            // Logs the new user
-            $response = User::logUser($client, $request);
+             try {
+                // Logs the new user
+                $response = User::logUser($client, $request);
+             } catch (RequestException $e) {
+                // In case something went wrong it will redirect to login
+                session()->flash('error', 'Hubo un error al ingresar, por favor intente de nuevo');
+                return view('session.login'); 
+             }
 
             // Get the body from request response
-            $body = (string) $response->getBody();
-            
-            // Get the token from the string ($body)
-            $token = User::getTokenFromString($body);
+            $requestObj = json_decode($response->getBody()->getContents());
             
              // Save the token and user information in Session
             Session::put([
-                'token' => $token,
-                'email' => $request->email,
-                'name' => $request->user
+                'ACCESS_TOKEN'  => $requestObj->id,
+                'USER_ID'       => $requestObj->userId,
+                'EMAIL'         => $request->email,
+                'NAME'          => $request->user
             ]);
-
-
-            
+      
             session()->flash('message', '¡Bienvenido a Tiempo Compartido!');
             //Redirect to the homepage.
             return redirect()->home();
