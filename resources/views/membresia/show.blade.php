@@ -17,7 +17,7 @@
                     <div class="col margin-bottom">
                         <h1 class="title">
                         {{ $membresia->descripcion }}
-                    </h1>
+                    </h1>   
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
@@ -53,43 +53,45 @@
                             </div>
                             <div class="Profile__Title">
                                 @if( $membresia->venta )
-                                    <p class="lead" ng-show="membresia.venta">Venta <strong>{{ $membresia->ventaPrecio}} | currency</strong> <small>{{ $membresia->ventaMoneda }}</small></p>
+                                    <p class="lead" >Venta <strong>$ {{ money_format('%i',$membresia->ventaPrecio) }}</strong> <small>{{ $membresia->ventaMoneda }}</small></p>
                                 @endif
                                 @if( $membresia->ventaNegociable )
-                                    <div class="alert alert-warning" role="alert" ng-show="membresia.ventaNegociable">¡El precio de venta es Negociable!</div>
+                                    <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
                                 @endif
                                 @if( $membresia->renta )
-                                    <p class="lead" ng-show="membresia.renta">Renta <strong>{{ $membresia->rentaPrecio }} | currency</strong> <small>{{ $membresia->rentaMoneda }}</small></p>
+                                    <p class="lead" >Renta <strong>$ {{ money_format('%i',$membresia->rentaPrecio) }}</strong> <small>{{ $membresia->rentaMoneda }}</small></p>
                                 @endif
-                                 {{--  @if( $membresia->rentaNegociable) )   --}}
-                                    <div class="alert alert-warning" role="alert" ng-show="membresia.rentaNegociable">¡El precio de renta es Negociable!</div>
-                                  {{--  @endif    --}}
+                                @if( $membresia->rentaNegociable )  
+                                    <div class="alert alert-warning" role="alert" >¡El precio de renta es Negociable!</div>
+                                @endif   
                             </div>
                             <div class="Profile__Benefits">
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <p>
-                                        <i class="fa fa-star"></i> membresia.tipoInmueble
+                                        <i class="fa fa-star"></i> {{ $membresia->tipoInmueble }}
                                     </p>
                                     <p>
-                                        <i class="fa fa-bed"></i> membresia.dormitorios Cuartos
+                                        <i class="fa fa-bed"></i> {{ $membresia->dormitorios }} Cuartos
                                     </p>
                                     <p>
-                                        <i class="fa fa-bath"></i> membresia.banosCompletos Baños
+                                        <i class="fa fa-bath"></i> {{ $membresia->banosCompletos }} Baños
                                     </p>
                                     <p>
-                                        <i class="fa fa-user-circle"></i> membresia.maxPrivacidad  Personas con privacidad
+                                        <i class="fa fa-user-circle"></i> {{ $membresia->maxPrivacidad }}  Personas con privacidad
                                     </p>
                                     <p>
-                                        <i class="fa fa-user-circle-o"></i> membresia.maxOcupantes Personas máximo
+                                        <i class="fa fa-user-circle-o"></i> {{ $membresia->maxOcupantes }}Personas máximo
                                     </p>
                                     <p>
-                                        <i class="fa fa-cutlery"></i> membresia.tipoCocina
+                                        <i class="fa fa-cutlery"></i> {{ $membresia->tipoCocina }}
                                     </p>
-                                    <p ng-show="membresia.sala">
-                                        <i class="fa fa-television"></i> Sala
-                                    </p>
+                                    @if( $membresia->sala )
+                                        <p>
+                                            <i class="fa fa-television"></i> Sala
+                                        </p>
+                                    @endif
                                     <p>
-                                        <i class="fa fa-calendar-o"></i> Tipo de semana membresia.semanaTipo
+                                        <i class="fa fa-calendar-o"></i> Tipo de semana {{ $membresia->semanaTipo }}
                                     </p>
                                     <p>
                                         <i class="fa fa-calendar"></i>
@@ -103,8 +105,7 @@
                                     <p>
                                         <i class="fa fa-internet-explorer"></i>
                                         <strong>URL del Club: </strong>
-                                        {{--  <a href="{{membresia.clubUrl}}" target="_blank">{{membresia.clubUrl}}</a>  --}}
-                                        <a href="membresia.clubUrl" target="_blank">membresia.clubUrl</a>
+                                         <a href="{{ $membresia->clubUrl }}" target="_blank">{{ $membresia->clubUrl }}</a> 
                                     </p>
                                 </div>
                             </div>
@@ -117,22 +118,29 @@
                             </div>
                             <article class="Profile__DescriptionText">
                                 <p> 
-                                    membresia.descripcion
+                                    {{ $membresia->descripcion }}
                                 </p>
-                                <p class="lead" ng-show="membresia.description != ''">
-                                    <strong>English info: </strong>
-                                    membresia.description
-                                </p>
+                                @if( strlen($membresia->description) > 0 )
+                                    <p class="lead" ng-show="membresia.description != ''">
+                                        <strong>English info: </strong>
+                                        {{ $membresia->description }}
+                                    </p>
+                                @endif
                                 <p>
-                                <span ng-show="membresia.renta">Rento </span>
-                                <span ng-show="membresia.venta">Vendo </span>
-                                membresia.tipoInmueble vacacional,
-                                tipo de semana membresia.tipo_semana con
-                                membresia.dormitorios dormitorios,
-                                membresia.banosCompletos baños,
-                                capacidad para membresia.maxPrivacidad personas máximo,
-                                capacidad con privacidad de membresia.maxOcupantes personas,
-                                membresia.tipoCocina y mucho mas..
+                                @if( $membresia->renta )
+                                    <span>Rento </span> 
+                                @endif
+                                @if( $membresia->venta )
+                                    <span>Vendo </span>
+                                @endif
+                                
+                                {{ $membresia->tipoInmueble }} vacacional,
+                                tipo de semana {{ $membresia->semanaTipo }}  con
+                                {{ $membresia->dormitorios }} dormitorios,
+                                {{ $membresia->banosCompletos }} baños,
+                                capacidad para {{ $membresia->maxPrivacidad }} personas máximo,
+                                capacidad con privacidad de {{ $membresia->maxOcupantes }} personas,
+                                {{ $membresia->tipoCocina }} y mucho mas..
                                 </p>
                             </article>
                         </div>
@@ -213,16 +221,16 @@
                             </div>
                             <div class="col-xs-12 col-lg-12">
                                 <ul class="padding">
-                                    <li><strong>Nombre: </strong>membresia.creador.name</li>
-                                    <li><strong>NickName: </strong>membresia.creador.nickname</li>
-                                    <li><strong>Información adicional: </strong>membresia.creador.informacion</li>
-                                    <li><strong>Tipo de membresia: </strong>membresia.creador.tipo_membresia</li>
-                                    <li><strong>Email: </strong>membresia.creador.email</li>
-                                    <li><strong>Ciudad: </strong>membresia.creador.ciudad</li>
-                                    <li><strong>Pais: </strong>membresia.creador.pais</li>
-                                    <li><strong>Lenguaje: </strong>membresia.creador.lenguajes</li>
-                                    <li><strong>Teléfono: </strong>membresia.creador.telefono</li>
-                                    <li><strong>Interesado en viajar a: </strong>membresia.creador.destinos</li>
+                                    <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
+                                    <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
+                                    <li><strong>Información adicional: </strong> $membresia->creador->informacion</li>
+                                    <li><strong>Tipo de membresia: </strong> $membresia->creador->tipo_membresia</li>
+                                    <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
+                                    <li><strong>Ciudad: </strong> $membresia->creador->ciudad</li>
+                                    <li><strong>Pais: </strong> $membresia->creador->pais</li>
+                                    <li><strong>Lenguaje: </strong> $membresia->creador->lenguajes</li>
+                                    <li><strong>Teléfono: </strong> $membresia->creador->telefono</li>
+                                    <li><strong>Interesado en viajar a: </strong> $membresia->creador->destinos</li>
                                 </ul>
                             </div>
                         </div>
