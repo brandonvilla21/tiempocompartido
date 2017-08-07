@@ -214,27 +214,42 @@
                             </article>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-5 col-lg-5 margin-bottom">
+                     <div class="col-xs-12 col-md-5 col-lg-5 margin-bottom">
                         <div class="Profile__ContactForm">
                             <div class="Profile__Title">
                                 <h2><i class="fa fa-user-o"></i> Datos del propietario</h2>
                             </div>
                             <div class="col-xs-12 col-lg-12">
                                 <ul class="padding">
-                                    <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
+                                    @if( isset($membresia->creador->name) )                            
+                                        <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
+                                    @endif
                                     <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
-                                    <li><strong>Información adicional: </strong> $membresia->creador->informacion</li>
-                                    <li><strong>Tipo de membresia: </strong> $membresia->creador->tipo_membresia</li>
+                                    @if( isset($membresia->creador->informacion) )
+                                        <li><strong>Información adicional: </strong>{{ $membresia->creador->informacion }}</li>
+                                    @endif
+                                    @if( isset($membresia->creador->usuarioTipo) )
+                                        <li><strong>Tipo de membresia: </strong> {{ $membresia->creador->usuarioTipo }}</li>
+                                    @endif                                    
                                     <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
-                                    <li><strong>Ciudad: </strong> $membresia->creador->ciudad</li>
-                                    <li><strong>Pais: </strong> $membresia->creador->pais</li>
+                                    
+                                    @if( isset($membresia->creador->ciudad) )
+                                        <li><strong>Ciudad: </strong> {{ $membresia->creador->ciudad }}</li>
+                                    @endif
+                                    @if( isset($membresia->creador->pais) )
+                                        <li><strong>Pais: </strong> {{ $membresia->creador->pais }}</li>
+                                    @endif
                                     <li><strong>Lenguaje: </strong> $membresia->creador->lenguajes</li>
-                                    <li><strong>Teléfono: </strong> $membresia->creador->telefono</li>
-                                    <li><strong>Interesado en viajar a: </strong> $membresia->creador->destinos</li>
+                                    @if( isset($membresia->creador->telefono) )
+                                        <li><strong>Teléfono: </strong> {{ $membresia->creador->telefono }} </li>
+                                    @endif
+                                    @if( isset($membresia->creador->destinosInteres) )
+                                        <li><strong>Interesado en viajar a: </strong> $membresia->creador->destinosInteres</li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
                     <hr width="100%">
                     <div class="col-xs-12 col-lg-12 margin-bottom">
