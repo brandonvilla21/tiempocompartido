@@ -1,6 +1,6 @@
 <?php
 
-
+// HOME
 Route::get('/', 'HomeController@index')->name('home');
 
 // SESSION
@@ -11,6 +11,10 @@ Route::get('/logout', 'SessionsController@destroy');
 // REGISTRATION
 Route::get('/signup', 'RegistrationController@create');
 Route::post('/signup', 'RegistrationController@store');
+
+// USER
+Route::get('/mis-datos', 'UserController@edit');
+Route::put('/guardar-datos', 'UserController@update');
 
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');
@@ -52,9 +56,7 @@ Route::get('/preguntas-frecuentes-sobre-tiempos-compartidos', function () {
 Route::get('/mi-cuenta', function () {
     return view('mi-cuenta');
 });
-Route::get('/mis-datos', function () {
-    return view('mis-datos');
-});
+
 Route::get('/mis-mensajes', function () {
     return view('mis-mensajes');
 });
