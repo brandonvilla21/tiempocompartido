@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ URL::to('assets/libs/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('assets/sss/sss.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/landing.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/estilos.css') }}">
     
@@ -58,9 +59,15 @@
         new WOW().init()
     </script>
     
-   
-    {{--  <script src="js/filters/slugify.js"></script>
-    <script src="js/directives/owlcarousel.js"></script>  --}}
+    {{-- Slider --}}
+    <script>
+      $('.carousel').carousel({
+        interval: 5000
+      });
+    </script>
+
+    
+    {{--  <script src="js/directives/owlcarousel.js"></script>    --}}
 
     <!-- Services -->
     {{--  <script src="js/services/authentication.service.js"></script>  --}}
