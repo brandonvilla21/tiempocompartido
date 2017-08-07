@@ -85,6 +85,11 @@ class User extends Authenticatable
 
     }
 
+    /**
+     * Get User information by HTTP Request
+     * Method: GET
+     * URI: http://0.0.0.0:3000/api/People/{id}
+     */
     public static function getUserInformation($client, $id, $ACCESS_TOKEN)
     {
         return $client->request('GET', 'People/'.$id, [
@@ -98,6 +103,11 @@ class User extends Authenticatable
         ]);
     }
     
+    /**
+     * Logs out a User by HTTP Request
+     * Method: POST
+     * URI: http://0.0.0.0:3000/api/People/logout
+     */
     public static function logoutUser($client, $ACCESS_TOKEN)
     {
         return $client->request('POST', 'People/logout', [
@@ -108,12 +118,46 @@ class User extends Authenticatable
         ]);
     }  
 
+    /**
+     * Get all membresias from a single user information by HTTP Request
+     * Method: GET
+     * URI: http://0.0.0.0:3000/api/People/{id}/membresias
+     */
     public static function getUserMembresias($client, $ACCESS_TOKEN, $userId)
     {
         return $client->request('GET', 'People/'. $userId . '/membresias', [
             'headers' => [
                 'Authorization' => $ACCESS_TOKEN,
                 'Accept'        => 'application/json'
+            ]
+        ]);
+    }
+
+    /**
+     * Modify a user information by HTTP Request
+     * Method: PUT
+     * URI: http://0.0.0.0:3000/api/People/{id}/
+     */
+    public static function edit($client, $request, $userId, $ACCESS_TOKEN)
+    {
+        return $client->request('PUT', 'People/'.$userId, [
+             'form_params' => [
+                  'name'            => $request->name,
+                  'nickname'        => $request->nickname,
+                  'email'           => $request->email,
+                  'ciudad'          => $request->ciudad,// Not required in HTML
+                  'pais'            => $request->pais, // Not required in HTML
+                  'lenguaje'        => $request->lenguaje,
+                  'telefono'        => $request->telefono,// Not required in HTML
+                  'destinosInteres' => $request->destinosInteres,// Not required in HTML
+                  'informacion'     => $request->informacion,// Not required in HTML
+                  'usuarioTipo'     => $request->usuarioTipo,
+                  'datosVisibles'   => $request->datosVisibles,
+                  'password'        => $request->password,
+                  'id'              => $userId,
+            ],
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN
             ]
         ]);
     }

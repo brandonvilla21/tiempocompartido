@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Session;
 
 class UserController extends Controller
 {
@@ -51,24 +53,56 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        // Get the instance to make HTTP Requests        
+        $client = User::getClient();
+
+        try {
+            
+            $response = User::getUserInformation($client, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+        } catch (RequestException $e) {
+            // In something went wrong it will redirect to home page
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return view('user.edit'); 
+        }
+        
+        // Get the response body from HTTP Request and parse to Object        
+        $user = json_decode($response->getBody()->getContents());
+
+        return view('user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //Validate request
+
+        // Get the instance to make HTTP Requests        
+        $client = User::getClient();
+
+        try {
+            
+            $response = User::edit($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+        } catch (RequestException $e) {
+            // In something went wrong it will redirect to home page
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return view('user.edit'); 
+        }
+
+         // Get the response body from HTTP Request and parse to Object        
+       dd($response);
+
+
+
     }
 
     /**
