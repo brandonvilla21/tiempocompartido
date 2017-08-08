@@ -49,7 +49,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group form-control-default">
                                             <label>Datos ó información extra</label>
-                                            <textarea id="informacion" name="informacion" class="form-control ng-pristine ng-valid ng-touched" placeholder="Separados por comas">{{ isset($user->informacion) ? $user->informacion : '' }}</textarea>
+                                            <textarea id="informacion" name="informacion" class="form-control ng-pristine ng-valid ng-touched" placeholder="Informacion adicional acerca de la empresa o usuario">{{ isset($user->informacion) ? $user->informacion : '' }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -130,8 +130,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group form-control-default">
+                                            <label>Lenguajes</label>
+                                            <textarea id="lenguaje" name="lenguaje" class="form-control ng-pristine ng-valid ng-touched" placeholder="Separados por coma">{{ isset($user->lenguaje) ? $user->lenguaje : '' }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group form-control-default">
                                             <label>Destinos de tu interes</label>
-                                            <input id="destinosInteres" name="destinosInteres"value="{{ isset($user->destinosInteres) ? $user->destinos : '' }}" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Separados por comas">
+                                            <input id="destinosInteres" name="destinosInteres"value="{{ isset($user->destinosInteres) ? $user->destinosInteres : '' }}" type="text" class="form-control ng-pristine ng-untouched ng-valid" placeholder="Separados por comas">
                                         </div>
                                     </div>
                                 </div>
