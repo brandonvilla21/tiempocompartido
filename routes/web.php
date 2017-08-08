@@ -14,6 +14,7 @@ Route::post('/signup', 'RegistrationController@store');
 
 // USER
 Route::get('/mis-datos', 'UserController@edit');
+Route::get('/cambiar-contrasena', 'UserController@editPassword');
 Route::put('/guardar-datos', 'UserController@update');
 
 // MEMBRESIAS
