@@ -162,4 +162,24 @@ class User extends Authenticatable
             ]
         ]);
     }
+
+    /**
+     * Change user password by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/People/change-password
+     */
+     public static function changePassword($client, $request, $userId, $ACCESS_TOKEN)
+     {
+        return $client->request('POST', 'People/change-password', [
+            'form_params' => [
+                'oldPassword' => $request->oldPassword,
+                'newPassword' => $request->newPassword,
+                'id'          => $userId
+            ],
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN,
+                'Content-Type'  => 'application/x-www-form-urlencoded'
+            ]
+        ]);
+     }
 }
