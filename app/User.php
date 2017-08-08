@@ -153,6 +153,7 @@ class User extends Authenticatable
                   'informacion'     => $request->informacion,// Not required in HTML
                   'usuarioTipo'     => $request->usuarioTipo,
                   'datosVisibles'   => $request->datosVisibles,
+                  'lenguaje'        => $request->lenguaje,
                   'password'        => $request->password,
                   'id'              => $userId,
             ],
