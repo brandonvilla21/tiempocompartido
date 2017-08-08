@@ -99,9 +99,7 @@ class UserController extends Controller
         }
 
          // Get the response body from HTTP Request and parse to Object        
-       dd($response);
-
-
+        return redirect()->home();
 
     }
 
@@ -114,5 +112,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editPassword()
+    {
+        return view('user.edit-password');
     }
 }
