@@ -674,3 +674,8 @@ EMPIEZAN LAS MEDIAS QUERIES
 #map {
   height: 100%;
 }
+
+/*Carousel Icons*/
+.icon-img {
+  height: 2.5em;
+}
