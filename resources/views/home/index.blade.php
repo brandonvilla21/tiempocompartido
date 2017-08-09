@@ -10,11 +10,13 @@
                 </div>
                 <div class="col-md-4 col-xl-3 wow bounceIn text-center" data-wow-delay=".6s">
                     <div class="Card__Image">
-                        <img src="promocion.imagenes[0].src" alt="imagen">
+                        {{--  <img src="promocion.imagenes[0].src" alt="imagen">  --}}
+                        <img src="http://www.tiempocompartido.com/catalogo_imgs/marriottnewportcoastvillas-newportcoast--3149.jpg" alt="imagen">
                     </div>
                     <div class="Footer__Content">
                         <p class="lead">
-                        promocion.titulo
+                        {{--  promocion.titulo  --}}
+                        3 Noches Gratis!
                         </p>
                         <a href="/promociones" class="btn btn-success">Ver más promociones</a href="/promociones">
                     </div>
@@ -84,7 +86,7 @@
                                 {{--  <a ng-href="/membresia/tiempo-compartido-en-{{membresia.localidadOrigen.nombre | slugify}}-{{membresia.clubNombre | slugify}}-{{membresia.paisOrigen.nombre | slugify}}/{{membresia.id}}">  --}}
                                 <a >
                                     <div class="Card__Image">
-                                        <img src="membresia.imagenes[0].src" alt="imagen">
+                                        <img src="membresias.imagenes[0].src" alt="imagen">
                                     </div>
                                 </a>
                                 <div class="Card__Content">
@@ -116,43 +118,64 @@
                     ¿Lo mejor del verano? ¡Es momento de playa!
                 </h3>
                 <div class="Latest__content">
-                    {{--  <data-owl-carousel class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">  --}}
-                    <div class="row">
-                        @foreach($membresias as $membresia)
-                            {{--  <div class="item" owl-carousel-item=""  class="item">                          --}}
-                                <div class="Card col-md-4">
-                                    {{--  <a ng-href="/membresia/tiempo-compartido-en-{{membresia.localidadNombre | slugify}}-{{membresia.clubNombre | slugify}}-{{membresia.paisNombre | slugify}}/{{membresia.id}}">  --}}
-                                    <a href="/membresia/tiempo-compartido-en-{{ slugify($membresia->localidadNombre) }}-{{ slugify($membresia->clubNombre) }}-{{ slugify($membresia->paisNombre) }}/{{ $membresia->id }}">   
-                                        <div class="Card__Image">
-                                            {{--  <img src="{{ $membresia->imagenes[0]->src }}" alt="imagen">   --}}
-                                            <img src="membresia" alt="imagen">  
-                                        </div>
-                                    </a>
-                                    <div class="Card__Content">
-                                        <h4 class="Card__Content__Title">
-                                            {{ $membresia->titulo }}  
-                                        </h4>
-                                        <p ng-show="membresia.renta" class="Card__Content__Description">
-                                            {{ $membresia->rentaPrecio }} 
-                                        </p>
-                                        <p ng-show="membresia.venta" class="Card__Content__Description">
-                                            {{ $membresia->ventaPrecio }} 
-                                        </p>
-                                        <div class="Card__Actions no-padding-sides">
-                                            {{--  <a ng-href="/membresia/tiempo-compartido-en-{{membresia.localidadOrigen.nombre | slugify}}-{{membresia.clubNombre | slugify}}-{{membresia.paisOrigen.nombre | slugify}}/{{membresia.id}}" class="btn btn-primary-outline">  --}}
-                                            <a  class="btn btn-primary-outline">
-                                                {{ $membresia->clubNombre }} 
-                                            </a>
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">                    
+                        <div class="carousel-inner" role="listbox">
+                    
+                            @for($i = 0; $i < count($membresias); $i++)
+                                @if($i == 0 || $i % 3 == 0)
+                                    @if($i ==0 )
+                                        <div class="carousel-item active">
+                                            <div class="row">
+                                    @else
+                                        <div class="carousel-item">
+                                            <div class="row">                                        
+                                    @endif
+                                @endif   
+                                <div class="col-md-4">
+                                    <div class="Card">
+                                        <a href="/membresia/tiempo-compartido-en-{{ slugify($membresias[$i]->localidadNombre) }}-{{ slugify($membresias[$i]->clubNombre) }}-{{ slugify($membresias[$i]->paisNombre) }}/{{ $membresias[$i]->id }}">   
+                                            <div class="Card__Image">
+                                                {{--  <img src="{{ $membresia->imagenes[0]->src }}" alt="imagen">   --}}
+                                                <img src="membresias" alt="imagen">  
+                                            </div>
+                                        </a>
+                                        <div class="Card__Content">
+                                            <h4 class="Card__Content__Title">
+                                                {{ $membresias[$i]->titulo }}  
+                                            </h4>
+                                            <p ng-show="membresias[$i].renta" class="Card__Content__Description">
+                                                {{ $membresias[$i]->rentaPrecio }} 
+                                            </p>
+                                            <p ng-show="membresias[$i].venta" class="Card__Content__Description">
+                                                {{ $membresias[$i]->ventaPrecio }}  
+                                            </p>
+                                            <div class="Card__Actions no-padding-sides">
+                                                <a  class="btn btn-primary-outline" href="/membresia/tiempo-compartido-en-{{ slugify($membresias[$i]->localidadNombre) }}-{{ slugify($membresias[$i]->clubNombre) }}-{{ slugify($membresias[$i]->paisNombre) }}/{{ $membresias[$i]->id }}">
+                                                    {{ $membresias[$i]->clubNombre }} 
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div> 
-                            {{--  </div>                                                                                 --}}
-                        @endforeach
-                    </div>
-                    {{--  </data-owl-carousel>  --}}
+                                </div>
+                                @if( ($i + 1) % 3 == 0 )
+                                        </div>  
+                                    </div>
+                                @endif 
+                            @endfor  
+                        </div>
+                        <div class="pull-right">
+                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                <img src="assets/icons/icon-previous.png" alt="Prev" class="icon-img" >
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                <img src="assets/icons/icon-next.png" alt="Next" class="icon-img" >
+                            </a> 
+                        </div>
+                    </div>  
                 </div>
             </div>
         </div>
+
         <div class="Latest padding-row">
             <div class="container">
                 <h3 class="Latest__title margin-bottom">
