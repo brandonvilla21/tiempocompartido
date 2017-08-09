@@ -38,7 +38,8 @@
                 </div>
                 <div class="Footer__Content text-center">
                     <div class="Card__Image">
-                        <img src="{{URL::to('promocion.imagenes[0].src')}}" alt="imagen">
+                        {{--  <img src="{{URL::to('promocion.imagenes[0].src')}}" alt="imagen">  --}}
+                        <img src="http://www.tiempocompartido.com/catalogo_imgs/marriottnewportcoastvillas-newportcoast--3149.jpg" alt="imagen">
                     </div>
                     <p class="lead">
                     promocion.titulo
