@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container padding">
+    <div id="inicio" class="container padding">
         <h1 class="title margin-bottom">Ingresa</h1>
         <form method="POST" action="/login" name="loginForm" role="form" class="ng-valid-email">
             {{csrf_field()}}
@@ -12,6 +12,11 @@
             <div class="form-group form-control-default required">
                 <label>Password</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" ng-model="credentials.password" required="">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @include('layouts.message')
+                </div>
             </div>
             <div class="clearfix">
                 <div class="row">

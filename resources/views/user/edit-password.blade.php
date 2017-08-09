@@ -9,7 +9,7 @@
             </div>
         </div>
     </section>
-     <section class="py-1">   
+     <section  class="py-1">   
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-xl-4">
@@ -18,7 +18,10 @@
                 <div class="col-md-7 col-xl-8"> 
                     <div class="container padding">
                         <h2 class="title margin-bottom">Modifica tu contraseña</h2>
-                         <form method="POST" action="/" role="form">
+                         <div class="mt-1">
+                            @include('layouts.message')
+                         </div>
+                         <form method="POST" action="/guardar-contrasena" role="form">
                              {{ csrf_field() }}
 
                             <div class="row">
@@ -57,6 +60,7 @@
                                     </div>
                                 </div>
                          </form>
+                        
                     </div>
                 </div>        
             </div>

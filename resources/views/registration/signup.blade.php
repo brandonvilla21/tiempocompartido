@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container padding">
+    <div id="inicio" class="container padding">
         <h1 class="title margin-bottom">Regístrate</h1>
         <form method="POST" action="/signup" name="signupForm" role="form" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email">
               {{csrf_field()}}
@@ -24,6 +24,11 @@
             <div class="form-group form-control-default required">
                 <label>Repetir password</label>
                 <input type="password" id="password_confirm" name="password_confirm" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="Password" ng-model="signup.repassword" required="">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                   @include('layouts.message')
+                </div>
             </div>
             <div class="clearfix">
                 <div class="row">
