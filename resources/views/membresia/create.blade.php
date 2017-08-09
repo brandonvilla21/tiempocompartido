@@ -10,7 +10,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Título </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="titulo"name="titulo" ng-model="membresia.titulo" required/>
+                <input type="text" class="form-control" id="titulo"name="titulo" required/>
                 </span>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Título (Inglés) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="title"name="title" ng-model="membresia.title" />
+                <input type="text" class="form-control" id="title"name="title" />
                 </span>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> URL del Club </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="clubUrl"name="clubUrl" ng-model="membresia.clubUrl" />
+                <input type="text" class="form-control" id="clubUrl" name="clubUrl" />
                 </span>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" min="1" step="1" max="52" placeholder="" id="cualSemanaFija"name="cualSemanaFija" ng-model="membresia.cualSemanaFija" />
+                <input type="number" class="form-control" min="1" step="1" max="52" id="cualSemanaFija"name="cualSemanaFija"  />
                 </span>
             </div>
         </div>
@@ -88,7 +88,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="cuantosPuntos"name="cuantosPuntos" ng-model="membresia.cuantosPuntos" />
+                <input type="number" class="form-control" id="cuantosPuntos" name="cuantosPuntos" />
                 </span>
             </div>
         </div>
@@ -98,7 +98,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="cuantasNoches"name="cuantasNoches" ng-model="membresia.cuantasNoches" />
+                <input type="number" class="form-control" id="cuantasNoches" name="cuantasNoches" />
                 </span>
             </div>
         </div>
@@ -108,7 +108,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Descripción </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="descripcion"name="descripcion" ng-model="membresia.descripcion" required/>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" required/>
                 </span>
             </div>
         </div>
@@ -118,7 +118,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="description"> Descripción (Inglés) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="description"name="description" ng-model="membresia.description" />
+                <input type="text" class="form-control"  id="description" name="description" />
                 </span>
             </div>
         </div>
@@ -128,7 +128,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="sala"> Sala </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" id="sala"name="sala" ng-model="membresia.sala" />
+                <input type="checkbox" class="form-control" id="sala" name="sala" />
                 </span>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="dormitorios"> Dormitorios </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="dormitorios"name="dormitorios" ng-model="membresia.dormitorios" />
+                <input type="number" class="form-control" placeholder="" id="dormitorios"name="dormitorios" />
                 </span>
             </div>
         </div>
@@ -148,7 +148,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="lockOff"> Lock Off </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" id="lockOff"name="lockOff" ng-model="membresia.lockOff" />
+                <input type="checkbox" class="form-control"  id="lockOff" name="lockOff" />
                 </span>
             </div>
         </div>
@@ -175,7 +175,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="banosCompletos"> Baños Completos </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="banosCompletos" name="banosCompletos" ng-model="membresia.banosCompletos" />
+                <input type="number" class="form-control" id="banosCompletos" name="banosCompletos" />
                 </span>
             </div>
         </div>
@@ -191,25 +191,25 @@
         </div>
         </div>
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="tipoCocina"> Tipo de Cocina </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" id="tipoCocina" name="tipoCocina" ng-model="membresia.tipoCocina" >
-                <option value="COMPLETA">Cocina Completa</option>
-                <option value="MEDIANA">Cocina Mediana</option>
-                <option value="CHICA">Cocina Chica</option>
-                </select>
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="tipoCocina"> Tipo de Cocina </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <select class="form-control" id="tipoCocina" name="tipoCocina" >
+                            <option value="COMPLETA">Cocina Completa</option>
+                            <option value="MEDIANA">Cocina Mediana</option>
+                            <option value="CHICA">Cocina Chica</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="maxOcupantes"> Máximo de Ocupantes </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="maxOcupantes" name="maxOcupantes" ng-model="membresia.maxOcupantes" required/>
+                <input type="number" class="form-control"  id="maxOcupantes" name="maxOcupantes" required/>
                 </span>
             </div>
         </div>
@@ -219,7 +219,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="maxPrivacidad"> Máximo con Privacidad </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="maxPrivacidad" name="maxPrivacidad" ng-model="membresia.maxPrivacidad" required/>
+                <input type="number" class="form-control" id="maxPrivacidad" name="maxPrivacidad"  required/>
                 </span>
             </div>
         </div>
@@ -229,7 +229,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="numCamas"> Número de camas (ind/mat/king) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="numCamas" id="numCamas" name="numCamas" ng-model="membresia.numCamas" />
+                <input type="number" class="form-control" id="numCamas" id="numCamas" name="numCamas"/>
                 </span>
             </div>
         </div>
@@ -249,7 +249,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="frecCadaAnios"> ¿Cada Cuantos Años? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="frecCadaAnios" id="frecCadaAnios" name="frecCadaAnios" ng-model="membresia.frecCadaAnios" >
+                <select class="form-control" placeholder="frecCadaAnios" id="frecCadaAnios" name="frecCadaAnios">
                     <option value="UNO">Cada Año</option>
                     <option value="DOS">Cada 2 años</option>
                     <option value="NONES">Años nones</option>
@@ -290,7 +290,7 @@
                 <option value="MONTANA">En Montaña sin Nieve</option>
                 <option value="NIEVE">En Montaña Nevada</option>
                 <option value="PLAYA">Sobre la Playa</option>
-                <option value="MARCERCAS">Cercas del Mar</option>
+                <option value="MARCERCAS">Cerca del Mar</option>
                 <option value="CIUDAD">Dentro de la Ciudad</option>
                 <option value="PUEBLO">Dentro del Pueblo</option>
                 <option value="LAGO">Junto a un Lago/Presa</option>
@@ -305,7 +305,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="mantenimiento"> ¿Existe Cuota de Mantenimiento? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="mantenimiento" id="mantenimiento" name="mantenimiento" ng-model="membresia.mantenimiento" />
+                <input type="checkbox" class="form-control" id="mantenimiento" name="mantenimiento"/>
                 </span>
             </div>
         </div>
@@ -315,7 +315,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="mantenimientoImporte" id="mantenimientoImporte" name="mantenimientoImporte" ng-model="membresia.mantenimientoImporte" />
+                <input type="number" class="form-control" placeholder="mantenimientoImporte" id="mantenimientoImporte" name="mantenimientoImporte"/>
                 </span>
             </div>
         </div>
