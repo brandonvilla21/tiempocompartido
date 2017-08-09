@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
-use App\User;
 use Session;
+use Redirect;
+use App\User;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use GuzzleHttp\Exception\RequestException;
 
 class RegistrationController extends Controller
 {
@@ -47,6 +49,17 @@ class RegistrationController extends Controller
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrarte, por favor intente de nuevo');
             return view('registration.signup'); 
+        } catch (RequestException $e) {
+            
+            $statusCode =  $e->getResponse()->getStatusCode();
+
+            if($statusCode == 422) {
+                // In something went wrong it will redirect to home page
+                session()->flash('error', 'Este correo ya se encuentra en uso, por favor, ingrese otro.');
+                return Redirect::to('/signup' . "#inicio");
+            } else {
+                echo Psr7\str($e->getResponse());
+            }
         }
 
 
