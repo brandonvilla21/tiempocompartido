@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Session;
+use Redirect;
 use App\User;
 use GuzzleHttp\Psr7;
+use Illuminate\Http\Request;
 use GuzzleHttp\Exception\RequestException;
-use Session;
 
 class SessionsController extends Controller
 {
@@ -46,7 +47,7 @@ class SessionsController extends Controller
             // In case email and password not matching it will throw an exception
             // And it will be redirected to login view with a message 
             session()->flash('error', 'El usuario o contraseña no coinciden');
-            return view('session.login'); 
+            return Redirect::to('/login'. '#inicio'); 
         }
 
         // Get the response body from HTTP Request and parse to Object        
