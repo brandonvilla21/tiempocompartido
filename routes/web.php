@@ -16,6 +16,8 @@ Route::post('/signup', 'RegistrationController@store');
 Route::get('/mis-datos', 'UserController@edit');
 Route::get('/cambiar-contrasena', 'UserController@editPassword');
 Route::put('/guardar-datos', 'UserController@update');
+Route::post('/guardar-contrasena', 'UserController@updatePassword');
+Route::get('/mis-membresias', 'UserController@showMembresias');
 
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');
@@ -33,9 +35,7 @@ Route::get('/edit-membresia/{id}', function () {
 Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
     return view('membresia-ubicacion');
 });
-Route::get('/mis-membresias', function () {
-    return view('mis-membresias');
-});
+
 Route::get('/busqueda', function () {
     return view('busqueda');
 });
