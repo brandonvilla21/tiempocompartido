@@ -6,5 +6,29 @@ function slugify($input)
     $original = ['A','A','A','A','A','E','E','E','E','I','I','I','I','O','O','O','O','U','U','U','U','a','a','a','a','a','e','e','e','e','i','i','i','i','o','o','o','o','u','u','u','u','n','n','c','c','-','p'];
     
     return strtolower(str_replace('$','c', preg_replace($tittles, $original, $input)));
+}
 
+/*
+* Verify if there's an attribute named '$attribute'
+* If it does exists, it will return the value
+* If it doesn't it will return an empty string
+*/
+
+function pv($object, $attribute)
+{
+    return isset($object->{$attribute}) ? $object->{$attribute} : '';
+}
+
+// Corregir, aun no devuelve bien la fecha
+function pvDate($object, $attribute)
+{
+     if(isset($object->{$attribute})) {
+         $dateArray = date_parse($object->{$attribute});
+         $date = $dateArray['year']. '-';
+         $date = $date . ( strlen( (string)$dateArray['month'] == 1)   ?  $dateArray['month']   : '0'.$dateArray['month']) . '-';
+         $date = $date . ( strlen( (string)$dateArray['day']   == 1)   ?  '0'.$dateArray['day'] : $dateArray['day']);
+         
+         return $date;
+     } else 
+         return '';
 }
