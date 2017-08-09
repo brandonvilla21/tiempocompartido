@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ URL::to('assets/libs/OwlCarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('assets/sss/sss.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/landing.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/estilos.css') }}">
     
@@ -31,8 +30,7 @@
     <![endif]-->
   </head>
   <body ng-class="pageType" class="" ng-controller="BodyController">
-    
-    <section class="bienvenidos">
+    <section class="bienvenidos">    
         @include('layouts.header')    
     </section>
 
