@@ -23,15 +23,15 @@ Route::get('/mis-membresias', 'UserController@showMembresias');
 Route::get('/new-membresia', 'MembresiaController@create');
 Route::post('/new-membresia', 'MembresiaController@store');
 Route::get('/membresia/{titulo}/{id}', 'MembresiaController@show');
+Route::get('/edit-membresia/{id}', 'MembresiaController@edit');
+Route::put('/update-membresia', 'MembresiaController@update');
 
 // PROMOCIONES
 Route::get('/promociones', 'PromocionController@index');
 Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
 
 
-Route::get('/edit-membresia/{id}', function () {
-    return view('edit-membresia');
-});
+
 Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
     return view('membresia-ubicacion');
 });
