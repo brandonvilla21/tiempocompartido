@@ -16,40 +16,7 @@
                         @include('layouts.menu-cuenta')
                     </div>
                     <div class="col-md-7 col-xl-8 padding">
-{{--  
-                            <div class="media" ng-repeat="membresia in membresias">
-                                <div class="media-left">
-                                    <img ng-src="membresia.imagenes[0].src" class="media-object">
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">membresia.titulo</h4>
-                                    membresia.descripcion
 
-                                    <i class="fa fa-2x fa-star pull-right"
-                                        ng-click="membresiaImagenes(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-map pull-right"
-                                        ng-click="membresiaUbicacion(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-img pull-right"
-                                        ng-click="membresiaAfiliaciones(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-remove pull-right"
-                                        ng-click="removeMembresia_(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-edit pull-right"
-                                        ng-click="editMembresia(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-pause pull-right"
-                                        ng-click="pauseMembresia(membresia)">
-                                    </i>
-                                    <i class="fa fa-2x fa-play pull-right"
-                                        ng-click="playMembresia(membresia)">
-                                    </i>
-
-
-                                </div>
-                            </div>  --}}
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -64,35 +31,40 @@
                                             {{ $membresia->titulo }}<br>
                                         </td>
                                         <td>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
+                                                <i class="fa fa-2x fa-image pull-right"
+                                                    ng-click="membresiaImagenes(membresia)">
+                                                </i>
+                                            </a>
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-star pull-right"
                                                     ng-click="membresiaImagenes(membresia)">
                                                 </i>
                                             </a>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-map pull-right"
                                                     ng-click="membresiaUbicacion(membresia)">
                                                 </i>
                                             <a>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-img pull-right"
                                                     ng-click="membresiaAfiliaciones(membresia)">
                                                 </i>
                                             <a>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-remove pull-right"
                                                     ng-click="removeMembresia_(membresia)">
                                                 </i>
                                             <a>
-                                            <a style="color: black;" href="/edit-membresia/{{ $membresia->id }}">
+                                            <a  href="/edit-membresia/{{ $membresia->id }}">
                                                 <i class="fa fa-2x fa-edit pull-right"></i>
                                             <a>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-pause pull-right"
                                                     ng-click="pauseMembresia(membresia)">
                                                 </i>
                                             <a>
-                                            <a style="color: black;" href="">
+                                            <a  href="">
                                                 <i class="fa fa-2x fa-play pull-right"
                                                     ng-click="playMembresia(membresia)">
                                                 </i>
