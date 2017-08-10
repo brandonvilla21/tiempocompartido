@@ -17,12 +17,12 @@ $(document).ready(function() {
     }
 
     // Checks if at the beginning of execute the web page checkboxes are checked
-    if ( $('#mantenimiento').is(':checked') ) {
+    if ( $('#mantenimiento').is(':checked') ) 
         $('.existeCuotaMantenimiento').show();
-        console.log('existe');
-    } else console.log('no existe');
+    
     if ( $('#venta').is(':checked') ) 
         $('.estaEnVenta').show();
+    
     if ( $('#renta').is(':checked') ) 
         $('.estaEnRenta').show();
 
