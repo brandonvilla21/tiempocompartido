@@ -67,7 +67,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
+        <div style="display:none;" id="cualSemanaFijaDiv" class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input value="{{ pv($membresia, 'cualSemanaFija') }}" type="number" class="form-control" min="1" step="1" max="52" name="cualSemanaFija" id="cualSemanaFija" />
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
                 <div class="col-sm-7">
@@ -85,27 +95,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
+        <div style="display: none;" id="cuantosPuntosDiv" class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
             <div class="row">
-                <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
+                <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
                 <div class="col-sm-7">
-                    <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'cualSemanaFija') }}" type="number" class="form-control" min="1" step="1" max="52" name="cualSemanaFija" id="cualSemanaFija" />
+                <span class="block input-icon input-icon-right">
+                    <input value="{{ pv($membresia, 'cuantosPuntos') }}" type="number" class="form-control" name="cuantosPuntos" id="cuantosPuntos" />
                     </span>
                 </div>
             </div>
         </div>
-    <div class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input value="{{ pv($membresia, 'cuantosPuntos') }}" type="number" class="form-control" name="cuantosPuntos" id="cuantosPuntos" />
-                </span>
-            </div>
-        </div>
-        </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
+        <div style="display: none;" id="cuantasNochesDiv" class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
                 <div class="col-sm-7">
@@ -339,7 +339,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.mantenimiento">
+        <div class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
                 <div class="col-sm-7">
@@ -349,7 +349,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.mantenimiento">
+        <div class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
                 <div class="col-sm-7">
@@ -377,7 +377,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
                 <div class="col-sm-7">
@@ -387,7 +387,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
                 <div class="col-sm-7">
@@ -405,7 +405,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
                 <div class="col-sm-7">
@@ -415,7 +415,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
                 <div class="col-sm-7">
@@ -425,7 +425,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
                 <div class="col-sm-7">
@@ -435,7 +435,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.compraFecha">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.compraFecha">
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
             <div class="col-sm-7">
@@ -445,7 +445,7 @@
             </div>
         </div>
         </div>
-        <div class="form-group" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
                 <div class="col-sm-7">
@@ -455,7 +455,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.compraCaduca">
+        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.compraCaduca">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
                 <div class="col-sm-7">
@@ -475,7 +475,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
                 <div class="col-sm-7">
@@ -485,7 +485,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
             <div class="col-sm-7">
@@ -499,7 +499,7 @@
             </div>
         </div>
         </div> 
-        <div class="form-group" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
             <div class="col-sm-7">

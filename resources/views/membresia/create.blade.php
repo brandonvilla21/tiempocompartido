@@ -6,14 +6,14 @@
         {{csrf_field()}}
 
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="email"> Título </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" id="titulo"name="titulo" required/>
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="email"> Título </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" class="form-control" id="titulo"name="titulo" required/>
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
         <div class="row">
@@ -46,62 +46,62 @@
         </div>
         </div>
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="email"> Tipo de semana </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" id="semanaTipo"name="semanaTipo" ng-model="membresia.semanaTipo" required>
-                <option value="FIJA">Fija</option>
-                <option value="FLOTANTE">Flotante</option>
-                <option value="PUNTOS">Puntos</option>
-                <option value="NOCHES">Noches</option>
-                </select
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="email"> Tipo de semana </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <select class="form-control" placeholder="" id="semanaTipo"name="semanaTipo" required>
+                            <option value="FIJA">Fija</option>
+                            <option value="FLOTANTE">Flotante</option>
+                            <option value="PUNTOS">Puntos</option>
+                            <option value="NOCHES">Noches</option>
+                        </select>
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" id="cualTemporadaflotante"name="cualTemporadaflotante" ng-model="membresia.cualTemporadaflotante" >
-                    <option value="ALTA">Alta</option>
-                    <option value="BAJA">Baja</option>
-                </select>
-                </span>
+        <div id="cualSemanaFijaDiv" class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" min="1" step="1" max="52" id="cualSemanaFija"name="cualSemanaFija"  />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" min="1" step="1" max="52" id="cualSemanaFija"name="cualSemanaFija"  />
-                </span>
+        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
+                <div class="col-sm-7">
+                <span class="block input-icon input-icon-right">
+                    <select class="form-control" placeholder="" id="cualTemporadaflotante"name="cualTemporadaflotante" ng-model="membresia.cualTemporadaflotante" >
+                        <option value="ALTA">Alta</option>
+                        <option value="BAJA">Baja</option>
+                    </select>
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-    <div class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" id="cuantosPuntos" name="cuantosPuntos" />
-                </span>
+        <div style="display: none;" id="cuantosPuntosDiv" class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" id="cuantosPuntos" name="cuantosPuntos" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" id="cuantasNoches" name="cuantasNoches" />
-                </span>
+        <div style="display: none;" id="cuantasNochesDiv" class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" id="cuantasNoches" name="cuantasNoches" />
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
         <div class="row">
@@ -159,12 +159,12 @@
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
                 <select class="form-control" placeholder="" id="tipoInmueble"name="tipoInmueble" ng-model="membresia.tipoInmueble" required>
-                <option value="CABAÑA">Cabaña</option>
-                <option value="HOTEL">Hotelera</option>
-                <option value="BUNGALO">Bungalo</option>
-                <option value="ESTUDIO">Estudio</option>
-                <option value="DEPARTAMENTO">Depa</option>
-                <option value="CASA">Casa</option>
+                    <option value="CABAÑA">Cabaña</option>
+                    <option value="HOTEL">Hotelera</option>
+                    <option value="BUNGALO">Bungalo</option>
+                    <option value="ESTUDIO">Estudio</option>
+                    <option value="DEPARTAMENTO">Depa</option>
+                    <option value="CASA">Casa</option>
                 </select>
                 </span>
             </div>
@@ -301,176 +301,176 @@
         </div>
         </div>
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="mantenimiento"> ¿Existe Cuota de Mantenimiento? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" id="mantenimiento" name="mantenimiento"/>
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="mantenimiento"> ¿Existe Cuota de Mantenimiento? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" id="mantenimiento" name="mantenimiento"/>
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.mantenimiento">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="mantenimientoImporte" id="mantenimientoImporte" name="mantenimientoImporte"/>
-                </span>
+        <div  style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" placeholder="mantenimientoImporte" id="mantenimientoImporte" name="mantenimientoImporte"/>
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.mantenimiento">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="mantenimientoMoneda" id="mantenimientoMoneda" name="mantenimientoMoneda" ng-model="membresia.mantenimientoMoneda" >
-                    <option value="DOLARES AMERICANOS">Dolares americanos</option>
-                    <option value="PESOS MEXICANOS">Pesos mexicanos</option>
-                    <option value="EUROS">Euros</option>
-                </select>
-                </span>
+        <div style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <select class="form-control" placeholder="mantenimientoMoneda" id="mantenimientoMoneda" name="mantenimientoMoneda" ng-model="membresia.mantenimientoMoneda" >
+                            <option value="DOLARES AMERICANOS">Dolares americanos</option>
+                            <option value="PESOS MEXICANOS">Pesos mexicanos</option>
+                            <option value="EUROS">Euros</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="venta"> ¿Está en Venta? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="venta" id="venta" name="venta" ng-model="membresia.venta" />
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="venta"> ¿Está en Venta? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="venta" id="venta" name="venta" ng-model="membresia.venta" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="ventaPrecio" id="ventaPrecio" name="ventaPrecio" ng-model="membresia.ventaPrecio" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" placeholder="ventaPrecio" id="ventaPrecio" name="ventaPrecio" ng-model="membresia.ventaPrecio" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="ventaMoneda" id="ventaMoneda" name="ventaMoneda" ng-model="membresia.ventaMoneda" >
-                    <option value="DOLARES AMERICANOS">Dolares americanos</option>
-                    <option value="PESOS MEXICANOS">Pesos mexicanos</option>
-                    <option value="EUROS">Euros</option>
-                </select>
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <select class="form-control" placeholder="ventaMoneda" id="ventaMoneda" name="ventaMoneda" ng-model="membresia.ventaMoneda" >
+                            <option value="DOLARES AMERICANOS">Dolares americanos</option>
+                            <option value="PESOS MEXICANOS">Pesos mexicanos</option>
+                            <option value="EUROS">Euros</option>
+                        </select>
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" id="ventaOcultarImporte" name="ventaOcultarImporte" ng-model="membresia.ventaOcultarImporte" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" id="ventaOcultarImporte" name="ventaOcultarImporte" ng-model="membresia.ventaOcultarImporte" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ventaNegociable" id="ventaNegociable" name="ventaNegociable" ng-model="membresia.ventaNegociable" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="ventaNegociable" id="ventaNegociable" name="ventaNegociable" ng-model="membresia.ventaNegociable" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="date" class="form-control" placeholder="compraFecha" id="compraFecha" name="compraFecha" ng-model="membresia.compraFecha" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="date" class="form-control" placeholder="compraFecha" id="compraFecha" name="compraFecha" ng-model="membresia.compraFecha" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.compraFecha">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="ocultarFecha" id="ocultarFecha" name="ocultarFecha" ng-model="membresia.ocultarFecha" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.compraFecha">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="ocultarFecha" id="ocultarFecha" name="ocultarFecha" ng-model="membresia.ocultarFecha" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.venta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" id="compraCaduca" name="compraCaduca" ng-model="membresia.compraCaduca" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="" id="compraCaduca" name="compraCaduca" ng-model="membresia.compraCaduca" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.compraCaduca">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="date" class="form-control" placeholder="" id="compraCaducidad" name="compraCaducidad" ng-model="membresia.compraCaducidad" />
-                </span>
+        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.compraCaduca">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="date" class="form-control" placeholder="" id="compraCaducidad" name="compraCaducidad" ng-model="membresia.compraCaducidad" />
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="renta"> ¿Está en Renta? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" id="renta" name="renta" ng-model="membresia.renta" />
-                </span>
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="renta"> ¿Está en Renta? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" id="renta" name="renta" ng-model="membresia.renta" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.renta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="rentaPrecio" name="rentaPrecio" ng-model="membresia.rentaPrecio" />
-                </span>
+        <div class="form-group estaEnRenta" style="display:none;">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" class="form-control" placeholder="" id="rentaPrecio" name="rentaPrecio" ng-model="membresia.rentaPrecio" />
+                    </span>
+                </div>
             </div>
         </div>
-        </div>
-        <div class="form-group" ng-show="membresia.renta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" id="rentaMoneda" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
-                    <option value="DOLARES AMERICANOS">Dolares americanos</option>
-                    <option value="PESOS MEXICANOS">Pesos mexicanos</option>
-                    <option value="EUROS">Euros</option>
-                </select>
-                </span>
+        <div class="form-group estaEnRenta" style="display:none;">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <select class="form-control" placeholder="" id="rentaMoneda" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
+                            <option value="DOLARES AMERICANOS">Dolares americanos</option>
+                            <option value="PESOS MEXICANOS">Pesos mexicanos</option>
+                            <option value="EUROS">Euros</option>
+                        </select>
+                    </span>
+                </div>
             </div>
-        </div>
         </div> 
-        <div class="form-group" ng-show="membresia.renta">
-        <div class="row">
-            <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
-            <div class="col-sm-7">
-            <span class="block input-icon input-icon-right">
-                <input type="checkbox" class="form-control" placeholder="" id="rentaNegociable" name="rentaNegociable" ng-model="membresia.rentaNegociable" />
-                </span>
+        <div class="form-group estaEnRenta" style="display:none;">
+            <div class="row">
+                <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
+                <div class="col-sm-7">
+                    <span class="block input-icon input-icon-right">
+                        <input type="checkbox" class="form-control" placeholder="" id="rentaNegociable" name="rentaNegociable" ng-model="membresia.rentaNegociable" />
+                    </span>
+                </div>
             </div>
-        </div>
         </div>
         <div class="form-group">
         <div class="row">

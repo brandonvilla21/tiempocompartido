@@ -40,13 +40,14 @@
 
 
     <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa  fa-arrow-circle-up" aria-hidden="true"> </i> </a>
-    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
     <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/libs/OwlCarousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/smooth-scroll.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/main.js') }}"></script>
+    <script src="{{ URL::to('js/membresia-form.js') }}"></script>
     
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
