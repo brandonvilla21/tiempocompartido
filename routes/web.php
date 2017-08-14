@@ -25,6 +25,9 @@ Route::post('/new-membresia', 'MembresiaController@store');
 Route::get('/membresia/{titulo}/{id}', 'MembresiaController@show');
 Route::get('/edit-membresia/{id}', 'MembresiaController@edit');
 Route::put('/update-membresia', 'MembresiaController@update');
+// MEMBRESIAS->IMAGENES
+Route::get('/guardar-imagenes/{membresia}', 'MembresiaController@createImage');
+Route::post('/save-image', 'MembresiaController@storeImage')->name('saveImage');
 
 // PROMOCIONES
 Route::get('/promociones', 'PromocionController@index');
