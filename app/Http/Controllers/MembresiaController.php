@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use Image;
 use App\User;
 use Session;
 use Redirect;
@@ -126,4 +127,83 @@ class MembresiaController extends Controller
         return Redirect::to('/mis-membresias');
     }
 
+    //::::::::: FUNCTIONS FOR IMAGES CONTROL ::::::::://
+    
+    /**
+     * Show the form for creating a new resource (Image related to a membresia).
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createImage($id)
+    {
+        // Get the instance to make HTTP Requests        
+        $client = User::getClient();
+
+        try {
+            $response = Membresia::findById($client, $id);
+        } catch (RequestException $e) {
+            // If something went wrong it will redirect to home page
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return redirect()->home(); 
+        }
+
+        $membresia = json_decode($response->getBody()->getContents());
+
+        return view('membresia.images.create', compact('membresia'));
+    }
+
+    /**
+     * Store a newly created resource (Image) in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeImage(Request $request)
+    {
+
+        // Validate request
+        // ...
+
+        if ($request->hasFile('images')) {
+            $post_image = $request->file('images');  
+           
+            // Get the instance to make HTTP Requests        
+            $client = User::getClient();
+            
+            foreach($post_image as $image ) {
+                $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
+                
+                // Save image in original size without oversized up to 1900
+                Image::make($image)->resize(1900, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save( public_path('/uploads/membresias-images/') . $filename);
+    
+                // Save image in thumb folder giving it 300 for height and auto width
+                Image::make($image)->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save( public_path('/uploads/membresias-images/thumbs/') . $filename);    
+                
+                //Make POST to API and save image information
+                try {
+                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'thumb' );
+                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'original' );
+                } catch (RequestException $e) {
+                    // If something went wrong it will redirect to home page
+                    session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+                    return dd($e); 
+                }
+            }
+        } else {
+            session()->flash('error', 'Por favor intente subir la(s) imagen(es) de nuevo');
+            return back()->withInput();
+        }
+        
+        // Make POST to API
+        
+        session()->flash('message', 'Se ha realizado con exito la subida de imágenes');        
+        return Redirect::to('/mis-membresias');
+
+    }
 }
