@@ -166,5 +166,25 @@ class Membresia extends Model
             ]
         ]);
     }
-
+    /**
+     * Send the route of an Image related to a Membresia by HTTP Request 
+     * Method: POST
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}/imagenes
+     */
+    public static function setImage($client, $request, $ACCESS_TOKEN, $filename, $tipo)
+    {
+        return $client->request('POST', 'Membresia/'. $request->membresiaId. '/imagenes', [
+            'form_params' => [
+                'src'         => $filename,
+                'descripcion' => 'Descripción de la imagen',
+                'tipo'        => $tipo,
+                'orden'       => 0,
+                'principal'   => true,
+            ],
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN,
+                'Accept' => 'application/json'
+            ]
+        ]);
+    }
 }
