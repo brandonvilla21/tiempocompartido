@@ -182,4 +182,32 @@ class User extends Authenticatable
             ]
         ]);
      }
+
+    /**
+     * Get all Images related to a Membresia by HTTP Request
+     * and returns the first coincidence to the principal image
+     * in case there's any principal images, it will return 
+     * null
+     *
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}/imagenes
+     */
+     public static function getPrincipalImage($client, $membresiaId)
+     {
+         
+        $response = $client->request('GET', 'Membresia/'. $membresiaId . '/imagenes', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+        
+        $images = json_decode($response->getBody()->getContents());
+
+        foreach ($images as $image) 
+            if($image->principal)
+                return $image;
+        
+
+        return null;
+     }
 }
