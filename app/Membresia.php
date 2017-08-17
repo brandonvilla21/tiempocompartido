@@ -171,12 +171,12 @@ class Membresia extends Model
      * Method: POST
      * URI: http://0.0.0.0:3000/api/Membresia/{id}/imagenes
      */
-    public static function setImage($client, $request, $ACCESS_TOKEN, $filename, $tipo)
+    public static function setImage($client, $request, $ACCESS_TOKEN, $filename, $tipo, $description)
     {
         return $client->request('POST', 'Membresia/'. $request->membresiaId. '/imagenes', [
             'form_params' => [
                 'src'         => $filename,
-                'descripcion' => 'Descripción de la imagen',
+                'descripcion' => $description,
                 'tipo'        => $tipo,
                 'orden'       => 0,
                 'principal'   => true,

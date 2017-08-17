@@ -34,7 +34,6 @@ Route::get('/promociones', 'PromocionController@index');
 Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
 
 
-
 Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
     return view('membresia-ubicacion');
 });

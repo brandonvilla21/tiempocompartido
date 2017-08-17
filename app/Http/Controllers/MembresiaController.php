@@ -150,6 +150,7 @@ class MembresiaController extends Controller
         $membresia = json_decode($response->getBody()->getContents());
 
         return view('membresia.images.create', compact('membresia'));
+        // return view('uploads2', compact('membresia'));
     }
 
     /**
@@ -163,16 +164,15 @@ class MembresiaController extends Controller
 
         // Validate request
         // ...
-
         if ($request->hasFile('images')) {
             $post_image = $request->file('images');  
-           
             // Get the instance to make HTTP Requests        
             $client = User::getClient();
-            
-            foreach($post_image as $image ) {
+
+            foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
-                
+                $description = $request->{'descripcion-'.$key};
+            
                 // Save image in original size without oversized up to 1900
                 Image::make($image)->resize(1900, null, function ($constraint) {
                     $constraint->aspectRatio();
@@ -187,8 +187,8 @@ class MembresiaController extends Controller
                 
                 //Make POST to API and save image information
                 try {
-                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'thumb' );
-                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'original' );
+                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'thumb', $description );
+                    $response = Membresia::setImage($client, $request, Session::get('ACCESS_TOKEN'), $filename, 'original', $description );
                 } catch (RequestException $e) {
                     // If something went wrong it will redirect to home page
                     session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
@@ -202,8 +202,9 @@ class MembresiaController extends Controller
         
         // Make POST to API
         
-        session()->flash('message', 'Se ha realizado con exito la subida de imágenes');        
-        return Redirect::to('/mis-membresias');
+        return Redirect::to('/guardar-imagenes/' . $request->membresiaId . '#mis-imagenes');
+        // return Redirect::back()->with('message','Las imágenes han sido guardadas.');
+        
 
     }
 }
