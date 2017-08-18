@@ -4,16 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use GuzzleHttp\Client;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    /**
-     * Endpoint for API 
-     * @var string
-     */
-    const BASE_URI = 'http://0.0.0.0:3000/api/';
         
     /**
      * The attributes that are mass assignable.
@@ -33,19 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    /**
-     * Gets the instance to make HTTP Requests
-     */
-    public static function getClient()
-    {
-         $client = new Client([
-            // Base URI is used with relative requests
-            'base_uri' => static::BASE_URI,
-            // You can set any number of default request options.
-            'timeout'  => 2.0,
-        ]);
-        return $client;
-    }
 
     /**
      * Register a new User by HTTP Request 
