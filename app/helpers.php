@@ -1,4 +1,26 @@
 <?php
+// use GuzzleHttp\Client;
+ 
+/**
+* Endpoint for API 
+* @var string
+*/
+const BASE_URI = 'http://0.0.0.0:3000/api/';
+
+
+ /**
+* Gets the instance to make HTTP Requests
+*/
+function getClient()
+{
+    $client = new GuzzleHttp\Client([
+        // Base URI is used with relative requests
+        'base_uri' => BASE_URI,
+        // You can set any number of default request options.
+        'timeout'  => 2.0,
+    ]);
+    return $client;
+}
 
 function slugify($input)
 {
