@@ -1,5 +1,4 @@
 <?php
-// use GuzzleHttp\Client;
  
 /**
 * Endpoint for API 
@@ -8,7 +7,7 @@
 const BASE_URI = 'http://0.0.0.0:3000/api/';
 
 
- /**
+/**
 * Gets the instance to make HTTP Requests
 */
 function getClient()
@@ -35,7 +34,6 @@ function slugify($input)
 * If it does exists, it will return the value
 * If it doesn't it will return an empty string
 */
-
 function pv($object, $attribute)
 {
     return isset($object->{$attribute}) ? $object->{$attribute} : '';
