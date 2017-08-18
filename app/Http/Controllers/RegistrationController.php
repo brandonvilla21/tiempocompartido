@@ -40,7 +40,7 @@ class RegistrationController extends Controller
         ]);
 
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
         try {
             // Register a new user
             $response = User::registerUser($client, $request);

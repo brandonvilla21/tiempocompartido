@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
         try {
             // Get all membresias
             $response = Membresia::getMembresias($client);

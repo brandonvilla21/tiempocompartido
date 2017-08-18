@@ -37,7 +37,7 @@ class SessionsController extends Controller
         ]);
 
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
         
         
         try {
@@ -81,7 +81,7 @@ class SessionsController extends Controller
         // Request to logout from API
         try {
             // Get the instance to make HTTP Requests        
-            $client = User::getClient();
+            $client = getClient();
             //Request to logout from back-end
             $response = User::logoutUser($client, Session::get('ACCESS_TOKEN'));
 

@@ -20,7 +20,7 @@ class UserController extends Controller
     public function edit()
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             
@@ -49,7 +49,7 @@ class UserController extends Controller
         //Validate request
 
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             $response = User::edit($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
@@ -72,7 +72,7 @@ class UserController extends Controller
     public function updatePassword(Request $request)
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             $response = User::changePassword($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
@@ -98,7 +98,7 @@ class UserController extends Controller
     public function showMembresias()
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             $response = User::getUserMembresias($client, Session::get('ACCESS_TOKEN'), Session::get('USER_ID'));

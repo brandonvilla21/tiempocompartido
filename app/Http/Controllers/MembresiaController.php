@@ -36,7 +36,7 @@ class MembresiaController extends Controller
         // Validation form from server side
        
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             // Store a new membresias
@@ -60,7 +60,7 @@ class MembresiaController extends Controller
     public function show($titulo, $id)
     {
          // Get the instance to make HTTP Requests
-        $client = User::getClient();  
+        $client = getClient();  
 
         try {
             // Get a single promocion
@@ -87,7 +87,7 @@ class MembresiaController extends Controller
     public function edit($id)
     {
         // Get the instance to make HTTP Requests
-        $client = User::getClient(); 
+        $client = getClient(); 
 
         try {
             $response = Membresia::findByid($client, $id);
@@ -113,7 +113,7 @@ class MembresiaController extends Controller
     public function update(Request $request)
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             $response = Membresia::edit($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
@@ -137,7 +137,7 @@ class MembresiaController extends Controller
     public function createImage($id)
     {
         // Get the instance to make HTTP Requests        
-        $client = User::getClient();
+        $client = getClient();
 
         try {
             $response = Membresia::findById($client, $id);
@@ -167,7 +167,7 @@ class MembresiaController extends Controller
         if ($request->hasFile('images')) {
             $post_image = $request->file('images');  
             // Get the instance to make HTTP Requests        
-            $client = User::getClient();
+            $client = getClient();
 
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();

@@ -16,7 +16,7 @@ class PromocionController extends Controller
     public function index()
     {
         // Get the instance to make HTTP Requests
-        $client = User::getClient();
+        $client = getClient();
         try {
             // Get all Promociones
             $response = Promocion::getAll($client);
@@ -64,7 +64,7 @@ class PromocionController extends Controller
     public function show($titulo, $id)
     {
         // Get the instance to make HTTP Requests
-        $client = User::getClient();  
+        $client = getClient();  
 
         try {
             // Get a single promocion
