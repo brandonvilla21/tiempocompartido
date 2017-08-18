@@ -16,3 +16,19 @@ function setDescription(imageNumber) {
         }
     })
 }
+function setFavorito(membresiaId, userId) {
+    
+    $.ajax({
+        type: 'POST',
+        url: `http://0.0.0.0:3000/api/People/${userId}/favoritos`,
+        data: {
+            idMembresia : membresiaId
+        },
+        success: function (data) {
+            alert('Agregado a favoritos!');
+        },
+        error: function(xhr, status, error) {
+            alert('Ha ocurrido un error, vuelva a intentarlo.')
+        }
+    })
+}
