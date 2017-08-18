@@ -16,8 +16,8 @@
                 <div class="row">
                     <div class="col margin-bottom">
                         <h1 class="title">
-                        {{ $membresia->descripcion }}
-                    </h1>   
+                            {{ $membresia->descripcion }} 
+                        </h1>   
                 </div>
                 <div class="row container" style="width:100%;">
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="Profile__Contact">
-                                <i class="fa fa-2x fa-heart pull-right" ng-class="heart" ng-click="favoritesAdd(membresia)"></i>
+                                <i class="fa fa-2x fa-heart pull-right" ng-class="heart" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}')" style="color: {{$isFavorito ? 'red' : 'gray'}};"></i>
                             </div>
                         </div>
 
@@ -295,46 +295,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="continer">
-            {{--  <!-- Set up your HTML -->
-            <div class="owl-carousel owl-theme owl-loaded">
-                <div class="item"><h4>1</h4></div>
-                <div class="item"><h4>2</h4></div>
-                <div class="item"><h4>3</h4></div>
-                <div class="item"><h4>4</h4></div>
-                <div class="item"><h4>5</h4></div>
-                <div class="item"><h4>6</h4></div>
-                <div class="item"><h4>7</h4></div>
-                <div class="item"><h4>8</h4></div>
-                <div class="item"><h4>9</h4></div>
-                <div class="item"><h4>10</h4></div>
-                <div class="item"><h4>11</h4></div>
-                <div class="item"><h4>12</h4></div>
-            </div>
-            <div class="owl-controls">
-                <div class="owl-nav">
-                    <div class="owl-prev">Pa tras</div>
-                    <div class="owl-next">Pa delante</div>
-                </div>
-                <div class="owl-dots">
-                    <div class="owl-dot active"><span></span></div>
-                    <div class="owl-dot"><span></span></div>
-                    <div class="owl-dot"><span></span></div>
-                </div>
-            </div>  --}}
-
-
-            <div class="my-class">
-                <div>your content</div>
-                <div>your content</div>
-                <div>your content</div>
-                <div>your content</div>
-                <div>your content</div>
-                <div>your content</div>
-            </div>
-            
         </div>
     </section>
 @endsection
