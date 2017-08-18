@@ -163,7 +163,27 @@ class User extends Authenticatable
             ]
         ]);
      }
-
+    /**
+     * Finds if its favorito by HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/favoritos
+     */
+     public static function isFavorito($client, $membresiaId, $userId, $ACCESS_TOKEN)
+     {
+        $response = $client->request('GET', 'People/'.$userId.'/favoritos', [
+            
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN,
+                'Accept'  => 'application/json'
+            ]
+        ]);
+        $favoritos = json_decode($response->getBody()->getContents());
+        foreach ($favoritos as $favorito) {
+            if ($favorito->idMembresia == $membresiaId) 
+                return true;
+        }
+        return false;
+     }
     /**
      * Get all Images related to a Membresia by HTTP Request
      * and returns the first coincidence to the principal image

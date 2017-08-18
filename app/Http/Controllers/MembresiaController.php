@@ -64,7 +64,8 @@ class MembresiaController extends Controller
 
         try {
             // Get a single promocion
-            $response = Membresia::findById($client, $id);  
+            $response   = Membresia::findById($client, $id);  
+            $isFavorito = User::isFavorito($client, $id, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (RequestException $e) {
             // In case something went wrong it will redirect to /
             session()->flash('error', 'Ocurrio un error al acceder a esta membresia, por favor, intente de nuevo.');
@@ -75,7 +76,7 @@ class MembresiaController extends Controller
         $membresia = json_decode($response->getBody()->getContents());
 
         //Return to /membresias/{titulo}/{id} with the Object: $membresia
-        return view('membresia.show', compact('membresia'));
+        return view('membresia.show', compact(['membresia', 'isFavorito']));
     }
      
     /**
