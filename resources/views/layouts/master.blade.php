@@ -89,49 +89,51 @@
     <script src="{{URL::to('assets/js/owl.carousel.min.js')}}"></script>
 
     <script>
-      var pathname = window.location.pathname;
-      var properties = {};
-      if (pathname == '/') {
-        properties = {
-          margin:10,
-          nav:true,
-          navText: [$('.am-prev'), $('.am-next')],
-          autoHeight:true,
-          dots: true,
-          responsive:{
-              0:{
-                  items:1
-              },
-              600:{
-                  items:1
-              },
-              1000:{
-                  items:3
-              }
-          }
-        }; 
-      } else {
-         properties = {
-          margin:10,
-          nav:true,
-          navText: [$('.am-prev'), $('.am-next')],
-          autoHeight:true,
-          dots: true,
-          responsive:{
-              0:{
-                  items:1
-              },
-              600:{
-                  items:1
-              },
-              1000:{
-                  items:1
-              }
-          }
-        }; 
-      }
+        var pathname = window.location.pathname;
+        var properties = {};
+        if (pathname == '/') {
+            properties = {
+            margin:10,
+            loop:true,
+            autoHeight:true,
+            dots: true,
+            autoplay:true,
+            autoplayTimeout:4000,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:3
+                }
+            }
+            }; 
+        } else {
+            properties = {
+            margin:10,
+            nav:true,
+            navText: [$('.am-prev'), $('.am-next')],
+            autoHeight:true,
+            dots: true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:1
+                }
+            }
+            }; 
+        }
 
-       $('.owl-carousel').owlCarousel(properties);
+        $('.owl-carousel').owlCarousel(properties);
+       
       
     </script>
 

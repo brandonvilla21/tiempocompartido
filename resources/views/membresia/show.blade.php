@@ -19,26 +19,28 @@
                         {{ $membresia->descripcion }}
                     </h1>   
                 </div>
-                <div class="row">
+                <div class="row container" style="width:100%;">
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
                         <div class="Profile__Gallery">
                             <div class="Profile__Title">
                                 <h2><i class="fa fa-picture-o"></i> Galería</h2>
                             </div>
-                            <div class="Profile__GalleryImages">
-                                <figure class="img">
-                                    {{--  <img ng-src="{{carrusel_img_src}}" class="img-fluid">  --}}
-                                    <img ng-src="carrusel_img_src" class="img-fluid">
-                                </figure>
-                                {{--  Fix this part  --}}
-                                <data-owl-carousel id="Profile__Gallery" class="owl-carousel owl-theme" data-options="{navigation: true, pagination: false, rewindNav : false}">
-                                    <div class="item" owl-carousel-item="" ng-repeat="imagen in membresia.imagenes" class="item">
-                                        <figure class="img">
-                                            {{--  <img ng-src="{{imagen.src}}" class="img-fluid" ng-click="cambiaImagenCarrusel(imagen.src)">  --}}
-                                            <img  class="img-fluid">
-                                        </figure>
-                                    </div>
-                                </data-owl-carousel>
+                            <div class="container">
+                                <div class="owl-carousel">
+                                    @if(isset($membresia->imagenes))
+                                        @foreach($membresia->imagenes as $imagen)
+                                            @if($imagen->tipo == 'thumb')
+                                                <div>
+                                                    <img src="uploads/membresias-images/{{ $imagen->src }}" alt="imagen" style="width:100%;">
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                </div>
+                                <div class="owl-nav">
+                                    <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
+                                    <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
+                                </div>
                             </div>
                             <div class="Profile__Contact">
                                 <i class="fa fa-2x fa-heart pull-right" ng-class="heart" ng-click="favoritesAdd(membresia)"></i>
@@ -293,6 +295,46 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="continer">
+            {{--  <!-- Set up your HTML -->
+            <div class="owl-carousel owl-theme owl-loaded">
+                <div class="item"><h4>1</h4></div>
+                <div class="item"><h4>2</h4></div>
+                <div class="item"><h4>3</h4></div>
+                <div class="item"><h4>4</h4></div>
+                <div class="item"><h4>5</h4></div>
+                <div class="item"><h4>6</h4></div>
+                <div class="item"><h4>7</h4></div>
+                <div class="item"><h4>8</h4></div>
+                <div class="item"><h4>9</h4></div>
+                <div class="item"><h4>10</h4></div>
+                <div class="item"><h4>11</h4></div>
+                <div class="item"><h4>12</h4></div>
+            </div>
+            <div class="owl-controls">
+                <div class="owl-nav">
+                    <div class="owl-prev">Pa tras</div>
+                    <div class="owl-next">Pa delante</div>
+                </div>
+                <div class="owl-dots">
+                    <div class="owl-dot active"><span></span></div>
+                    <div class="owl-dot"><span></span></div>
+                    <div class="owl-dot"><span></span></div>
+                </div>
+            </div>  --}}
+
+
+            <div class="my-class">
+                <div>your content</div>
+                <div>your content</div>
+                <div>your content</div>
+                <div>your content</div>
+                <div>your content</div>
+                <div>your content</div>
+            </div>
+            
         </div>
     </section>
 @endsection
