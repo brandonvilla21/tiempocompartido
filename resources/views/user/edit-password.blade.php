@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-md-7 col-xl-8"> 
                     <div class="container padding">
-                        <h2 class="title margin-bottom">Modifica tu contraseña</h2>
+                        <h2 class="title margin-bottom">Modifica tu contraseñaa</h2>
                          <div class="mt-1">
                             @include('layouts.message')
                          </div>
