@@ -20,8 +20,8 @@
                             <div class="card">
                                 <div class="row ">
                                     <div class="col-md-4">
-                                     @if ( App\User::getPrincipalImage(App\User::getClient(), $membresia->id) != null)
-                                        <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(App\User::getClient(), $membresia->id)->src }}" class="">{{-- class="w-100" --}}
+                                     @if ( App\User::getPrincipalImage(getClient(), $membresia->id) != null)
+                                        <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="">{{-- class="w-100" --}}
                                     @else 
                                         <img src="assets/img/sin-imagen.jpg" class="">
                                     @endif
