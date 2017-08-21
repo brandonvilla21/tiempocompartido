@@ -113,4 +113,17 @@ class UserController extends Controller
 
         return view('user.membresias', compact('membresias'));
     }
+
+    public function showFavoritos()
+    {
+        try {
+            $membresias = User::getMembresiasFavoritas(getClient(), Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+        } catch (RequestExeption $e) {
+            // If something went wrong it will redirect to /mi-cuenta
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::to('/mi-cuenta');
+        }
+
+        return view('user.mis-favoritos', compact('membresias'));
+    }
 }

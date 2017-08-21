@@ -185,6 +185,31 @@ class User extends Authenticatable
         return false;
      }
     /**
+     * Finds all membresias favoritas related to a Person by HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/favoritos
+     */
+     public static function getMembresiasFavoritas($client, $userId, $ACCESS_TOKEN)
+     {
+
+        $response =  $client->request('GET', 'People/'.$userId.'/favoritos', [
+            
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN,
+                'Accept'  => 'application/json'
+            ]
+        ]);
+        $favoritos = json_decode($response->getBody()->getContents());
+        $membresias = [];
+        
+        foreach ($favoritos as $key => $favorito) {
+            $responseM = Membresia::findById($client, $favorito->idMembresia);
+            $membresias[$key] = json_decode($responseM->getBody()->getContents());
+        }
+
+        return $membresias;
+     }
+    /**
      * Get all Images related to a Membresia by HTTP Request
      * and returns the first coincidence to the principal image
      * in case there's any principal images, it will return 

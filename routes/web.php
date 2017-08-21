@@ -18,6 +18,7 @@ Route::get('/cambiar-contrasena', 'UserController@editPassword');
 Route::put('/guardar-datos', 'UserController@update');
 Route::post('/guardar-contrasena', 'UserController@updatePassword');
 Route::get('/mis-membresias', 'UserController@showMembresias');
+Route::get('/mis-favoritos', 'UserController@showFavoritos');
 
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');
@@ -62,9 +63,6 @@ Route::get('/mi-cuenta', function () {
 
 Route::get('/mis-mensajes', function () {
     return view('mis-mensajes');
-});
-Route::get('/mis-favoritos', function () {
-    return view('mis-favoritos');
 });
 Route::get('/listados', function () {
     return view('listados');
