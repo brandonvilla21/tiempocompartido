@@ -15,9 +15,7 @@ function getClient()
     $client = new GuzzleHttp\Client([
         // Base URI is used with relative requests
         'base_uri' => $_ENV['END_POINT'],
-        // 'base_uri' => BASE_URI,
-        // You can set any number of default request options.
-        'timeout'  => 2.0,
+        
     ]);
     return $client;
 }
