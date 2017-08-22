@@ -24,7 +24,8 @@
                                             <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop">
                                             <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-mobile w-100">
                                         @else 
-                                            <img src="assets/img/sin-imagen.jpg" class="">
+                                            <img src="assets/img/sin-imagen.jpg" class="card-image-desktop">
+                                            <img src="assets/img/sin-imagen.jpg" class="card-image-mobile w-100">
                                         @endif
                                     </div>
                                         <div class="card-image-mobile col-md-8 px-3"> 
