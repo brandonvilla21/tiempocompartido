@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="{{ URL::to('assets/css/owl.theme.green.min.css')}}">
     <style>
       .owl-nav {
-        display: flex;
-        justify-content: center;
-        margin-top: 1em;
+        display         : flex;
+        justify-content : center;
+        margin-top      : 1em;
       } 
     </style>
     <!-- ngToast -->
@@ -37,7 +37,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body ng-class="pageType" class="" ng-controller="BodyController">
+  <body>
     <section class="bienvenidos">    
         @include('layouts.header')    
     </section>
@@ -47,12 +47,11 @@
     @include('layouts.footer')
 
 
-    <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa  fa-arrow-circle-up" aria-hidden="true"> </i> </a>
-     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
+    <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa fa-arrow-circle-up" aria-hidden="true"> </i> </a>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
     <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
-    {{--  <script src="{{ URL::to('assets/libs/OwlCarousel/dist/owl.carousel.min.js') }}"></script>  --}}
     <script src="{{ URL::to('assets/js/smooth-scroll.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/main.js') }}"></script>
     <script src="{{ URL::to('js/membresia-form.js') }}"></script>
@@ -65,13 +64,6 @@
 
     <script>
         new WOW().init()
-    </script>
-    
-    {{-- Slider --}}
-    <script>
-      $('.carousel').carousel({
-        interval: 5000
-      });
     </script>
     
     <script>
@@ -89,61 +81,78 @@
     <script src="{{URL::to('assets/js/owl.carousel.min.js')}}"></script>
 
     <script>
-        var pathname = window.location.pathname;
-        var properties = {};
-        if (pathname == '/') {
-            properties = {
-            margin:10,
-            loop:true,
-            autoHeight:true,
-            dots: true,
-            autoplay:true,
-            autoplayTimeout:4000,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:3
+        $(document).ready(function() {
+            var pathname = window.location.pathname;
+            var properties = {};
+            if (pathname == '/') {
+                properties = {
+                margin:10,
+                loop:true,
+                autoHeight:true,
+                dots: true,
+                autoplay:true,
+                autoplayTimeout:4000,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:1
+                    },
+                    1000:{
+                        items:3
+                    }
                 }
-            }
-            }; 
-        } else {
-            properties = {
-            margin:10,
-            nav:true,
-            navText: [$('.am-prev'), $('.am-next')],
-            autoHeight:true,
-            dots: true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:1
-                },
-                1000:{
-                    items:1
+                }; 
+            } else {
+                properties = {
+                margin:10,
+                nav:true,
+                navText: [$('.am-prev'), $('.am-next')],
+                autoHeight:true,
+                dots: true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:1
+                    },
+                    1000:{
+                        items:1
+                    }
                 }
+                }; 
             }
-            }; 
-        }
-
-        $('.owl-carousel').owlCarousel(properties);
-       
+            $('.owl-carousel').owlCarousel(properties);
+        });
       
     </script>
 
-    {{--  <script src="js/directives/owlcarousel.js"></script>    --}}
+    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAbAjqtjoZv3JPUupkEWkQ2Xbqx5ZlwXU8'></script>
+    <script src="{{URL::to('assets/js/locationpicker.jquery.js')}}"></script>
+    <script>
+        $('#map-component').locationpicker({
+            location: {
+                latitude: $('#us2-lat').val(),
+                longitude: $('#us2-lon').val(),
+            },
+            radius: 300,
+            inputBinding: {
+                locationNameInput: $('#us2-address'),
+                latitudeInput: $('#us2-lat'),
+                longitudeInput: $('#us2-lon')
+            },
+            enableAutocomplete: true,
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
+                var addressComponents = $(this).locationpicker('map').location.addressComponents;
+                updateControls(addressComponents);
+            }
 
-    <!-- Services -->
-    {{--  <script src="js/services/authentication.service.js"></script>  --}}
-    <!-- #Services -->
-
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAbAjqtjoZv3JPUupkEWkQ2Xbqx5ZlwXU8"></script>
-  
+        });
+        function updateControls(addressComponents) {
+            $('#us2-city').val(addressComponents.city);
+        }
+    </script>
   </body>
 </html>

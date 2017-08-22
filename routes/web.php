@@ -26,6 +26,8 @@ Route::post('/new-membresia', 'MembresiaController@store');
 Route::get('/membresia/{titulo}/{id}', 'MembresiaController@show');
 Route::get('/edit-membresia/{id}', 'MembresiaController@edit');
 Route::put('/update-membresia', 'MembresiaController@update');
+Route::get('/mi-cuenta/membresia-ubicacion/{id}','MembresiaController@setLocation');
+
 // MEMBRESIAS->IMAGENES
 Route::get('/guardar-imagenes/{membresia}', 'MembresiaController@createImage');
 Route::post('/save-image', 'MembresiaController@storeImage')->name('saveImage');
@@ -34,10 +36,6 @@ Route::post('/save-image', 'MembresiaController@storeImage')->name('saveImage');
 Route::get('/promociones', 'PromocionController@index');
 Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
 
-
-Route::get('/mi-cuenta/membresia-ubicacion/{id}', function () {
-    return view('membresia-ubicacion');
-});
 
 Route::get('/busqueda', function () {
     return view('busqueda');

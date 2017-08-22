@@ -206,6 +206,21 @@ class MembresiaController extends Controller
         return Redirect::to('/guardar-imagenes/' . $request->membresiaId . '#mis-imagenes');
         // return Redirect::back()->with('message','Las imágenes han sido guardadas.');
         
-
     }
+
+    public function setLocation($id)
+    {
+        try {
+            $response = Membresia::findById(getClient(), $id);
+        } catch (RequestException $e) {
+            // If something went wrong it will redirect to home page
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return redirect()->home();             
+        }
+
+        $membresia = json_decode($response->getBody()->getContents());
+
+        return view('membresia.ubicacion', compact('membresia'));
+    }
+
 }

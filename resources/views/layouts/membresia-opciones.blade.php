@@ -8,7 +8,7 @@
             ng-click="membresiaImagenes(membresia)">
         </i>
     </a>
-    <a  href="">
+    <a  href="/mi-cuenta/membresia-ubicacion/{{ $membresia->id }}">
         <i class="fa fa-2x fa-map pull-right"
             ng-click="membresiaUbicacion(membresia)">
         </i>
