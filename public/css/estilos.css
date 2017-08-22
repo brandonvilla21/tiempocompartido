@@ -724,14 +724,14 @@ EMPIEZAN LAS MEDIAS QUERIES
   
   }
   
-  @media all and (max-width: 720px) {
+  @media (max-width: 720px) {
   
     .card .card-image-desktop{display:none;}
     .card .card-image-mobile{display:none;}
   
   }
   
-  @media all and (max-width: 696px) {
+  @media (max-width: 696px) {
   
       .card .card-image-desktop{display:none;}
       .card .card-image-mobile{display:block;}
