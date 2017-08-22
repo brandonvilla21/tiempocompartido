@@ -48,7 +48,9 @@
 
 
     <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa fa-arrow-circle-up" aria-hidden="true"> </i> </a>
-    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
+    {{--  <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>   --}}
+    
+    <script src="{{ URL::to('assets/js/code.jquery-2.2.4.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
