@@ -1,4 +1,4 @@
-var endPoint = window.location.hostname == 'localhost' ? 'http://0.0.0.0:3000/api/' : 'http://tiempocompartidolb.herokuapp.com/api/Membresia';
+var endPoint = window.location.hostname == 'localhost' ? 'http://0.0.0.0:3000/api/' : 'http://tiempocompartidolb.herokuapp.com/api/';
 
 function setDescription(imageNumber) {
     var id = $('#image-' + imageNumber).val();
