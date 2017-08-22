@@ -43,7 +43,9 @@
                                 </div>
                             </div>
                             <div class="Profile__Contact">
-                                <i class="fa fa-2x fa-heart pull-right" ng-class="heart" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}')" style="color: {{$isFavorito ? 'red' : 'gray'}};"></i>
+                                @if(Session::has('USER_ID'))
+                                    <i id="favoritos-heart" class="fa fa-2x fa-heart pull-right" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}', {{$isFavorito ? 'true' : 'false'}})" style="color: {{$isFavorito ? 'red' : 'gray'}}; cursor: pointer;"></i>
+                                @endif
                             </div>
                         </div>
 
@@ -178,7 +180,18 @@
                                 <h2><i class="fa fa-map-marker"></i> Ubicación</h2>
                             </div>
                             <div class="Map">
-                                <div id="map" class="embed-responsive-item"></div>
+                                <div id="map-component" class="embed-responsive-item"  style="height:70vh; width: 100%;"></div>
+                                @if(isset($membresia->ubicacion))
+                                    <input type="hidden" id="us2-lat"  value="{{ pv($membresia->ubicacion, 'lat')}}"/>
+                                    <input type="hidden" id="us2-lon"  value="{{ pv($membresia->ubicacion, 'lng')}}"/>
+                                    <input type="hidden" id="us2-city" value="{{ pv($membresia->ubicacion, 'ciudad')}}"/>
+                                @else
+                                    <input type="hidden" id="us2-lat"  value="19.4326077" />
+                                    <input type="hidden" id="us2-lon"  value="-99.13320799999997" />
+                                    <input type="hidden" id="us2-city" />
+
+                                @endif
+                                <input type="hidden" id="membresiaId" value="{{$membresia->id}}"/>
                             </div>
                         </div>
                     </div>
