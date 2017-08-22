@@ -1,9 +1,11 @@
+var endPoint = window.location.hostname == 'localhost' ? 'http://0.0.0.0:3000/api/' : 'http://tiempocompartidolb.herokuapp.com/api/Membresia';
+
 function setDescription(imageNumber) {
     var id = $('#image-' + imageNumber).val();
     var description = $('#modif-descripcion-' + imageNumber).val();
     $.ajax({
         type: 'PATCH',
-        url: `http://0.0.0.0:3000/api/imagenes/${id}`,
+        url: `${endPoint}imagenes/${id}`,
         data: {
             descripcion : description
         },
@@ -34,7 +36,7 @@ function setFavorito(membresiaId, userId, isFavorito) {
 
     $.ajax({
         type: method,
-        url: `http://0.0.0.0:3000/api/People/${userId}/favoritos`,
+        url: `${endPoint}People/${userId}/favoritos`,
         data: {
             idMembresia : membresiaId
         },
@@ -52,14 +54,14 @@ function setFavorito(membresiaId, userId, isFavorito) {
 function setLocation($ACCESS_TOKEN) {
     
     $.ajax({
-        url: `http://0.0.0.0:3000/api/Membresia/${$('#membresiaId').val()}`,
+        url: `${endPoint}Membresia/${$('#membresiaId').val()}`,
         type: 'GET',
         dataType: 'json',        
         success: function (data) {
             var method = data.ubicacion == null ? 'POST' : 'PUT';
 
             $.ajax({
-                url: `http://0.0.0.0:3000/api/Membresia/${$('#membresiaId').val()}/ubicacion`,
+                url: `${endPoint}Membresia/${$('#membresiaId').val()}/ubicacion`,
                 type: method,
                 data: {
                     lat : $('#us2-lat').val().toString(),
