@@ -715,3 +715,25 @@ EMPIEZAN LAS MEDIAS QUERIES
   color    : white;
   
 }
+
+/* Membresias horizontal card */
+@media (max-width: 1500px) {
+  
+      .card .card-image-desktop{display:block;}
+      .card .card-image-mobile{display:none;}
+  
+  }
+  
+  @media all and (max-width: 720px) {
+  
+    .card .card-image-desktop{display:none;}
+    .card .card-image-mobile{display:none;}
+  
+  }
+  
+  @media all and (max-width: 696px) {
+  
+      .card .card-image-desktop{display:none;}
+      .card .card-image-mobile{display:block;}
+  
+  }
