@@ -14,13 +14,15 @@ function setDescription(imageNumber) {
             $('#topDescription-'+imageNumber).text(description);
         },
         error: function(xhr, status, error) {
-            alert('Ha ocurrido un error, vuelva a intentarlo.')
+            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
         }
     })
 }
 function setFavorito(membresiaId, userId, isFavorito) {
     var method;
     var color;
+    var message;
+    var toastStatus;
     // Mandar un request a la API sabiendo si el usario tiene favorito a esa membresia
     // Si sí lo tiene: hacer method DELETE
     // Si no lo tiene: hacer method POST
@@ -29,9 +31,13 @@ function setFavorito(membresiaId, userId, isFavorito) {
     if (isFavorito) {
         method = 'DELETE';
         color = 'gray';
+        message = 'Eliminado de favoritos';
+        toastStatus = 'WARNING';
     } else {
         method = 'POST';
         color = 'red';
+        message = 'Agregado a favoritos';
+        toastStatus = 'SUCCESS';
     }
 
     $.ajax({
@@ -43,10 +49,10 @@ function setFavorito(membresiaId, userId, isFavorito) {
         success: function (data) {
             console.log(color);
             $('favoritos-heart').css('color', color);
-            alert('Success');
+            makeToast('Favorito', message, toastStatus);
         },
         error: function(xhr, status, error) {
-            alert('Ha ocurrido un error, vuelva a intentarlo.')
+            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
         }
     });
     
@@ -73,12 +79,12 @@ function setLocation($ACCESS_TOKEN) {
                     $('#successLocationChanged').show().delay(3000).fadeOut();
                 },
                 error: function(xhr, status, error) {
-                    alert('Ha ocurrido un error, vuelva a intentarlo.')
+                    makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
                 }
             });
         },
         error: function(xhr, status, error) {
-            alert('Ha ocurrido un error, vuelva a intentarlo.')
+            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
         }
     });
 }
@@ -92,10 +98,10 @@ function publish(membresiaId, statusName) {
             status: statusName            
         },
         success: function (data) {
-            alert('Estatus actualizado a ' + statusName);
+            makeToast('Cambio de status','Estatus actualizado a ' + statusName, 'INFO');
         },
         error: function(xhr, status, error) {
-            alert('Ha ocurrido un error, vuelva a intentarlo.')
+            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING')
         }
     });
 }
