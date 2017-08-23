@@ -81,6 +81,21 @@ function setLocation($ACCESS_TOKEN) {
             alert('Ha ocurrido un error, vuelva a intentarlo.')
         }
     });
+}
 
-    
+function publish(membresiaId, statusName) {
+    $.ajax({
+        url: `${endPoint}Membresia/${membresiaId}`,
+        type: 'PATCH',
+        dataType: 'json',
+        data: {
+            status: statusName            
+        },
+        success: function (data) {
+            alert('Estatus actualizado a ' + statusName);
+        },
+        error: function(xhr, status, error) {
+            alert('Ha ocurrido un error, vuelva a intentarlo.')
+        }
+    });
 }
