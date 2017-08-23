@@ -200,17 +200,38 @@
                             <div class="Profile__Title">
                                 <h2><i class="fa fa-comment"></i> Comentarios</h2>
                             </div>
-                            <article class="Profile__DescriptionText">
-                                <form>
+                            <article id="comments" class="Profile__DescriptionText">
+                                <form action="/store-message" method="POST">
+                                    {{csrf_field()}}
                                     <div class="form-group input-group">
-                                    <input type="text" class="form-control" placeholder="Agrega tus comentarios.." ng-model="comentario"></input>
+                                    <input name="text" type="text" class="form-control" placeholder="Agrega tus comentarios.." ng-model="comentario"></input>
+                                    <input name="membresiaId" type="hidden" value="{{ $membresia->id }}"></input>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button" id="agregaComentario"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-primary" type="submit" id="agregaComentario"><i class="fa fa-plus"></i></button>
                                     </span>
                                     </div>
                                 </form>
-                                <section ng-class="{'comment-reply': comentario.lresp}"
-                                    ng-repeat="comentario in membresia.comentarios">
+                                @if(isset($membresia->messages))
+                                    @foreach($membresia->messages as $message)
+                                        <section ng-class="{'comment-reply': comentario.lresp}" ng-repeat="comentario in membresia.comentarios">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <div class="media">
+                                                        <a class="media-left" href="">
+                                                            <img class="media-object" src="assets/images/avatar.jpeg" alt="people" />
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <small class="text-grey-400 pull-right">{{ pvsDat($message, 'created') }}</small>
+                                                            <h5 class="media-heading margin-v-5">comentario.user</h5>
+                                                            <p class="margin-none">{{ $message->text }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </section>
+                                    @endforeach
+                                @endif
+                                {{--  <section ng-class="{'comment-reply': comentario.lresp}" ng-repeat="comentario in membresia.comentarios">
                                     <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="media">
@@ -225,7 +246,7 @@
                                         </div>
                                     </div>
                                     </div>
-                                </section>
+                                </section>  --}}
                             </article>
                         </div>
                     </div>

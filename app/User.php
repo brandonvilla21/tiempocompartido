@@ -232,8 +232,24 @@ class User extends Authenticatable
         foreach ($images as $image) 
             if($image->principal)
                 return $image;
-        
 
         return null;
+     }
+    /**
+     * Post a message realted to a Membresia by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/People/{id}/messages
+     */
+     public static function postMessage($client, $request, $userId, $ACCESS_TOKEN)
+     {
+        return $client->request('POST', 'People/'. $userId .'/messages', [
+            'form_params' => [
+                'text'        => $request->text,
+                'idMembresia' => $request->membresiaId,
+            ],
+            'headers' => [
+                'Accept'        => 'application/json'
+            ]
+        ]);
      }
 }

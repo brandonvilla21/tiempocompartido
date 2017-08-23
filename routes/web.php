@@ -19,6 +19,7 @@ Route::put('/guardar-datos', 'UserController@update');
 Route::post('/guardar-contrasena', 'UserController@updatePassword');
 Route::get('/mis-membresias', 'UserController@showMembresias');
 Route::get('/mis-favoritos', 'UserController@showFavoritos');
+Route::post('/store-message', 'UserController@storeMessage');
 
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');

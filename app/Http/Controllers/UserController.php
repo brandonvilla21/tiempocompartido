@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use Redirect;
+use URL;
 use App\User;
 use Exception;
 use GuzzleHttp\Psr7;
@@ -127,5 +128,28 @@ class UserController extends Controller
         }
 
         return view('user.mis-favoritos', compact('membresias'));
+    }
+
+    public function storeMessage(Request $request)
+    {
+
+        try {
+            $response = User::postMessage(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+        } catch (RequestException $e) {
+            
+            $statusCode =  $e->getResponse()->getStatusCode();
+
+            if($statusCode == 400) {
+                // In something went wrong it will redirect to home page
+                session()->flash('error', 'Ocurrio un problema al enviar el comentario, porfavor intentelo más tarde.');
+                return Redirect::to(URL::previous() . "#comments");
+            } else {
+                echo Psr7\str($e->getResponse());
+            }
+            
+        }
+
+        session()->flash('message', '¡Se ha enviado el comentario!');
+        return Redirect::to(URL::previous() . "#comments");
     }
 }
