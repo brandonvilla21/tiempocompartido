@@ -51,3 +51,12 @@ function pvDate($object, $attribute)
      } else 
          return '';
 }
+
+function pvsDat($object, $attribute)
+{
+    if(isset($object->{$attribute})) {
+        $dateArray = date_parse($object->{$attribute});
+        return $dateArray['day']. '/'. $dateArray['month']. '/' .$dateArray['year']. ' '. $dateArray['hour']. ':'. $dateArray['minute'];
+    } else 
+        return '';
+}
