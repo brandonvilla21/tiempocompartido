@@ -91,7 +91,9 @@ class UserController extends Controller
         }
 
         session()->flash('message', 'Su contraseña ha sido cambiada');
-        return redirect()->home();
+        // return redirect()->home();
+        return Redirect::back();
+        
 
     }
 

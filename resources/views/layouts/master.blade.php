@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ URL::to('assets/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/owl.theme.green.min.css')}}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/toastr.min.css')}}">
-    
+
     <style>
       .owl-nav {
         display         : flex;
@@ -38,9 +38,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script src="{{ URL::to('assets/js/code.jquery-2.2.4.min.js') }}"></script>
+    <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>    
+    <script src="{{ URL::to('js/before-load.js') }}"></script>    
 
   </head>
   <body>
+    @include('layouts.message')
     <section class="bienvenidos">    
         @include('layouts.header')    
     </section>
@@ -50,13 +54,11 @@
 
 
     <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa fa-arrow-circle-up" aria-hidden="true"> </i> </a>    
-    <script src="{{ URL::to('assets/js/code.jquery-2.2.4.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/smooth-scroll.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/main.js') }}"></script>
-    <script src="{{ URL::to('assets/js/toastr.min.js') }}"></script>
     <script src="{{ URL::to('js/membresia-form.js') }}"></script>
     
     

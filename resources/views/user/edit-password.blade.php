@@ -18,9 +18,6 @@
                 <div class="col-md-7 col-xl-8"> 
                     <div class="container padding">
                         <h2 class="title margin-bottom">Modifica tu contraseña</h2>
-                         <div class="mt-1">
-                            @include('layouts.message')
-                         </div>
                          <form method="POST" action="/guardar-contrasena" role="form">
                              {{ csrf_field() }}
 

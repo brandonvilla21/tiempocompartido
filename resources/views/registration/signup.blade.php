@@ -25,11 +25,6 @@
                 <label>Repetir password</label>
                 <input type="password" id="password_confirm" name="password_confirm" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" placeholder="Password" ng-model="signup.repassword" required="">
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                   @include('layouts.message')
-                </div>
-            </div>
             <div class="clearfix">
                 <div class="row">
                     <div class="col-md-12">

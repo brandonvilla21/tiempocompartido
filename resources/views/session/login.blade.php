@@ -13,11 +13,6 @@
                 <label>Password</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password" ng-model="credentials.password" required="">
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    @include('layouts.message')
-                </div>
-            </div>
             <div class="clearfix">
                 <div class="row">
                     <div class="col-md-12">
