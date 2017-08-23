@@ -60,7 +60,7 @@ class UserController extends Controller
         }
 
          // Get the response body from HTTP Request and parse to Object        
-        return redirect()->home();
+        return Redirect::back()->with('message','Cambios guardados correctamente!');
 
     }
 
