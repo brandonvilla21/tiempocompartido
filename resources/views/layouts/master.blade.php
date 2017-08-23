@@ -44,7 +44,6 @@
     <section class="bienvenidos">    
         @include('layouts.header')    
     </section>
-    @include('layouts.message');
     @yield('content')
 
     @include('layouts.footer')
@@ -158,8 +157,6 @@
             $('#us2-city').val(addressComponents.city);
         }
     </script>
-
-
 
   </body>
 </html>
