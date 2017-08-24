@@ -192,22 +192,14 @@ class User extends Authenticatable
      public static function getMembresiasFavoritas($client, $userId, $ACCESS_TOKEN)
      {
 
-        $response =  $client->request('GET', 'People/'.$userId.'/favoritos', [
+        return $client->request('GET', 'People/'.$userId.'/favoritos', [
             
             'headers' => [
                 'Authorization' => $ACCESS_TOKEN,
                 'Accept'  => 'application/json'
             ]
         ]);
-        $favoritos = json_decode($response->getBody()->getContents());
-        $membresias = [];
-        
-        foreach ($favoritos as $key => $favorito) {
-            $responseM = Membresia::findById($client, $favorito->idMembresia);
-            $membresias[$key] = json_decode($responseM->getBody()->getContents());
-        }
 
-        return $membresias;
      }
     /**
      * Get all Images related to a Membresia by HTTP Request

@@ -72,11 +72,14 @@ class UserController extends Controller
 
     public function updatePassword(Request $request)
     {
-        // Get the instance to make HTTP Requests        
-        $client = getClient();
+
+
+        // Validation
+
+        
 
         try {
-            $response = User::changePassword($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+            $response = User::changePassword($getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (RequestException $e) {
             
             $statusCode =  $e->getResponse()->getStatusCode();
@@ -120,12 +123,13 @@ class UserController extends Controller
     public function showFavoritos()
     {
         try {
-            $membresias = User::getMembresiasFavoritas(getClient(), Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+            $response = User::getMembresiasFavoritas(getClient(), Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (RequestExeption $e) {
             // If something went wrong it will redirect to /mi-cuenta
             session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
             return Redirect::to('/mi-cuenta');
         }
+        $membresias = json_decode($response->getBody()->getContents());
 
         return view('user.mis-favoritos', compact('membresias'));
     }
