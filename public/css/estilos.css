@@ -718,22 +718,18 @@ EMPIEZAN LAS MEDIAS QUERIES
 
 /* Membresias horizontal card */
 @media (max-width: 1500px) {
-  
       .card .card-image-desktop{display:block;}
       .card .card-image-mobile{display:none;}
-  
   }
   
-  @media (max-width: 720px) {
+  /* @media (max-width: 990px) {
   
     .card .card-image-desktop{display:none;}
     .card .card-image-mobile{display:none;}
   
-  }
+  } */
   
-  @media (max-width: 696px) {
-  
+  @media (max-width: 720px) {
       .card .card-image-desktop{display:none;}
-      .card .card-image-mobile{display:block;}
-  
+      .card .card-image-mobile{display:block;}    
   }
