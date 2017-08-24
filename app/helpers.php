@@ -41,13 +41,13 @@ function pv($object, $attribute)
 // Corregir, aun no devuelve bien la fecha
 function pvDate($object, $attribute)
 {
+
      if(isset($object->{$attribute})) {
-         $dateArray = date_parse($object->{$attribute});
-         $date = $dateArray['year']. '-';
-         $date = $date . ( strlen( (string)$dateArray['month'] == 1)   ?  $dateArray['month']   : '0'.$dateArray['month']) . '-';
-         $date = $date . ( strlen( (string)$dateArray['day']   == 1)   ?  '0'.$dateArray['day'] : $dateArray['day']);
-         
-         return $date;
+
+        $date = new DateTime($object->{$attribute});
+        $date = $date->format('Y-m-d');
+        
+        return $date;
      } else 
          return '';
 }
