@@ -1,11 +1,4 @@
 <?php
- 
-/**
-* Endpoint for API 
-* @var string
-*/
-const BASE_URI = 'http://0.0.0.0:3000/api/';
-
 
 /**
 * Gets the instance to make HTTP Requests
@@ -15,7 +8,6 @@ function getClient()
     $client = new GuzzleHttp\Client([
         // Base URI is used with relative requests
         'base_uri' => $_ENV['END_POINT'],
-        
     ]);
     return $client;
 }
@@ -38,7 +30,7 @@ function pv($object, $attribute)
     return isset($object->{$attribute}) ? $object->{$attribute} : '';
 }
 
-// Corregir, aun no devuelve bien la fecha
+// Returns date in correct format
 function pvDate($object, $attribute)
 {
 
