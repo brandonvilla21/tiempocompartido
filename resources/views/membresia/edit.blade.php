@@ -5,7 +5,7 @@
     <form method="POST" action="/update-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
         {{ method_field('PUT') }}
         {{ csrf_field() }}
-
+        <input name="membresiaId" type="hidden" value="{{ pv($membresia, 'id') }}" />
         <div class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="titulo"> Título </label>

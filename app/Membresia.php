@@ -80,7 +80,7 @@ class Membresia extends Model
      */
     public static function edit($client, $request, $idPerson, $ACCESS_TOKEN)
     {
-        return $client->request('PUT', 'Membresia', [
+        return $client->request('PUT', 'Membresia/'.$request->membresiaId, [
             'form_params' => [
                 'titulo'                => $request->titulo,
                 'title'                 => $request->title,
