@@ -52,8 +52,7 @@
 
     @include('layouts.footer')
 
-
-    <a data-scroll class="ir-arriba" href="#encabezado"><i class="fa fa-arrow-circle-up" aria-hidden="true"> </i> </a>    
+    <a data-scroll class="ir-arriba" ></a>    
     <script src="{{ URL::to('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
     <script src="{{ URL::to('assets/js/wow.min.js') }}"></script> 
@@ -76,9 +75,12 @@
           var pathname = window.location.pathname;
           if (pathname == '/') {
               $('.bienvenidos').css('height', '100vh');
+              $('.ir-arriba').attr("href", "#encabezado");
+              $('.ir-arriba').append('<i class="fa fa-arrow-circle-up" aria-hidden="true"> </i>');
           } else  {
               $('.bienvenidos').css('height', '50vh');
-              
+              $('.ir-arriba').attr("href", "javascript:history.back()");
+              $('.ir-arriba').append('<i class="fa fa-arrow-circle-left" aria-hidden="true"> </i>');
           }
       });
     </script>
