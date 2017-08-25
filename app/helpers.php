@@ -52,3 +52,20 @@ function pvsDat($object, $attribute)
     } else 
         return '';
 }
+/**
+* Create an associative array giving an object.
+*
+* @param  Object  $object
+* @param  String  $firstParam
+* @param  String  $secondParam
+*
+* @return Array
+*/
+function makeAsocArray($object, $firstParam, $secondParam)
+{
+    $array=[];
+    foreach ($object as $value) 
+        $array[$value->{$firstParam}] = $value->{$secondParam};
+    
+    return $array;
+}
