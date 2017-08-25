@@ -187,4 +187,19 @@ class Membresia extends Model
             ]
         ]);
     }
+
+
+     /**
+     * Get all Membresias related to a tipoInmueble by HTTP Request 
+     * Method: GET
+     * URI: http://0.0.0.0:3000/api/Membresia/tipoInmueble/{tipoInmueble}
+     */
+     public static function getTipoInmueble($client, $tipoInmueble)
+     {
+         return $client->request('GET', 'Membresia/findTipoInmueble/'. $tipoInmueble, [
+             'headers' => [
+                 'Accept' => 'application/json'
+             ]
+         ]);
+     }
 }
