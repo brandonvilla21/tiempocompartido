@@ -1,9 +1,8 @@
 @extends('layouts.master')
 @section('content')
     <div class="container padding">
-    <h1>Publica tu membresia</h1>
-    
-    <form ng-controller="MainCtrl as main" method="POST" action="/new-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
+    <h1>Publica tu membresia</h1>    
+    <form method="POST" action="/new-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
         {{csrf_field()}}
 
         <div class="form-group">
