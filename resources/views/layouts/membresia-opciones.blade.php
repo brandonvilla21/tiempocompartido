@@ -1,10 +1,10 @@
-    <a  href="/guardar-imagenes/{{ $membresia->id }}">
-        <i class="fa fa-2x fa-image pull-right"
+    <a  style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalLabel-{{$index}}">
+        <i style="color:#FFD700;"class="fa fa-2x fa-usd pull-right"
             ng-click="membresiaImagenes(membresia)">
         </i>
     </a>
-    <a  href="">
-        <i class="fa fa-2x fa-star pull-right"
+    <a  href="/guardar-imagenes/{{ $membresia->id }}">
+        <i class="fa fa-2x fa-image pull-right"
             ng-click="membresiaImagenes(membresia)">
         </i>
     </a>
