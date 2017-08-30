@@ -8,6 +8,8 @@ use App\User;
 use Session;
 use Redirect;
 use Exception;
+use App\Unidad;
+use App\Ubicado;
 use App\Membresia;
 use GuzzleHttp\Psr7;
 use Illuminate\Http\Request;
@@ -22,7 +24,34 @@ class MembresiaController extends Controller
      */
     public function create()
     {
-        return view('membresia.create');
+        $hasUbicados = false;
+
+        try {
+            // Get all Ubicados
+            $responseUbicados = Ubicado::getAll(getClient());
+            $hasUbicados = true;
+
+            // Get all Unidades
+            $responseUnidades = Unidad::getAll(getClient());
+            $hasUnidades = true;
+        } catch (RequestException $e) {
+            
+        }
+
+        $reponses = []; // This will contain all variables passed to compact function
+
+        if ($hasUbicados) {
+            $ubicados = json_decode($responseUbicados->getBody()->getContents());
+            $responses[] = 'ubicados';
+        }
+        if ($hasUnidades) {
+            $unidades = json_decode($responseUnidades->getBody()->getContents());
+            $responses[] = 'unidades';
+        }
+
+        return view('membresia.create', compact($responses));
+        
+
     }
     /**
      * Store a newly created resource (membresia) in storage.
@@ -34,13 +63,11 @@ class MembresiaController extends Controller
     {
 
         // Validation form from server side
-       
-        // Get the instance to make HTTP Requests        
-        $client = getClient();
+
 
         try {
             // Store a new membresias
-            $response = Membresia::storeMembresia($client, $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+            $response = Membresia::storeMembresia(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
@@ -89,20 +116,46 @@ class MembresiaController extends Controller
      */
     public function edit($id)
     {
-        // Get the instance to make HTTP Requests
-        $client = getClient(); 
-
         try {
-            $response = Membresia::findByid($client, $id);
+            $response = Membresia::findByid(getClient(), $id);
         } catch (RequestException $e) {
             // In case something went wrong it will redirect to /mis-membresias
             session()->flash('error', 'Por favor intente de nuevo');
             return Redirect::to('/mis-membresias' . '#inicia');
         }
 
+        // Get content for diaplaying in select tags
+        $hasUbicados = false;
+        $hasUnidades = false;
+        try {
+
+            $responseUbicados = Ubicado::getAll(getClient());
+            $hasUbicados = true;
+
+            $responseUnidades = Unidad::getAll(getClient());
+            $hasUnidades = true;
+
+        } catch (RequestException $e) {
+
+        }
+
+        $responses = []; // This will contain all variables passed to compact function
+
         $membresia = json_decode($response->getBody()->getContents());
-        
-        return view('membresia.edit',  compact('membresia'));
+        $responses[] = 'membresia';
+
+        if($hasUnidades) {
+            $unidades = json_decode($responseUnidades->getBody()->getContents());
+            $unidades = makeAsocArray($unidades, 'nombre', 'descripcion');
+            $responses[] = 'unidades';
+        }
+        if ($hasUbicados) {
+            $ubicados = json_decode($responseUbicados->getBody()->getContents());
+            $ubicados = makeAsocArray($ubicados, 'nombre', 'descripcion');
+            $responses[] = 'ubicados';
+        }
+        return view('membresia.edit',  compact($responses));
+            
 
     }
 
