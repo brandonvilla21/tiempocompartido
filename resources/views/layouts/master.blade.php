@@ -28,7 +28,14 @@
         justify-content : center;
         margin-top      : 1em;
       } 
+
+        .owl-theme .owl-dots .owl-dot span {
+            background: #6daaab;
+
+        }
+
     </style>
+
     <!-- ngToast -->
     {{--  <link rel="stylesheet" href="vendor/ng-toast/dist/ngToast.min.css">  --}}
 
@@ -43,7 +50,7 @@
     <script src="{{ URL::to('js/before-load.js') }}"></script>    
 
   </head>
-  <body>
+  <body ng-app="app">
     @include('layouts.message')
     <section class="bienvenidos">    
         @include('layouts.header')    
@@ -63,6 +70,13 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    {{--   Agular JS Libraries  --}}
+    <script src="//code.angularjs.org/1.4.0/angular.js"></script>
+    <script src="{{URL::to('js/angular/app.js')}}"></script>
+
+    
+
     <script src="{{URL::to('js/table-images.js')}}"></script>
     <script src="{{URL::to('js/modify-description.js')}}"> </script>
 
@@ -93,45 +107,68 @@
             var properties = {};
             if (pathname == '/') {
                 properties = {
-                margin:10,
-                loop:true,
-                autoHeight:true,
-                dots: true,
-                autoplay:true,
-                autoplayTimeout:4000,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:1
-                    },
-                    1000:{
-                        items:3
+                    margin:10,
+                    loop:true,
+                    autoHeight:true,
+                    dots: true,
+                    autoplay:true,
+                    autoplayTimeout:4000,
+                    navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:3
+                        }
                     }
+                }; 
+            } else if(pathname.indexOf('promociones')) {
+                properties = {
+                    margin:10,
+                    loop:true,
+                    autoHeight:true,
+                    dots: true,
+                    autoplay:true,
+                    autoplayTimeout:4000,
+                    navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:1
+                        }
                 }
                 }; 
-            } else {
+            }else {
                 properties = {
-                margin:10,
-                nav:true,
-                navText: [$('.am-prev'), $('.am-next')],
-                autoHeight:true,
-                dots: true,
-                responsive:{
-                    0:{
-                        items:1
-                    },
-                    600:{
-                        items:1
-                    },
-                    1000:{
-                        items:1
+                    margin:10,
+                    nav:true,
+                    navText: [$('.am-prev'), $('.am-next')],
+                    autoHeight:true,
+                    dots: true,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:1
+                        }
                     }
-                }
                 }; 
             }
             $('.owl-carousel').owlCarousel(properties);
+            $('.owl-carousel-custom').owlCarousel(properties);
         });
       
     </script>
@@ -161,6 +198,5 @@
             $('#us2-city').val(addressComponents.city);
         }
     </script>
-
   </body>
 </html>
