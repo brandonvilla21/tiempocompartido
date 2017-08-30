@@ -37,10 +37,10 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                    <div class="owl-nav">
-                                        <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
-                                        <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
-                                    </div>
+                                <div class="owl-nav">
+                                    <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
+                                    <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
+                                </div>
                             </div>
                             <div class="Profile__Contact">
                                 @if(Session::has('USER_ID'))
@@ -56,16 +56,16 @@
                                 <h2><i class="fa fa-dollar"></i> Precio</h2>
                             </div>
                             <div class="Profile__Title">
-                                @if( $membresia->venta && $membresia->ventaPrecio )
-                                    <p class="lead" >Venta <strong>$ {{ money_format('%i',$membresia->ventaPrecio) }}</strong> <small>{{ pv($membresia, 'ventaMoneda') }}</small></p>
+                                @if( isset($membresia->venta) && isset($membresia->ventaPrecio) )
+                                    <p class="lead" >Venta <strong>$ {{ money_format('%i', $membresia->ventaPrecio) }}</strong> <small>{{ pv($membresia, 'ventaMoneda') }}</small></p>
                                 @endif
-                                @if( $membresia->ventaNegociable )
+                                @if( isset($membresia->ventaNegociable) )
                                     <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
                                 @endif
-                                @if( $membresia->renta && $membresia->rentaPrecio )
-                                    <p class="lead" >Renta <strong>$ {{ money_format('%i',$membresia, 'rentaPrecio') }}</strong> <small>{{ pv($membresia, 'rentaMoneda') }}</small></p>
+                                @if( isset($membresia->renta) && $membresia->rentaPrecio )
+                                    <p class="lead" >Renta <strong>$ {{ money_format('%i', $membresia->rentaPrecio) }}</strong> <small>{{ pv($membresia, 'rentaMoneda') }}</small></p>
                                 @endif
-                                @if( $membresia->rentaNegociable )  
+                                @if( isset($membresia->rentaNegociable) )  
                                     <div class="alert alert-warning" role="alert" >¡El precio de renta es Negociable!</div>
                                 @endif   
                             </div>
