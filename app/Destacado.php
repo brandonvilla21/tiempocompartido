@@ -13,10 +13,10 @@ class Destacado extends Model
      */
      public static function getAll($client)
      {
-         return $client->request('GET', 'Destacados', [
-             'headers' => [
-                 'Accept' => 'application/json'
-             ]
-         ]);
+        return $client->request('GET', 'Destacados', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
      }
 }
