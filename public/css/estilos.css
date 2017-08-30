@@ -704,8 +704,13 @@ EMPIEZAN LAS MEDIAS QUERIES
 
 .thumbnail {
   position : relative;
+  opacity: .92;
+  transition: .5s ease;
 }
 
+.thumbnail:hover {
+  opacity: 1;
+}
 
 .caption {
   position : absolute;
@@ -733,3 +738,33 @@ EMPIEZAN LAS MEDIAS QUERIES
       .card .card-image-desktop{display:none;}
       .card .card-image-mobile{display:block;}    
   }
+
+  /* Line bottom */
+  .tiempo-line-bottom-container {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+}
+.tiempo-line-bottom {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    width           : 13%;
+    border          : 2px solid #6daaab;
+    margin-bottom   : .5em;    
+}
+
+.tiempo-title {
+  color: #4F4F4F;
+}
+.tiempo-title-2 {
+  color: #3D3D3D;
+}
+
+.categoria-list:hover {
+  cursor: pointer;
+  color: #7fb2d4;
+  transition: .3s ease;  
+  
+}
+
