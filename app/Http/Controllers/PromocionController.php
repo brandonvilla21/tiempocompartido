@@ -63,12 +63,10 @@ class PromocionController extends Controller
      */
     public function show($titulo, $id)
     {
-        // Get the instance to make HTTP Requests
-        $client = getClient();  
 
         try {
             // Get a single promocion
-            $response = Promocion::findById($client, $id);
+            $response = Promocion::findById(getClient(), $id);
         } catch (RequestException $e) {
             
             // In case something went wrong it will redirect to /promociones
