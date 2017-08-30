@@ -37,10 +37,10 @@
                                         @endforeach
                                     @endif
                                 </div>
-                                <div class="owl-nav">
-                                    <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
-                                    <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
-                                </div>
+                                    <div class="owl-nav">
+                                        <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
+                                        <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
+                                    </div>
                             </div>
                             <div class="Profile__Contact">
                                 @if(Session::has('USER_ID'))
@@ -158,17 +158,17 @@
                                 <form name="contactForm" >
                                     <div class="form-group">
                                         <label for="InputEmail">Nombre</label>
-                                        <input type="email" class="form-control" id="InputEmail" placeholder="Email" ng-model="contacto.nombre" required>
+                                        <input type="email" class="form-control" id="InputEmail" placeholder="Email" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputPassword">Correo</label>
-                                        <input type="password" class="form-control" id="InputPassword" placeholder="Password" ng-model="contacto.email" required>
+                                        <input type="password" class="form-control" id="InputPassword" placeholder="Password" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputFile">Mensaje</label>
-                                        <textarea class="form-control" rows="5" ng-model="contacto.mensaje" required></textarea>
+                                        <textarea class="form-control" rows="5" required></textarea>
                                     </div>
-                                    <button ng-click="sendMailContact(contacto)" data-ng-disabled="contactForm.$invalid" type="submit" class="btn btn-default">Enviar <i class="fa fa-paper-plane"></i></button>
+                                    <button ng-click="sendMailContact(contacto)" type="submit" class="btn btn-default">Enviar <i class="fa fa-paper-plane"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -231,22 +231,6 @@
                                     </section>
                                     @endforeach
                                 @endif
-                                {{--  <section ng-class="{'comment-reply': comentario.lresp}" ng-repeat="comentario in membresia.comentarios">
-                                    <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="media">
-                                        <a class="media-left" href="">
-                                            <img class="media-object" src="assets/images/avatar.jpeg" alt="people" />
-                                        </a>
-                                        <div class="media-body">
-                                            <small class="text-grey-400 pull-right">comentario.fecha</small>
-                                            <h5 class="media-heading margin-v-5">comentario.user</h5>
-                                            <p class="margin-none">comentario.texto</p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </section>  --}}
                             </article>
                         </div>
                     </div>
@@ -275,7 +259,9 @@
                                     @if( isset($membresia->creador->pais) )
                                         <li><strong>Pais: </strong> {{ $membresia->creador->pais }}</li>
                                     @endif
-                                    <li><strong>Lenguaje: </strong> $membresia->creador->lenguajes</li>
+                                    @if( isset($membresia->creador->lenguaje) )                                    
+                                        <li><strong>Lenguaje: </strong> {{ $membresia->creador->lenguaje }}</li>
+                                    @endif
                                     @if( isset($membresia->creador->telefono) )
                                         <li><strong>Teléfono: </strong> {{ $membresia->creador->telefono }} </li>
                                     @endif
