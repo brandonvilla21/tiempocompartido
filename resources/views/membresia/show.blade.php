@@ -56,14 +56,14 @@
                                 <h2><i class="fa fa-dollar"></i> Precio</h2>
                             </div>
                             <div class="Profile__Title">
-                                @if( $membresia->venta )
-                                    <p class="lead" >Venta <strong>$ {{ money_format('%i',$membresia->ventaPrecio) }}</strong> <small>{{ $membresia->ventaMoneda }}</small></p>
+                                @if( $membresia->venta && $membresia->ventaPrecio )
+                                    <p class="lead" >Venta <strong>$ {{ money_format('%i',$membresia->ventaPrecio) }}</strong> <small>{{ pv($membresia, 'ventaMoneda') }}</small></p>
                                 @endif
                                 @if( $membresia->ventaNegociable )
                                     <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
                                 @endif
-                                @if( $membresia->renta )
-                                    <p class="lead" >Renta <strong>$ {{ money_format('%i',$membresia->rentaPrecio) }}</strong> <small>{{ $membresia->rentaMoneda }}</small></p>
+                                @if( $membresia->renta && $membresia->rentaPrecio )
+                                    <p class="lead" >Renta <strong>$ {{ money_format('%i',$membresia, 'rentaPrecio') }}</strong> <small>{{ pv($membresia, 'rentaMoneda') }}</small></p>
                                 @endif
                                 @if( $membresia->rentaNegociable )  
                                     <div class="alert alert-warning" role="alert" >¡El precio de renta es Negociable!</div>
@@ -72,30 +72,30 @@
                             <div class="Profile__Benefits">
                                 <div class="col-xs-12 col-md-12 col-lg-12">
                                     <p>
-                                        <i class="fa fa-star"></i> {{ $membresia->tipoInmueble }}
+                                        <i class="fa fa-star"></i> {{ pv($membresia, 'tipoInmueble') }}
                                     </p>
                                     <p>
-                                        <i class="fa fa-bed"></i> {{ $membresia->dormitorios }} Cuartos
+                                        <i class="fa fa-bed"></i> {{ pv($membresia, 'dormitorios') }} Cuartos
                                     </p>
                                     <p>
-                                        <i class="fa fa-bath"></i> {{ $membresia->banosCompletos }} Baños
+                                        <i class="fa fa-bath"></i> {{ pv($membresia, 'banosCompletos') }} Baños
                                     </p>
                                     <p>
-                                        <i class="fa fa-user-circle"></i> {{ $membresia->maxPrivacidad }}  Personas con privacidad
+                                        <i class="fa fa-user-circle"></i> {{ pv($membresia, 'maxPrivacidad') }}  Personas con privacidad
                                     </p>
                                     <p>
-                                        <i class="fa fa-user-circle-o"></i> {{ $membresia->maxOcupantes }}Personas máximo
+                                        <i class="fa fa-user-circle-o"></i> {{ pv($membresia, 'maxOcupantes') }}Personas máximo
                                     </p>
                                     <p>
-                                        <i class="fa fa-cutlery"></i> {{ $membresia->tipoCocina }}
+                                        <i class="fa fa-cutlery"></i> {{ pv($membresia, 'tipoCocina') }}
                                     </p>
-                                    @if( $membresia->sala )
+                                    @if( pv($membresia, 'sala') )
                                         <p>
                                             <i class="fa fa-television"></i> Sala
                                         </p>
                                     @endif
                                     <p>
-                                        <i class="fa fa-calendar-o"></i> Tipo de semana {{ $membresia->semanaTipo }}
+                                        <i class="fa fa-calendar-o"></i> Tipo de semana {{ pv($membresia, 'semanaTipo') }}
                                     </p>
                                     <p>
                                         <i class="fa fa-calendar"></i>
@@ -109,7 +109,7 @@
                                     <p>
                                         <i class="fa fa-internet-explorer"></i>
                                         <strong>URL del Club: </strong>
-                                         <a href="{{ $membresia->clubUrl }}" target="_blank">{{ $membresia->clubUrl }}</a> 
+                                         <a href="{{ pv($membresia, 'clubUrl') }}" target="_blank">{{ pv($membresia, 'clubUrl') }}</a> 
                                     </p>
                                 </div>
                             </div>
@@ -122,29 +122,29 @@
                             </div>
                             <article class="Profile__DescriptionText">
                                 <p> 
-                                    {{ $membresia->descripcion }}
+                                    {{ pv($membresia, 'descripcion') }}
                                 </p>
-                                @if( strlen($membresia->description) > 0 )
+                                @if( strlen(pv($membresia, 'description')) > 0 )
                                     <p class="lead" ng-show="membresia.description != ''">
                                         <strong>English info: </strong>
-                                        {{ $membresia->description }}
+                                        {{ pv($membresia, 'description') }}
                                     </p>
                                 @endif
                                 <p>
-                                @if( $membresia->renta )
+                                @if( isset($membresia->renta) )
                                     <span>Rento </span> 
                                 @endif
-                                @if( $membresia->venta )
+                                @if( isset($membresia->venta) )
                                     <span>Vendo </span>
                                 @endif
                                 
-                                {{ $membresia->tipoInmueble }} vacacional,
-                                tipo de semana {{ $membresia->semanaTipo }}  con
-                                {{ $membresia->dormitorios }} dormitorios,
-                                {{ $membresia->banosCompletos }} baños,
-                                capacidad para {{ $membresia->maxPrivacidad }} personas máximo,
-                                capacidad con privacidad de {{ $membresia->maxOcupantes }} personas,
-                                {{ $membresia->tipoCocina }} y mucho mas..
+                                {{ pv($membresia, 'tipoInmueble') }} vacacional,
+                                tipo de semana {{ pv($membresia, 'semanaTipo') }}  con
+                                {{ pv($membresia, 'dormitorios') }} dormitorios,
+                                {{ pv($membresia, 'banosCompletos') }} baños,
+                                capacidad para {{ pv($membresia, 'maxPrivacidad') }} personas máximo,
+                                capacidad con privacidad de {{ pv($membresia, 'maxOcupantes') }} personas,
+                                {{ pv($membresia, 'tipoCocina') }} y mucho mas..
                                 </p>
                             </article>
                         </div>
@@ -223,7 +223,7 @@
                                                         <div class="media-body">
                                                             <small class="text-grey-400 pull-right">{{ pvsDat($message, 'created') }}</small>
                                                             <h5 class="media-heading margin-v-5">comentario.user</h5>
-                                                            <p class="margin-none">{{ $message->text }}</p>
+                                                            <p class="margin-none">{{ pv($message, 'text') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -244,7 +244,9 @@
                                     @if( isset($membresia->creador->name) )                            
                                         <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
                                     @endif
-                                    <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
+                                    @if( isset($membresia->creador->nickname) )
+                                        <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
+                                    @endif
                                     @if( isset($membresia->creador->informacion) )
                                         <li><strong>Información adicional: </strong>{{ $membresia->creador->informacion }}</li>
                                     @endif
