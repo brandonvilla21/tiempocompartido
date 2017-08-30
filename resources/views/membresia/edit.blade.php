@@ -52,17 +52,14 @@
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
                         {{--  Select Tag  --}}
-                        {{ Form::select(
-                            'semanaTipo', [
-                                'FIJA'      => 'Fija',
-                                'FLOTANTE'  => 'Flotante',
-                                'PUNTOS'    => 'Puntos',
-                                'NOCHES'    => 'Noches',
-                            ], 
-                            pv($membresia, 'semanaTipo'), [
-                                'class' => 'form-control',
-                                'id'    => 'semanaTipo'
-                            ])}}
+                        @if(isset($unidades))
+                            {{ Form::select(
+                                'semanaTipo', $unidades, 
+                                pv($membresia, 'semanaTipo'), [
+                                    'class' => 'form-control',
+                                    'id'    => 'semanaTipo'
+                                ])}}
+                        @endif
                     </span>
                 </div>
             </div>
@@ -171,7 +168,7 @@
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
                         {{ Form::select('tipoInmueble', [
-                            'CABAÑA'        => 'Cabaña',
+                            'CABANA'        => 'Cabaña',
                             'HOTEL'         => 'Hotel',
                             'BUNGALO'       => 'Bungalo',
                             'ESTUDIO'       => 'Estudio',
@@ -310,21 +307,13 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ubicadoEn"> Donde se encuentra ubicado</label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        {{ Form::select('ubicadoEn', [
-                            'MONTANA' => 'En Montaña sin Nieve',
-                            'NIEVE' => 'En Montaña Nevada',
-                            'PLAYA' => 'Sobre la Playa',
-                            'MARCERCAS' => 'Cerca del Mar',
-                            'CIUDAD' => 'Dentro de la Ciudad',
-                            'PUEBLO' => 'Dentro del Pueblo',
-                            'LAGO' => 'Junto a un Lago/Presa',
-                            'DESIERTO' => 'Desierto',
-                            
-                        ], 
+                    @if(isset($ubicados))
+                        {{ Form::select('ubicadoEn', $ubicados, 
                         pv($membresia, 'ubicadoEn'), [
                             'class' => 'form-control',
                             'id'    => 'ubicadoEn'
                         ])}}
+                    @endif
                     </span>
                 </div>
             </div>
@@ -549,7 +538,7 @@
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right"> </label>
             <div class="col-sm-7">
-                <button type="submit" class="width-35 pull-right btn btn-primary" ng-click="saveMembresia(membresia)" data-ng-disabled="membresiaForm.$invalid">
+                <button type="submit" class="width-35 pull-right btn btn-primary">
                 <i class="ace-icon fa fa-key"></i>
                 Guardar
                 </button>

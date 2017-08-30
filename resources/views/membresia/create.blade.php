@@ -2,7 +2,8 @@
 @section('content')
     <div class="container padding">
     <h1>Publica tu membresia</h1>
-    <form method="POST" action="/new-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
+    
+    <form ng-controller="MainCtrl as main" method="POST" action="/new-membresia" name="membresiaForm" class="form-horizontal padding" role="form">
         {{csrf_field()}}
 
         <div class="form-group">
@@ -159,12 +160,11 @@
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
                 <select class="form-control" placeholder="" id="tipoInmueble"name="tipoInmueble" ng-model="membresia.tipoInmueble" required>
-                    <option value="CABAÑA">Cabaña</option>
-                    <option value="HOTEL">Hotelera</option>
-                    <option value="BUNGALO">Bungalo</option>
-                    <option value="ESTUDIO">Estudio</option>
-                    <option value="DEPARTAMENTO">Depa</option>
-                    <option value="CASA">Casa</option>
+                    @if(isset($unidades))
+                        @foreach($unidades as $unidad)
+                            <option value="{{ $unidad->nombre }}">{{ $unidad->descripcion}}</option>
+                        @endforeach
+                    @endif
                 </select>
                 </span>
             </div>
@@ -287,14 +287,11 @@
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
                 <select class="form-control" placeholder="" id="ubicadoEn" name="ubicadoEn" ng-model="membresia.ubicadoEn" required>
-                <option value="MONTANA">En Montaña sin Nieve</option>
-                <option value="NIEVE">En Montaña Nevada</option>
-                <option value="PLAYA">Sobre la Playa</option>
-                <option value="MARCERCAS">Cerca del Mar</option>
-                <option value="CIUDAD">Dentro de la Ciudad</option>
-                <option value="PUEBLO">Dentro del Pueblo</option>
-                <option value="LAGO">Junto a un Lago/Presa</option>
-                <option value="DESIERTO">Desierto</option>
+                    @if(isset($ubicados))
+                        @foreach($ubicados as $ubicado)
+                            <option value="{{ pv($ubicado, 'nombre') }}">{{ pv($ubicado, 'descripcion') }}</option>
+                        @endforeach
+                    @endif
                 </select>
                 </span>
             </div>
@@ -501,7 +498,7 @@
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right"> </label>
             <div class="col-sm-7">
-                <button type="submit" class="width-35 pull-right btn btn-primary" ng-click="saveMembresia(membresia)" data-ng-disabled="membresiaForm.$invalid">
+                <button type="submit" class="width-35 pull-right btn btn-primary" >
                 <i class="ace-icon fa fa-key"></i>
                 Crear
                 </button>
