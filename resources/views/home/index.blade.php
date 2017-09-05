@@ -125,7 +125,7 @@
                     <div class="col-md-12">
                             <div class="owl-carousel owl-theme">
                                 @foreach($membresias as $membresia)
-                                        <div class="Card">
+                                    <div class="Card">
                                         <a href="/membresia/tiempo-compartido-en-{{ slugify($membresia->localidadNombre) }}-{{ slugify($membresia->clubNombre) }}-{{ slugify($membresia->paisNombre) }}/{{ $membresia->id }}">   
                                             <div class="Card__Image">
                                                 <img src="{{ isset($membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 

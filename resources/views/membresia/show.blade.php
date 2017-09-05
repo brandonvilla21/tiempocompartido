@@ -26,8 +26,8 @@
                                 <h2><i class="fa fa-picture-o"></i> Galería</h2>
                             </div>
                             <div class="container">
-                                <div class="owl-carousel">
-                                    @if(isset($membresia->imagenes))
+                                <div class="owl-carousel owl-theme">
+                                    @if(isset($membresia->imagenes[0]))
                                         @foreach($membresia->imagenes as $imagen)
                                             @if($imagen->tipo == 'thumb')
                                                 <div>
@@ -35,12 +35,16 @@
                                                 </div>
                                             @endif
                                         @endforeach
+                                    @else
+                                        <div>
+                                            <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">
+                                        </div>
                                     @endif
                                 </div>
-                                <div class="owl-nav">
+                                {{--  <div class="owl-nav">
                                     <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
                                     <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
-                                </div>
+                                </div>  --}}
                             </div>
                             <div class="Profile__Contact">
                                 @if(Session::has('USER_ID'))
