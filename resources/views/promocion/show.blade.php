@@ -22,14 +22,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="owl-carousel owl-theme">
-                                @if(isset($promocion->imagenes))
+                                @if(!isset($promocion->imagenes))
                                     @foreach($promocion->imagenes as $imagen)
                                         <div class="item">
-                                            {{--  <img src="uploads/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">  --}}
-                                            <img src="{{ isset($promocion->imagenes[0]->src) ?  'uploads/promociones/' . $promocion->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}"  alt="imagen" style="width:100%;"/> 
-
+                                            <img src="uploads/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">
                                         </div>
                                     @endforeach
+                                    @else
+                                        <div class="item">
+                                            <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">                                    
+                                        </div>
                                 @endif
                             </div>
                             <div class="owl-nav">
