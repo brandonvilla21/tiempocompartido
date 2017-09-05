@@ -58,7 +58,6 @@ function setFavorito(membresiaId, userId, isFavorito) {
     
 }
 function setLocation($ACCESS_TOKEN) {
-    
     $.ajax({
         url: `${endPoint}Membresia/${$('#membresiaId').val()}`,
         type: 'GET',
@@ -102,6 +101,48 @@ function publish(membresiaId, statusName) {
         },
         error: function(xhr, status, error) {
             makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING')
+        }
+    });
+}
+
+function setLocalidadesUser() {
+    console.log('setLocalidades');
+    $('.ciudadNombre-select').remove();
+    var paisId = $('select[name=pais]').val()
+    $.ajax({
+        url: `${endPoint}localidades/findLocalidades/${paisId}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var selectTag = $("<select id='ciudad' name='ciudad' class='form-control ciudadNombre-select'></select>");
+            data.forEach(function(city) {
+                selectTag.append(`<option value="${city.nombre}" >${city.nombre}</option>`);
+            });
+            $('.ciudadNombre-user-select').append(selectTag);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error: ', error);
+        }
+    });
+}
+
+function setLocalidadesMembresia() {
+    console.log('setLocalidadesMem');        
+    $('.localidadNombre-select').remove();
+    var paisId = $('select[name=paisNombre]').val()
+    $.ajax({
+        url: `${endPoint}localidades/findLocalidades/${paisId}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            var selectTag = $("<select id='localidadNombre' name='localidadNombre' class='form-control localidadNombre-select'></select>");
+            data.forEach(function(city) {
+                selectTag.append(`<option value="${city.nombre}" >${city.nombre}</option>`);
+            });
+            $('.localidad-select').append(selectTag);
+        },
+        error: function(xhr, status, error) {
+            console.log('Error: ', error);
         }
     });
 }

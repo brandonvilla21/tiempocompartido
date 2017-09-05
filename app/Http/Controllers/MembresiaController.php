@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 
 use Image;
-use App\User;
 use Session;
+use App\Pais;
 use Redirect;
+use App\User;
 use Exception;
 use App\Unidad;
 use App\Ubicado;
+use App\Localidad;
 use App\Membresia;
 use GuzzleHttp\Psr7;
 use Illuminate\Http\Request;
@@ -25,6 +27,8 @@ class MembresiaController extends Controller
     public function create()
     {
         $hasUbicados = false;
+        $hasUnidades = false;
+        $hasPaises = false;
 
         try {
             // Get all Ubicados
@@ -34,12 +38,18 @@ class MembresiaController extends Controller
             // Get all Unidades
             $responseUnidades = Unidad::getAll(getClient());
             $hasUnidades = true;
-        } catch (RequestException $e) {
             
+            // Get all Paises
+            $responsePaises = Pais::allPaises(getClient());
+            $hasPaises = true;
+        } catch (RequestException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error, por favor intente de nuevo');
+            return Redirect::to('/');
         }
 
         $reponses = []; // This will contain all variables passed to compact function
-
+        
         if ($hasUbicados) {
             $ubicados = json_decode($responseUbicados->getBody()->getContents());
             $responses[] = 'ubicados';
@@ -47,6 +57,10 @@ class MembresiaController extends Controller
         if ($hasUnidades) {
             $unidades = json_decode($responseUnidades->getBody()->getContents());
             $responses[] = 'unidades';
+        }
+        if ($hasPaises) {
+            $paises = json_decode($responsePaises->getBody()->getContents());
+            $responses[] = 'paises';
         }
 
         return view('membresia.create', compact($responses));
@@ -124,9 +138,16 @@ class MembresiaController extends Controller
             return Redirect::to('/mis-membresias' . '#inicia');
         }
 
+        $responses = []; // This will contain all variables passed to compact function
+        
+        $membresia = json_decode($response->getBody()->getContents());
+        $responses[] = 'membresia';
+
         // Get content for diaplaying in select tags
         $hasUbicados = false;
         $hasUnidades = false;
+        $hasPaises = false;
+        $hasLocalidades = false;
         try {
 
             $responseUbicados = Ubicado::getAll(getClient());
@@ -135,14 +156,19 @@ class MembresiaController extends Controller
             $responseUnidades = Unidad::getAll(getClient());
             $hasUnidades = true;
 
-        } catch (RequestException $e) {
+            $responsePaises = Pais::allPaises(getClient());
+            $hasPaises = true;
 
+            $responseLocalidades = Localidad::findByPais(getClient(), $membresia->paisNombre);
+            $hasLocalidades = true;
+
+        } catch (RequestException $e) {
+            // In case something went wrong it will redirect to /mis-membresias
+            // session()->flash('error', 'Por favor intente de nuevo');
+            return $e;
         }
 
-        $responses = []; // This will contain all variables passed to compact function
-
-        $membresia = json_decode($response->getBody()->getContents());
-        $responses[] = 'membresia';
+       
 
         if($hasUnidades) {
             $unidades = json_decode($responseUnidades->getBody()->getContents());
@@ -153,6 +179,16 @@ class MembresiaController extends Controller
             $ubicados = json_decode($responseUbicados->getBody()->getContents());
             $ubicados = makeAsocArray($ubicados, 'nombre', 'descripcion');
             $responses[] = 'ubicados';
+        }
+        if ($hasPaises) {
+            $paises = json_decode($responsePaises->getBody()->getContents());
+            $paises = makeAsocArray($paises, 'id', 'nombre');
+            $responses[] = 'paises';
+        }
+        if ($hasLocalidades) {
+            $localidades = json_decode($responseLocalidades->getBody()->getContents());
+            $localidades = makeAsocArray($localidades, 'nombre', 'nombre');
+            $responses[] = 'localidades';
         }
         return view('membresia.edit',  compact($responses));
             

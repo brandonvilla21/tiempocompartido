@@ -6,7 +6,9 @@ use Session;
 use Redirect;
 use URL;
 use App\User;
+use App\Pais;
 use Exception;
+use App\Localidad;
 use GuzzleHttp\Psr7;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\RequestException;
@@ -26,16 +28,37 @@ class UserController extends Controller
         try {
             
             $response = User::getUserInformation($client, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+            $responsePaises = Pais::allPaises($client);
+            // $responseLocalidades = Localidad::findByPais(getClient(), $membresia->pais);
         } catch (RequestException $e) {
             // In something went wrong it will redirect to home page
             session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
             return view('user.edit'); 
         }
+
+
         
         // Get the response body from HTTP Request and parse to Object        
         $user = json_decode($response->getBody()->getContents());
+        $paises = json_decode($responsePaises->getBody()->getContents());
+        
+        // Make an associative array of paises and localidades to put them into select tag paises and localidades
+        $paises = makeAsocArray($paises, 'id', 'nombre');
+        
+        if (isset($user->pais)) {
+            try {
+                $responseLocalidades = Localidad::findByPais(getClient(), $user->pais);
+            } catch (RequestException $e) {
 
-        return view('user.edit', compact('user'));
+            }
+
+            $localidades = json_decode($responseLocalidades->getBody()->getContents());
+
+            $localidades = makeAsocArray($localidades, 'nombre', 'nombre');
+        }
+            
+
+        return view('user.edit', compact(['user', 'paises', 'localidades']));
     }
 
     /**
@@ -75,8 +98,6 @@ class UserController extends Controller
 
 
         // Validation
-
-        
 
         try {
             $response = User::changePassword($getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
