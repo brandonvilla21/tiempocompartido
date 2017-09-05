@@ -114,6 +114,7 @@ function setLocalidadesUser() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            console.log('Datos: ',data);
             var selectTag = $("<select id='ciudad' name='ciudad' class='form-control ciudadNombre-select'></select>");
             data.forEach(function(city) {
                 selectTag.append(`<option value="${city.nombre}" >${city.nombre}</option>`);
