@@ -13,19 +13,20 @@
     <section class="py-1" id="">
         <div class="Membresia padding-row">
             <div class="container">
-                <div class="row">
+                <div class="row pl-1">
                     <div class="col margin-bottom">
                         <h1 class="title">
                             {{ $membresia->descripcion }} 
                         </h1>   
+                    </div>
                 </div>
-                <div class="row container" style="width:100%;">
+                <div class="row " >
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
                         <div class="Profile__Gallery">
                             <div class="Profile__Title">
                                 <h2><i class="fa fa-picture-o"></i> Galería</h2>
                             </div>
-                            <div class="container">
+                            <div class="">
                                 <div class="owl-carousel owl-theme">
                                     @if(isset($membresia->imagenes[0]))
                                         @foreach($membresia->imagenes as $imagen)
@@ -105,7 +106,7 @@
                                         <i class="fa fa-calendar"></i>
                                         <strong>Fecha de entrada: </strong>
                                         membresia.entrada
-                                    <p>
+                                    </p>
                                         <i class="fa fa-calendar"></i>
                                         <strong>Fecha de salida: </strong>
                                         membresia.salida
@@ -177,28 +178,24 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xs-12 col-md-12 col-lg-12 margin-bottom">
-                        <div class="Profile__Map">
-                            <div class="Profile__Title">
-                                <h2><i class="fa fa-map-marker"></i> Ubicación</h2>
-                            </div>
-                            <div class="Map">
-                                <div id="map-component" class="embed-responsive-item"  style="height:70vh; width: 100%;"></div>
-                                @if(isset($membresia->ubicacion))
+                    @if(isset($membresia->ubicacion))
+                        <div class="col-xs-12 col-md-12 col-lg-12 margin-bottom">
+                            <div class="Profile__Map">
+                                <div class="Profile__Title">
+                                    <h2><i class="fa fa-map-marker"></i> Ubicación</h2>
+                                </div>
+                                <div class="Map">
+                                    <div id="map-component" class="embed-responsive-item"  style="height:70vh; width: 100%;"></div>
+                                    
                                     <input type="hidden" id="us2-lat"  value="{{ pv($membresia->ubicacion, 'lat')}}"/>
                                     <input type="hidden" id="us2-lon"  value="{{ pv($membresia->ubicacion, 'lng')}}"/>
                                     <input type="hidden" id="us2-city" value="{{ pv($membresia->ubicacion, 'ciudad')}}"/>
-                                @else
-                                    <input type="hidden" id="us2-lat"  value="19.4326077" />
-                                    <input type="hidden" id="us2-lon"  value="-99.13320799999997" />
-                                    <input type="hidden" id="us2-city" />
-
-                                @endif
-                                <input type="hidden" id="membresiaId" value="{{$membresia->id}}"/>
+                                    
+                                    <input type="hidden" id="membresiaId" value="{{$membresia->id}}"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
                         <div class="Profile__Description">
                             <div class="Profile__Title">
