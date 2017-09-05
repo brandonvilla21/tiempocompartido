@@ -25,7 +25,9 @@
                                 @if(isset($promocion->imagenes))
                                     @foreach($promocion->imagenes as $imagen)
                                         <div class="item">
-                                            <img src="uploads/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">
+                                            {{--  <img src="uploads/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">  --}}
+                                            <img src="{{ isset($promocion->imagenes[0]->src) ?  'uploads/promociones/' . $promocion->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}"  alt="imagen" style="width:100%;"/> 
+
                                         </div>
                                     @endforeach
                                 @endif
