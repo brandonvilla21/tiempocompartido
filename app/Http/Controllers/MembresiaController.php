@@ -260,7 +260,7 @@ class MembresiaController extends Controller
             $post_image = $request->file('images');  
             // Get the instance to make HTTP Requests        
             $client = getClient();
-            
+
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
                 $description = $request->{'descripcion-'.$key};
@@ -275,7 +275,7 @@ class MembresiaController extends Controller
                 Image::make($image)->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->save( "http://aidihosting.com/proyectos/proyectura/uploads/" . $filename);    
+                })->save( public_path('/uploads/membresias-images/thumbs/') . $filename);    
                 
                 //Make POST to API and save image information
                 try {
