@@ -46,16 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center col-md-4 col-sm-6 mb-1">
-                                    <div class="thumbnail">
-                                        <a href="/promociones/{{ slugify($promocion->titulo) }}/{{$promocion->id}}">
-                                            <img style="width:100%; height:100%;" src="{{ isset($promocion->imagenes[0]->src) ?  'uploads/promociones/' . $promocion->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"/> 
-                                        </a>
-                                        <div class="caption gradient pb-1" style="color: #C0C0C0;">
-                                            {{ str_limit( pv($promocion, 'titulo'), 65)}}
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             @endforeach
                         </div>
                     </div>
