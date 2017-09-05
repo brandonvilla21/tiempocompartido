@@ -33,7 +33,7 @@
                                 <span class="tiempo-line-bottom"></span>
                             </div>
                         </div>
-                        <div class="row container" ng-repeat="promocion in promociones">
+                        <div class="row container">
                             @foreach($promociones as $promocion)
 
                                 <div class="text-center col-md-4 col-sm-6 mb-1">
