@@ -266,10 +266,10 @@ class MembresiaController extends Controller
                 $description = $request->{'descripcion-'.$key};
             
                 // Save image in original size without oversized up to 1900
-                // Image::make($image)->resize(1900, null, function ($constraint) {
-                //     $constraint->aspectRatio();
-                //     $constraint->upsize();
-                // })->save( public_path('/uploads/membresias-images/') . $filename);
+                Image::make($image)->resize(1900, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save( public_path('/uploads/membresias-images/') . $filename);
     
                 // Save image in thumb folder giving it 300 for height and auto width
                 Image::make($image)->resize(300, null, function ($constraint) {
