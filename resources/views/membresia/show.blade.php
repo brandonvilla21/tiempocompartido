@@ -125,7 +125,7 @@
                                     {{ pv($membresia, 'descripcion') }}
                                 </p>
                                 @if( strlen(pv($membresia, 'description')) > 0 )
-                                    <p class="lead" ng-show="membresia.description != ''">
+                                    <p class="lead">
                                         <strong>English info: </strong>
                                         {{ pv($membresia, 'description') }}
                                     </p>
@@ -168,13 +168,13 @@
                                         <label for="InputFile">Mensaje</label>
                                         <textarea class="form-control" rows="5" required></textarea>
                                     </div>
-                                    <button ng-click="sendMailContact(contacto)" type="submit" class="btn btn-default">Enviar <i class="fa fa-paper-plane"></i></button>
+                                    <button type="submit" class="btn btn-default">Enviar <i class="fa fa-paper-plane"></i></button>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-md-12 col-lg-12 margin-bottom" ng-show="membresia.ubicacion">
+                    <div class="col-xs-12 col-md-12 col-lg-12 margin-bottom">
                         <div class="Profile__Map">
                             <div class="Profile__Title">
                                 <h2><i class="fa fa-map-marker"></i> Ubicación</h2>
@@ -204,7 +204,7 @@
                                 <form action="/store-message" method="POST">
                                     {{csrf_field()}}
                                     <div class="form-group input-group">
-                                    <input name="text" type="text" class="form-control" placeholder="Agrega tus comentarios.." ng-model="comentario"></input>
+                                    <input name="text" type="text" class="form-control" placeholder="Agrega tus comentarios.." ></input>
                                     <input name="membresiaId" type="hidden" value="{{ $membresia->id }}"></input>
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit" id="agregaComentario"><i class="fa fa-plus"></i></button>
@@ -213,7 +213,7 @@
                                 </form>
                                 @if(isset($membresia->messages))
                                     @foreach($membresia->messages as $message)
-                                        <section ng-class="{'comment-reply': comentario.lresp}" ng-repeat="comentario in membresia.comentarios">
+                                        <section>
                                             <div class="panel panel-default">
                                                 <div class="panel-body">
                                                     <div class="media">
