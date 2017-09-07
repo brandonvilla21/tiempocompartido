@@ -308,7 +308,7 @@
                 </div>
             </div>
         </div>
-        <div  style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+        <div  style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
                 <div class="col-sm-7">
@@ -318,7 +318,7 @@
                 </div>
             </div>
         </div>
-        <div style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+        <div style="display:none;" class="form-group existeCuotaMantenimiento" style="display:none;">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
                 <div class="col-sm-7">
