@@ -174,7 +174,7 @@ function setLocalidadesUser() {
 function setLocalidadesMembresia() {
     console.log('setLocalidadesMem');        
     $('.localidadNombre-select').remove();
-    var paisId = $('select[name=paisNombre]').val()
+    var paisId = $('select[name=idPais]').val()
     $.ajax({
         url: `${endPoint}localidades/findLocalidades/${paisId}`,
         type: 'GET',
@@ -224,32 +224,33 @@ function searchMembresias() {
     var huespedes = $('#huespedes').val();
     var pais;
 
-
-        
-    getBusqueda(paisId, ciudad, busco, huespedes, function(error, membresias) {
-        console.log(membresias);
-        var card;
-        $('.resultados-content').remove();
-        var resulContent = $('<div class="resultados-content row" ></div>');
-        $('.membresias-result').append(resulContent);
-        
-        membresias.forEach(function(membresia) {
-            card = $(`
-                <div class="col-md-6">
-                    <div class="card" style="width: 25rem;">
-                        <img style="width:100%;"class="card-img-top" src="uploads/membresias-images/thumbs/${membresia.imagenes[0].src}" alt="imagen">
-                        <div class="card-block">
-                            <h4 class="card-title">${membresia.titulo}</h4>
-                            <p class="card-text">${membresia.descripcion}</p>
-                            <a href="/membresia/${membresia.titulo}/${membresia.id}" class="btn btn-primary">Ver membresia</a>
+    findPaisById(paisId, function(error, pais) {
+        console.log(pais.nombre);
+        getBusqueda(pais.nombre, ciudad, busco, huespedes, function(error, membresias) {
+            setLocationsOnMap(membresias);
+            console.log(membresias);
+            var card;
+            $('.resultados-content').remove();
+            var resulContent = $('<div class="resultados-content row" ></div>');
+            $('.membresias-result').append(resulContent);
+            
+            membresias.forEach(function(membresia) {
+                card = $(`
+                    <div class="col-md-6">
+                        <div class="card" style="width: 25rem;">
+                            <img style="width:100%;"class="card-img-top" src="uploads/membresias-images/thumbs/${membresia.imagenes[0].src}" alt="imagen">
+                            <div class="card-block">
+                                <h4 class="card-title">${membresia.titulo}</h4>
+                                <p class="card-text">${membresia.descripcion}</p>
+                                <a class="btn btn-primary" href="/membresia/tiempo-compartido-en-${slugify(membresia.localidadNombre)}-${slugify(membresia.clubNombre)}-${slugify(membresia.paisNombre)}/${membresia.id}">Ir a membresia</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `);
-            $('.resultados-content').append(card);
+                `);
+                $('.resultados-content').append(card);
+            });
         });
-
-    });
+    })        
     
 }
 
@@ -267,15 +268,16 @@ function findPaisById (paisId, cb) {
     });    
 }
 
-function getBusqueda(paisId, ciudad, rentaventa, huespedes, cb) {
+function getBusqueda(pais, ciudad, rentaventa, huespedes, cb) {
     var ventaVal = (rentaventa == 'VENTA') ? true : false;
     var rentaVal = (rentaventa == 'RENTA') ? true : false;
     $.ajax({
         // url: `${endPoint}Membresia/busqueda/${pais}/${ciudad}/${rentaventa}/${huespedes}`,
-        url: `${endPoint}Membresia/?filter[where][paisNombre][like]=${paisId}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}`,
+        url: `${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}`,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            console.log(`${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][lt]=${huespedes}`);
             console.log(`${endPoint}Membresia/busqueda/${pais}/${ciudad}/${rentaventa}/${huespedes}`);
             return cb(null, data)
         },
@@ -286,11 +288,55 @@ function getBusqueda(paisId, ciudad, rentaventa, huespedes, cb) {
 }
 
     
-var map;
 function initMap() {
+    var map;
     map = new google.maps.Map(document.getElementById('mapSearch'), {
-        center: {lat: 19.436088918814285, lng: -99.1954038777344},
-        zoom: 8
+        center: {lat: 19.436088918814285, lng: -50},
+        zoom: 2
     });
 }
-   
+function setLocationsOnMap(membresias) {
+    var locations=[];
+
+    for(var x = 0; x < membresias.length; x ++) {
+        if( membresias[x].ubicacion != null && membresias[x].ubicacion != undefined)
+            locations.push([
+                membresias[x].ubicacion.descripcion,
+                membresias[x].ubicacion.lat,
+                membresias[x].ubicacion.lng,
+            ]);
+    }
+    var map = new google.maps.Map(document.getElementById('mapSearch'), {
+        zoom: 2,
+        center: {lat: 19.436088918814285, lng: -50},        
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+
+    for(i =0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+    console.log(locations);
+}
+function slugify(input){
+    if(input!==undefined) {
+        var tittles = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç %$!¡?¿";
+        var original = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc-";
+        for (var i = 0; i < tittles.length; i++) {
+            input = input.replace(tittles.charAt(i), original.charAt(i)).toLowerCase();
+        };
+        return input;
+    }
+} 

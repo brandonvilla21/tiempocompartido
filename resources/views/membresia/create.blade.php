@@ -263,7 +263,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="localidadNombre"> Destino, Ciudad y Pais </label>
             <div class="col-sm-3">     
                 <span class="block input-icon input-icon-right">
-                <select class="form-control pais-select-membresia" placeholder="Pais" id="paisNombre" name="paisNombre" onchange="setLocalidadesMembresia()">
+                <select class="form-control pais-select-membresia" placeholder="Pais" id="idPais" name="idPais" onchange="setLocalidadesMembresia()">
                     @if (isset($paises))
                         @foreach($paises as $pais)
                             <option value="{{ $pais->id}}"> {{ $pais->nombre }} </option>
@@ -323,7 +323,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <select class="form-control" placeholder="mantenimientoMoneda" id="mantenimientoMoneda" name="mantenimientoMoneda" ng-model="membresia.mantenimientoMoneda" >
+                        <select class="form-control" placeholder="mantenimientoMoneda" id="mantenimientoMoneda" name="mantenimientoMoneda" >
                             <option value="DOLARES AMERICANOS">Dolares americanos</option>
                             <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                             <option value="EUROS">Euros</option>
@@ -337,7 +337,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="venta"> ¿Está en Venta? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="venta" id="venta" name="venta" ng-model="membresia.venta" />
+                        <input type="checkbox" class="form-control" placeholder="venta" id="venta" name="venta" />
                     </span>
                 </div>
             </div>
@@ -347,7 +347,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="number" class="form-control" placeholder="ventaPrecio" id="ventaPrecio" name="ventaPrecio" ng-model="membresia.ventaPrecio" />
+                        <input type="number" class="form-control" placeholder="ventaPrecio" id="ventaPrecio" name="ventaPrecio" />
                     </span>
                 </div>
             </div>
@@ -357,7 +357,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <select class="form-control" placeholder="ventaMoneda" id="ventaMoneda" name="ventaMoneda" ng-model="membresia.ventaMoneda" >
+                        <select class="form-control" placeholder="ventaMoneda" id="ventaMoneda" name="ventaMoneda" >
                             <option value="DOLARES AMERICANOS">Dolares americanos</option>
                             <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                             <option value="EUROS">Euros</option>
@@ -371,7 +371,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" id="ventaOcultarImporte" name="ventaOcultarImporte" ng-model="membresia.ventaOcultarImporte" />
+                        <input type="checkbox" class="form-control" placeholder="ventaOcultarImporte" id="ventaOcultarImporte" name="ventaOcultarImporte" />
                     </span>
                 </div>
             </div>
@@ -381,7 +381,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="ventaNegociable" id="ventaNegociable" name="ventaNegociable" ng-model="membresia.ventaNegociable" />
+                        <input type="checkbox" class="form-control" placeholder="ventaNegociable" id="ventaNegociable" name="ventaNegociable" />
                     </span>
                 </div>
             </div>
@@ -391,7 +391,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="date" class="form-control" placeholder="compraFecha" id="compraFecha" name="compraFecha" ng-model="membresia.compraFecha" />
+                        <input type="date" class="form-control" placeholder="compraFecha" id="compraFecha" name="compraFecha" />
                     </span>
                 </div>
             </div>
@@ -401,7 +401,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="ocultarFecha" id="ocultarFecha" name="ocultarFecha" ng-model="membresia.ocultarFecha" />
+                        <input type="checkbox" class="form-control" placeholder="ocultarFecha" id="ocultarFecha" name="ocultarFecha" />
                     </span>
                 </div>
             </div>
@@ -411,7 +411,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="" id="compraCaduca" name="compraCaduca" ng-model="membresia.compraCaduca" />
+                        <input type="checkbox" class="form-control" placeholder="" id="compraCaduca" name="compraCaduca" />
                     </span>
                 </div>
             </div>
@@ -421,7 +421,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="date" class="form-control" placeholder="" id="compraCaducidad" name="compraCaducidad" ng-model="membresia.compraCaducidad" />
+                        <input type="date" class="form-control" placeholder="" id="compraCaducidad" name="compraCaducidad" />
                     </span>
                 </div>
             </div>
@@ -431,7 +431,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="renta"> ¿Está en Renta? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" id="renta" name="renta" ng-model="membresia.renta" />
+                        <input type="checkbox" class="form-control" id="renta" name="renta" />
                     </span>
                 </div>
             </div>
@@ -441,7 +441,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="number" class="form-control" placeholder="" id="rentaPrecio" name="rentaPrecio" ng-model="membresia.rentaPrecio" />
+                        <input type="number" class="form-control" placeholder="" id="rentaPrecio" name="rentaPrecio" />
                     </span>
                 </div>
             </div>
@@ -451,7 +451,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <select class="form-control" placeholder="" id="rentaMoneda" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
+                        <select class="form-control" placeholder="" id="rentaMoneda" name="rentaMoneda" >
                             <option value="DOLARES AMERICANOS">Dolares americanos</option>
                             <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                             <option value="EUROS">Euros</option>
@@ -465,7 +465,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="checkbox" class="form-control" placeholder="" id="rentaNegociable" name="rentaNegociable" ng-model="membresia.rentaNegociable" />
+                        <input type="checkbox" class="form-control" placeholder="" id="rentaNegociable" name="rentaNegociable" />
                     </span>
                 </div>
             </div>
@@ -475,7 +475,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="telContacto"> Teléfono de Contacto </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="telContacto" name="telContacto" ng-model="membresia.telContacto" required/>
+                <input type="text" class="form-control" placeholder="" id="telContacto" name="telContacto" required/>
                 </span>
             </div>
         </div>
@@ -485,7 +485,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="metodoPago"> Método(s) de pago que aceptas para la transacción </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select id="metodoPago" name="metodoPago" id="metodoPago" ng-model="membresia.metodoPago" class="form-control" multiple  required>
+                <select id="metodoPago" name="metodoPago" id="metodoPago" class="form-control" multiple  required>
                     <option value="EFECTIVO">Efectivo</option>
                     <option value="CREDITO-DEBITO">Tarjeta Crédito/Débito</option>
                     <option value="TRANSFERENCIA">Transferencia</option>

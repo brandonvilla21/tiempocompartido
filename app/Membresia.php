@@ -63,6 +63,7 @@ class Membresia extends Model
                 'numCamas'              => $request->numCamas,
                 'localidadNombre'       => $request->localidadNombre,
                 'paisNombre'            => $request->paisNombre,
+                'idPais'                => $request->idPais,
                 'enlace_url'            => $request->enlace_url,
                 'idPerson'              => $idPerson,
                 
@@ -129,9 +130,26 @@ class Membresia extends Model
                 'numCamas'              => $request->numCamas,
                 'localidadNombre'       => $request->localidadNombre,
                 'paisNombre'            => $request->paisNombre,
+                'idPais'                => $request->idPais,
                 'enlace_url'            => $request->enlace_url,
                 'idPerson'              => $idPerson,
                 
+            ],
+            'headers' => [
+                'Authorization' => $ACCESS_TOKEN
+            ]
+        ]);
+    }
+     /**
+     * Updates a specific Membresia by HTTP Request 
+     * Method: PUT
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}
+     */
+    public static function storePaisNombre($client, $membresiaId, $paisNombre, $ACCESS_TOKEN)
+    {
+        return $client->request('PATCH', 'Membresia/'.$membresiaId, [
+            'form_params' => [
+                'paisNombre' => $paisNombre
             ],
             'headers' => [
                 'Authorization' => $ACCESS_TOKEN

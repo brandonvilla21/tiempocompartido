@@ -81,14 +81,26 @@ class MembresiaController extends Controller
 
 
         try {
-            // Store a new membresias
+            // Store a new membresia
             $response = Membresia::storeMembresia(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
             return view('membresia.create'); 
         }
+        $membresia = json_decode($response->getBody()->getContents());
+        // Save pais name correctly
+        try {
+            $responsePais = Pais::findById(getClient(), $request->idPais);
+            $pais = json_decode($responsePais->getBody()->getContents());
 
+            $responseStorePais = Membresia::storePaisNombre(getClient(), $membresia->id, $pais->nombre, Session::get('ACCESS_TOKEN'));
+        } catch (ClientException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
+            return view('membresia.create'); 
+        }
+        session()->flash('message', 'Se ha creado su nueva membresia');        
         return Redirect::to('/mis-membresias');
     }
 
@@ -160,7 +172,7 @@ class MembresiaController extends Controller
             $responsePaises = Pais::allPaises(getClient());
             $hasPaises = true;
 
-            $responseLocalidades = Localidad::findByPais(getClient(), $membresia->paisNombre);
+            $responseLocalidades = Localidad::findByPais(getClient(), $membresia->idPais);
             $hasLocalidades = true;
 
         } catch (RequestException $e) {
@@ -214,6 +226,19 @@ class MembresiaController extends Controller
             // If something went wrong it will redirect to home page
             session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
             return redirect()->home(); 
+        }
+
+        $membresia = json_decode($response->getBody()->getContents());
+        // Save pais name correctly
+        try {
+            $responsePais = Pais::findById(getClient(), $request->idPais);
+            $pais = json_decode($responsePais->getBody()->getContents());
+
+            $responseStorePais = Membresia::storePaisNombre(getClient(), $membresia->id, $pais->nombre, Session::get('ACCESS_TOKEN'));
+        } catch (ClientException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
+            return view('membresia.create'); 
         }
 
         session()->flash('message', 'Membresia actualizada con éxito');
