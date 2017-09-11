@@ -6,14 +6,15 @@
             <h1> Agrega imágenes a tu membresia</h1>
             <hr>
 
-            {{Form::open(['route' => 'saveImage', 'files' => true])}}
+            {{Form::open(['route' => 'saveImage', 'files' => true, 'onsubmit' => 'envio_form()', 'name' => 'form_imagen'])}}
+            {{--  <form id="form_images" action="http://aidihosting.com/proyectos/tiempocompartido_api/api/v1/uploadImagen/{{ $membresia->id }}" method="POST" enctype="multipart/form-data" class="ng-pristine ng-valid" >  --}}
                 <input name="membresiaTitulo" type="hidden" value="{{ slugify($membresia->titulo) }}"/>
                 <input name="membresiaId" type="hidden" value="{{ $membresia->id }}"/>
                 <div class="form-group">
                     <div class="row">
                         {{--  {{Form::label('agregar_imagen', 'Agregar imagen',['class' => 'col-sm-3 control-label no-padding-right'])}}  --}}
                         <div class="col-sm-5">
-                                {{Form::file('images[]', ['class' => 'form-control', 'id' => 'inputFiles', 'multiple' => true])}} 
+                            {{Form::file('images[]', ['class' => 'form-control', 'id' => 'inputFiles', 'multiple' => true])}} 
                         </div>
                         <div class="col-sm-7">
                             {{Form::submit('Guardar', ['class' => 'width-35 pull-right btn btn-primary'])}}
@@ -30,6 +31,7 @@
 
                     </tbody>
                 </table>
+            {{--  </form>  --}}
             {{Form::close()}}
         </div>
         @if(isset($membresia->imagenes[0]))
@@ -60,7 +62,7 @@
                             <div class="modal fade bd-example-modal-md-{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-md">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: #7fb2d4;display: flex;">
+                                        <div class="modal-header" style="background-color: #7fb2d4; display: flex;">
                                             <h5 class="modal-title" style="width:100%;">{{str_limit(pv($image, 'descripcion'), 25)}}</h5>
                                             <div class="pull-right" style="width:100%;">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">

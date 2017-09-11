@@ -44,10 +44,18 @@ class SessionsController extends Controller
             // Logs the new user
             $response = User::logUser($client, $request);
         } catch (RequestException $e) {
-            // In case email and password not matching it will throw an exception
-            // And it will be redirected to login view with a message 
-            session()->flash('error', 'El usuario o contraseña no coinciden');
-            return Redirect::to('/login'. '#inicio'); 
+
+            $response = $e->getResponse();
+            $responseBodyAsJSON = json_decode($response->getBody()->getContents());
+            
+            if ($responseBodyAsJSON->error->message == 'login failed as the email has not been verified')
+                session()->flash('error', 'Tu cuenta no ha sido verificada, debes verificarla desde tu correo');
+                else if($responseBodyAsJSON->error->message == 'login failed') 
+                    session()->flash('error', 'El usuario o contraseña no coinciden');                
+                else 
+                    session()->flash('error', 'Ocurrio un error al iniciar sesión');                
+            
+            return Redirect::to('/login'. '#inicio');     
         }
 
         // Get the response body from HTTP Request and parse to Object        

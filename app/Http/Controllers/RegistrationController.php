@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Redirect;
 use App\User;
+use App\Email;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -61,33 +62,38 @@ class RegistrationController extends Controller
                 echo Psr7\str($e->getResponse());
             }
         }
+        $user = json_decode($response->getBody()->getContents());
+        
+        // Send email for confirmation
+        $response = self::sendMail($user);
+        if( $response ) {
+            session()->flash('message', 'Te hemos enviado un correo de confirmación de tu cuenta.');
+            return view('session.login'); 
+        } else {
+            session()->flash('error', 'Hubo un problema al realizar el registro. Por favor, intentalo de nuevo');
+            return view('session.login'); 
+        }
 
-
-        if ($response->getStatusCode() == 200)
-        {   
-             try {
-                // Logs the new user
-                $response = User::logUser($client, $request);
-             } catch (RequestException $e) {
-                // In case something went wrong it will redirect to login
-                session()->flash('error', 'Hubo un error al ingresar, por favor intente de nuevo');
-                return view('session.login'); 
-             }
-
-            // Get the body from request response
-            $requestObj = json_decode($response->getBody()->getContents());
             
-             // Save the token and user information in Session
-            Session::put([
-                'ACCESS_TOKEN'  => $requestObj->id,
-                'USER_ID'       => $requestObj->userId,
-                'EMAIL'         => $request->email,
-                'NAME'          => $request->user
-            ]);
-      
-            session()->flash('message', '¡Bienvenido a Tiempo Compartido!');
-            //Redirect to the homepage.
-            return redirect()->home();
-        }       
     }
+
+    private function sendMail($user)
+    {
+        $linkToVerify = 'http://localhost:8000/verifyEmail/';//'https://582e389b.ngrok.io/verifyEmail/';
+        $to = $user->email;
+        $subject = "CONFIRMA TU CORREO ELECTRONICO - TIEMPOCOMPARTIDO";
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers = "Content-type:text/html;charset=UTF-8";
+        
+        try {
+            $response = Email::send(getClient(), $to, $subject, emailForVerification($user->id, $user->email, $linkToVerify. $user->id), $headers);
+        } catch (Exception $e) {
+            // return dd($e);
+            return false;
+        }
+        return true;
+
+    }
+    
 }

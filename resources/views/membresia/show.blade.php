@@ -49,7 +49,7 @@
                             </div>
                             <div class="Profile__Contact">
                                 @if(Session::has('USER_ID'))
-                                    <i id="favoritos-heart" class="fa fa-2x fa-heart pull-right" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}', {{$isFavorito ? 'true' : 'false'}})" style="color: {{$isFavorito ? 'red' : 'gray'}}; cursor: pointer;"></i>
+                                    <i id="favoritos-heart" class="fa fa-3x fa-heart pull-right" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}', {{$isFavorito ? 'true' : 'false'}})" style="color: {{$isFavorito ? 'red' : 'gray'}}; cursor: pointer;"></i>
                                 @endif
                             </div>
                         </div>

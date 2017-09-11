@@ -37,10 +37,12 @@ Route::post('/save-image', 'MembresiaController@storeImage')->name('saveImage');
 Route::get('/promociones', 'PromocionController@index');
 Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
 
+// BUSQUEDA
+Route::get('/busqueda', 'BusquedaController@index');
 
-Route::get('/busqueda', function () {
-    return view('busqueda');
-});
+// EMAIL
+Route::get('/verifyEmail/{id}', 'EmailController@verify');
+
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');
 });
@@ -75,3 +77,10 @@ Route::get('/listados/{categoria}/{subcategoria}/{titulo}', function () {
 Route::get('/concepto-de-tiempo-compartido', function () {
     return view('concepto-de-tiempo-compartido');
 });
+Route::get('/email', function () {
+    return view('Email');
+});
+
+
+
+

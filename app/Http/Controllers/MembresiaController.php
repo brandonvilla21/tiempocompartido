@@ -10,6 +10,7 @@ use Redirect;
 use App\User;
 use Exception;
 use App\Unidad;
+use App\Imagen;
 use App\Ubicado;
 use App\Localidad;
 use App\Membresia;
@@ -105,8 +106,8 @@ class MembresiaController extends Controller
 
         try {
             // Get a single promocion
-            $response   = Membresia::findById($client, $id);
-            if(Session::has('USER_ID')) 
+            $response = Membresia::findById($client, $id);
+            if(Session::has('USER_ID'))
                 $isFavorito = User::isFavorito($client, $id, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));                
             
         } catch (RequestException $e) {
@@ -254,13 +255,22 @@ class MembresiaController extends Controller
     public function storeImage(Request $request)
     {
 
-        // Validate request
-        // ...
         if ($request->hasFile('images')) {
             $post_image = $request->file('images');  
             // Get the instance to make HTTP Requests        
             $client = getClient();
+            
+            //::: Enviar $post_image al endpoint para guardar las imagenes ::://
+            // try {
+            //     $response = Imagen::setImages(getClient(), $post_image, $request->membresiaId);
+            // } catch (RequestException $e) {
+            //     // If something went wrong it will redirect to home page
+            //     session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            //     return dd($e); 
+            // }
 
+            // return var_dump($response->getBody()->getContents());
+            
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
                 $description = $request->{'descripcion-'.$key};

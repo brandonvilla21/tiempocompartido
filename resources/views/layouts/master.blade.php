@@ -78,7 +78,7 @@
     
 
     <script src="{{URL::to('js/table-images.js')}}"></script>
-    <script src="{{URL::to('js/modify-description.js')}}"> </script>
+    <script src="{{URL::to('js/helper-functions.js')}}"> </script>
 
     <script>
         new WOW().init()
@@ -173,7 +173,7 @@
       
     </script>
 
-    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAbAjqtjoZv3JPUupkEWkQ2Xbqx5ZlwXU8'></script>
+    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAbAjqtjoZv3JPUupkEWkQ2Xbqx5ZlwXU8&callback=initMap'></script>
     <script src="{{URL::to('assets/js/locationpicker.jquery.js')}}"></script>
     <script>
         $('#map-component').locationpicker({
@@ -197,6 +197,21 @@
         function updateControls(addressComponents) {
             $('#us2-city').val(addressComponents.city);
         }
+    </script>
+    <script language="javascript">
+        function envio_form(idMembresia){
+            document.getElementById('form_images').target = "_blank";
+            document.getElementById('form_images').id.value = $('#inputFiles').val();
+            document.getElementById('form_images').action = `http://aidihosting.com/proyectos/tiempocompartido_api/api/v1/uploadImagen/${idMembresia}`;
+            document.getElementById('form_images').submit();
+            console.log('Entró');
+            console.log($('#inputFiles').val());
+            //document.form_imagen.target = "_self";
+            //document.form_imagen.id.value="tablón";
+            //document.form_imagen.action = "/save-image";
+            //document.form_imagen.submit();
+        }
+
     </script>
   </body>
 </html>

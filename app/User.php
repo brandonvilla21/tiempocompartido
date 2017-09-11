@@ -244,4 +244,17 @@ class User extends Authenticatable
             ]
         ]);
      }
+    /**
+     * Verify user email by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/People/verifyEmail/{id}
+     */
+     public static function verifyEmail($client, $id)
+     {
+        return $client->request('POST', 'People/verifyEmail/'.$id, [
+            'headers' => [
+                'Content-Type'        => 'application/json'
+            ]
+        ]);
+     }
 }
