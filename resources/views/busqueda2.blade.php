@@ -47,7 +47,7 @@
                         <label for="">Donde se encuentra ubicado</label>
                         <select class="form-control" name="ubicacion" id="ubicacion">
                             @if(isset($ubicaciones))
-                                <option value="" selected></option>
+                                <option value="" selected>Todas</option>
                                 @foreach($ubicaciones as $ubicacion)
                                     <option value="{{ $ubicacion->nombre}}"> {{ $ubicacion->nombre }} </option>
                                 @endforeach
@@ -58,7 +58,7 @@
                         <label for="">Tipo de inmueble</label>
                         <select class="form-control" name="inmueble" id="inmueble">
                             @if(isset($unidades))
-                                <option value="" selected></option>
+                                <option value="" selected>Todos</option>
                                 @foreach($unidades as $unidad)
                                     <option value="{{ $unidad->nombre}}"> {{ $unidad->nombre }} </option>
                                 @endforeach

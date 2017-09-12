@@ -206,6 +206,8 @@ function setLocalidadesBusqueda() {
             var selectTag = $(`
                 <select id="ciudad" name="ciudad" class="form-control ciudadBusqueda-select"></select>
             `);
+            selectTag.append($('<option value="">Todas</option>'));
+            
             data.forEach(function(city) {
                 selectTag.append(`<option value="${city.nombre}" >${city.nombre}</option>`);
             });
