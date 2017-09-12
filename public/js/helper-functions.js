@@ -18,76 +18,77 @@ function setDescription(imageNumber) {
         }
     })
 }
-function setFavorito(membresiaId, userId, isFavorito) {
-    var method;
-    var color;
-    var message;
-    var toastStatus;
-    // Mandar un request a la API sabiendo si el usario tiene favorito a esa membresia
-    // Si sí lo tiene: hacer method DELETE
-    // Si no lo tiene: hacer method POST
-    // Problema: no hay un metodo en la API para obtener la relacion si hay un favorito entre la persona y la membresia 
-    getFavoritosByIdUser(userId, function(error, favoritos) {
-        favoritos.forEach(function(favorito) {
-            // Es favorito y se debe eliminar
-            if(favorito.idMembresia == membresiaId) {
-                $.ajax({
-                    type: 'DELETE',
-                    url: `${endPoint}People/${userId}/favoritos/${favorito.id}`,
-                    success: function (data) {
-                        console.log(data);
-                        makeToast('Favorito', 'Ha sido quitado de favoritos', 'SUCCESS');
-                    },
-                    error: function(xhr, status, error) {
-                        makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
-                    }
-                });
-                break;
-            } else { // No es favorito y se debe eliminar
-                $.ajax({
-                    type: 'POST',
-                    url: `${endPoint}People/${userId}/favoritos`,
-                    success: function (data) {
-                        console.log(data);
-                        makeToast('Favorito', 'Guardado en favoritos', 'SUCCESS');
-                    },
-                    error: function(xhr, status, error) {
-                        makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
-                    }
-                });
-                break;
-            }
-        });
-    });
-    // if (isFavorito) {
-    //     method = 'DELETE';
-    //     color = 'gray';
-    //     message = 'Eliminado de favoritos';
-    //     toastStatus = 'WARNING';
-    // } else {
-    //     method = 'POST';
-    //     color = 'red';
-    //     message = 'Agregado a favoritos';
-    //     toastStatus = 'SUCCESS';
-    // }
 
-    // $.ajax({
-    //     type: method,
-    //     url: `${endPoint}People/${userId}/favoritos`,
-    //     data: {
-    //         idMembresia : membresiaId
-    //     },
-    //     success: function (data) {
-    //         console.log(color);
-    //         $('favoritos-heart').css('color', color);
-    //         makeToast('Favorito', message, toastStatus);
-    //     },
-    //     error: function(xhr, status, error) {
-    //         makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
-    //     }
-    // });
+// function setFavorito(membresiaId, userId, isFavorito) {
+//     var method;
+//     var color;
+//     var message;
+//     var toastStatus;
+//     // Mandar un request a la API sabiendo si el usario tiene favorito a esa membresia
+//     // Si sí lo tiene: hacer method DELETE
+//     // Si no lo tiene: hacer method POST
+//     // Problema: no hay un metodo en la API para obtener la relacion si hay un favorito entre la persona y la membresia 
+//     getFavoritosByIdUser(userId, function(error, favoritos) {
+//         favoritos.forEach(function(favorito) {
+//             // Es favorito y se debe eliminar
+//             if(favorito.idMembresia == membresiaId) {
+//                 $.ajax({
+//                     type: 'DELETE',
+//                     url: `${endPoint}People/${userId}/favoritos/${favorito.id}`,
+//                     success: function (data) {
+//                         console.log(data);
+//                         makeToast('Favorito', 'Ha sido quitado de favoritos', 'SUCCESS');
+//                     },
+//                     error: function(xhr, status, error) {
+//                         makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+//                     }
+//                 });
+//                 break;
+//             } else { // No es favorito y se debe eliminar
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: `${endPoint}People/${userId}/favoritos`,
+//                     success: function (data) {
+//                         console.log(data);
+//                         makeToast('Favorito', 'Guardado en favoritos', 'SUCCESS');
+//                     },
+//                     error: function(xhr, status, error) {
+//                         makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+//                     }
+//                 });
+//                 break;
+//             }
+//         });
+//     });
+//     // if (isFavorito) {
+//     //     method = 'DELETE';
+//     //     color = 'gray';
+//     //     message = 'Eliminado de favoritos';
+//     //     toastStatus = 'WARNING';
+//     // } else {
+//     //     method = 'POST';
+//     //     color = 'red';
+//     //     message = 'Agregado a favoritos';
+//     //     toastStatus = 'SUCCESS';
+//     // }
+
+//     // $.ajax({
+//     //     type: method,
+//     //     url: `${endPoint}People/${userId}/favoritos`,
+//     //     data: {
+//     //         idMembresia : membresiaId
+//     //     },
+//     //     success: function (data) {
+//     //         console.log(color);
+//     //         $('favoritos-heart').css('color', color);
+//     //         makeToast('Favorito', message, toastStatus);
+//     //     },
+//     //     error: function(xhr, status, error) {
+//     //         makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+//     //     }
+//     // });
     
-}
+// }
 
 function getFavoritosByIdUser(userId, cb) {
     $.ajax({
@@ -269,6 +270,7 @@ function findPaisById (paisId, cb) {
 }
 
 function getBusqueda(pais, ciudad, rentaventa, huespedes, cb) {
+    ciudad = ciudad !== undefined ? ciudad : '';
     var ventaVal = (rentaventa == 'VENTA') ? true : false;
     var rentaVal = (rentaventa == 'RENTA') ? true : false;
     $.ajax({
@@ -339,4 +341,95 @@ function slugify(input){
         };
         return input;
     }
-} 
+}
+var isMemFavorito = false;
+function isFavorite(membresiaId, userId) {
+    var checked = false;
+    getFavoritosByIdUser(userId, function(err, favoritos) {
+        if( !err ) {
+            if( favoritos.length > 0 ) {
+                for(var i = 0; i < favoritos.length; i ++) {
+                    if(favoritos[i].idMembresia === membresiaId) {
+                        $('#favoritos-heart').css('color', 'red');
+                        checked = true;
+                        break;
+                    }
+                }
+                if( !checked ) {  
+                    $('#favoritos-heart').css('color', 'gray');                    
+                }
+            } else {
+                $('#favoritos-heart').css('color', 'gray');
+            }
+        }
+    });
+}
+
+function setFavorito(membresiaId, userId) {
+    var checked = false;
+    getFavoritosByIdUser(userId, function(err, favoritos) {
+        if ( !err ) {
+            if ( favoritos.length > 0 ) {
+                for (var i = 0; i < favoritos.length; i++) {
+                    if ( favoritos[i].idMembresia === membresiaId ) {
+                        checked = true;
+                        $.ajax({
+                            type: 'DELETE',
+                            url: `${endPoint}People/${userId}/favoritos/${favoritos[i].id}`,
+                            success: function (data) {
+                                console.log(data);
+                                makeToast('Favorito', 'Ha sido eliminado de favoritos', 'SUCCESS');
+                            },
+                            error: function(xhr, status, error) {
+                                consol
+                                makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+                            }
+                        });
+                        $('#favoritos-heart').css('color', 'gray');
+                        break;               
+                    }
+                    
+                }
+                if ( !checked ) {
+                    $.ajax({
+                        type: 'POST',
+                        url: `${endPoint}People/${userId}/favoritos`,
+                        data: {
+                            idMembresia: membresiaId,
+                            idPerson: userId
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            makeToast('Favorito', 'Ha sido agregado a favoritos', 'SUCCESS');
+                        },
+                        error: function(xhr, status, error) {
+                            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+                        }
+                    });
+                    $('#favoritos-heart').css('color', 'red');         
+                }
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: `${endPoint}People/${userId}/favoritos`,
+                    data: {
+                        idMembresia: membresiaId,
+                        idPerson: userId
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        makeToast('Favorito', 'Ha sido agregado a favoritos', 'SUCCESS');
+                    },
+                    error: function(xhr, status, error) {
+                        makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+                    }
+                });
+                $('#favoritos-heart').css('color', 'red');                
+            }
+        }
+    });
+}
+
+$(function(){
+    $('div[onload]').trigger('onload');
+});

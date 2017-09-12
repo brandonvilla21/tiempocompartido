@@ -47,11 +47,11 @@
                                     <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
                                 </div>  --}}
                             </div>
-                            <div class="Profile__Contact">
-                                @if(Session::has('USER_ID'))
-                                    <i id="favoritos-heart" class="fa fa-3x fa-heart pull-right" onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}', {{$isFavorito ? 'true' : 'false'}})" style="color: {{$isFavorito ? 'red' : 'gray'}}; cursor: pointer;"></i>
-                                @endif
-                            </div>
+                            @if(Session::has('USER_ID'))
+                                <div class="Profile__Contact" onload="isFavorite('{{$membresia->id}}', '{{Session::get('USER_ID')}}')">
+                                    <i id="favoritos-heart" class="fa fa-3x fa-heart pull-right " onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}')" style="cursor:pointer;"></i>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
