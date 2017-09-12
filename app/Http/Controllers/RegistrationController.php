@@ -20,7 +20,11 @@ class RegistrationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        // Verify route
+        if (Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         return view('registration.signup');
     }
 
@@ -32,6 +36,10 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {   
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         // Validation form from server side
          $this->validate($request, [
             'user'              => 'required',

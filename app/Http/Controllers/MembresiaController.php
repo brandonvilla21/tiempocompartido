@@ -27,6 +27,10 @@ class MembresiaController extends Controller
      */
     public function create()
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         $hasUbicados = false;
         $hasUnidades = false;
         $hasPaises = false;
@@ -77,8 +81,9 @@ class MembresiaController extends Controller
     public function store(Request $request)
     {
 
-        // Validation form from server side
-
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
 
         try {
             // Store a new membresia
@@ -143,6 +148,10 @@ class MembresiaController extends Controller
      */
     public function edit($id)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         try {
             $response = Membresia::findByid(getClient(), $id);
         } catch (RequestException $e) {
@@ -177,8 +186,8 @@ class MembresiaController extends Controller
 
         } catch (RequestException $e) {
             // In case something went wrong it will redirect to /mis-membresias
-            // session()->flash('error', 'Por favor intente de nuevo');
-            return $e;
+            session()->flash('error', 'Por favor intente de nuevo');
+            return Redirect::to('/');
         }
 
        
@@ -217,6 +226,10 @@ class MembresiaController extends Controller
      */
     public function update(Request $request)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         // Get the instance to make HTTP Requests        
         $client = getClient();
 
@@ -244,8 +257,6 @@ class MembresiaController extends Controller
         session()->flash('message', 'Membresia actualizada con éxito');
         return Redirect::to('/mis-membresias');
     }
-
-    //::::::::: FUNCTIONS FOR IMAGES CONTROL ::::::::://
     
     /**
      * Show the form for creating a new resource (Image related to a membresia).
@@ -254,6 +265,10 @@ class MembresiaController extends Controller
      */
     public function createImage($id)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+        
         // Get the instance to make HTTP Requests        
         $client = getClient();
 
@@ -279,22 +294,14 @@ class MembresiaController extends Controller
      */
     public function storeImage(Request $request)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
 
         if ($request->hasFile('images')) {
             $post_image = $request->file('images');  
             // Get the instance to make HTTP Requests        
             $client = getClient();
-            
-            //::: Enviar $post_image al endpoint para guardar las imagenes ::://
-            // try {
-            //     $response = Imagen::setImages(getClient(), $post_image, $request->membresiaId);
-            // } catch (RequestException $e) {
-            //     // If something went wrong it will redirect to home page
-            //     session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
-            //     return dd($e); 
-            // }
-
-            // return var_dump($response->getBody()->getContents());
             
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
@@ -336,6 +343,10 @@ class MembresiaController extends Controller
 
     public function setLocation($id)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+
         try {
             $response = Membresia::findById(getClient(), $id);
         } catch (RequestException $e) {

@@ -44,6 +44,28 @@
                         <input type="number" class="form-control" min="1" max="30" name="huespedes" id="huespedes" value="1">
                     </div>  
                     <div class="form-group">
+                        <label for="">Donde se encuentra ubicado</label>
+                        <select class="form-control" name="ubicacion" id="ubicacion">
+                            @if(isset($ubicaciones))
+                                <option value="" selected></option>
+                                @foreach($ubicaciones as $ubicacion)
+                                    <option value="{{ $ubicacion->nombre}}"> {{ $ubicacion->nombre }} </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>  
+                    <div class="form-group">
+                        <label for="">Tipo de inmueble</label>
+                        <select class="form-control" name="inmueble" id="inmueble">
+                            @if(isset($unidades))
+                                <option value="" selected></option>
+                                @foreach($unidades as $unidad)
+                                    <option value="{{ $unidad->nombre}}"> {{ $unidad->nombre }} </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>  
+                    <div class="form-group">
                         <button type="button" class="width-35 pull-right btn btn-primary" onclick="searchMembresias()">
                             <i class="ace-icon fa fa-search"></i>
                             Buscar

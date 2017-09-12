@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Gets the instance to make HTTP Requests
 */

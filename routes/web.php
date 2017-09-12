@@ -77,9 +77,7 @@ Route::get('/listados/{categoria}/{subcategoria}/{titulo}', function () {
 Route::get('/concepto-de-tiempo-compartido', function () {
     return view('concepto-de-tiempo-compartido');
 });
-Route::get('/email', function () {
-    return view('Email');
-});
+
 
 
 

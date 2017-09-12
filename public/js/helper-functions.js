@@ -223,11 +223,13 @@ function searchMembresias() {
     var ciudad = $('#ciudad').val();
     var busco = $('#busco').val();
     var huespedes = $('#huespedes').val();
+    var ubicacion = $('#ubicacion').val();
+    var inmueble = $('#inmueble').val();
     var pais;
 
     findPaisById(paisId, function(error, pais) {
         console.log(pais.nombre);
-        getBusqueda(pais.nombre, ciudad, busco, huespedes, function(error, membresias) {
+        getBusqueda(pais.nombre, ciudad, busco, huespedes, ubicacion, inmueble, function(error, membresias) {
             setLocationsOnMap(membresias);
             console.log(membresias);
             var card;
@@ -270,17 +272,17 @@ function findPaisById (paisId, cb) {
     });    
 }
 
-function getBusqueda(pais, ciudad, rentaventa, huespedes, cb) {
+function getBusqueda(pais, ciudad, rentaventa, huespedes, ubicacion, inmueble, cb) {
     ciudad = ciudad !== undefined ? ciudad : '';
     var ventaVal = (rentaventa == 'VENTA') ? true : false;
     var rentaVal = (rentaventa == 'RENTA') ? true : false;
     $.ajax({
         // url: `${endPoint}Membresia/busqueda/${pais}/${ciudad}/${rentaventa}/${huespedes}`,
-        url: `${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}`,
+        url: `${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}&filter[where][ubicadoEn][like]=${ubicacion}&filter[where][tipoInmueble][like]=${inmueble}`,
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(`${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}`);
+            console.log(`${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}&filter[where][ubicadoEn][like]=${ubicacion}&filter[where][tipoInmueble][like]=${inmueble}`);
             console.log(`${endPoint}Membresia/busqueda/${pais}/${ciudad}/${rentaventa}/${huespedes}`);
             return cb(null, data)
         },

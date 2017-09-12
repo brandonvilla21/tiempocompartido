@@ -22,6 +22,10 @@ class UserController extends Controller
      */
     public function edit()
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+        
         // Get the instance to make HTTP Requests        
         $client = getClient();
 
@@ -70,7 +74,9 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        //Validate request
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
 
         // Get the instance to make HTTP Requests        
         $client = getClient();
@@ -89,15 +95,19 @@ class UserController extends Controller
     }
 
     public function editPassword()
-    {
+    {   
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
         return view('user.edit-password');
     }
 
     public function updatePassword(Request $request)
     {
 
-
-        // Validation
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
 
         try {
             $response = User::changePassword($getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
@@ -124,6 +134,9 @@ class UserController extends Controller
 
     public function showMembresias()
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
         // Get the instance to make HTTP Requests        
         $client = getClient();
 
@@ -143,6 +156,9 @@ class UserController extends Controller
 
     public function showFavoritos()
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
         try {
             $response = User::getMembresiasFavoritas(getClient(), Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (RequestExeption $e) {
@@ -157,6 +173,9 @@ class UserController extends Controller
 
     public function storeMessage(Request $request)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
 
         try {
             $response = User::postMessage(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
