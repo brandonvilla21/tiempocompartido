@@ -236,10 +236,11 @@ function searchMembresias() {
             $('.membresias-result').append(resulContent);
             
             membresias.forEach(function(membresia) {
+                var image = membresia.imagenes[0] == null ? 'assets/img/sin-imagen-land.jpg' :  `uploads/membresias-images/thumbs/${membresia.imagenes[0].src}`;
                 card = $(`
                     <div class="col-md-6">
                         <div class="card" style="width: 25rem;">
-                            <img style="width:100%;"class="card-img-top" src="uploads/membresias-images/thumbs/${membresia.imagenes[0].src}" alt="imagen">
+                            <img style="width:100%;"class="card-img-top" src="${image}" alt="imagen">
                             <div class="card-block">
                                 <h4 class="card-title">${membresia.titulo}</h4>
                                 <p class="card-text">${membresia.descripcion}</p>
@@ -279,7 +280,7 @@ function getBusqueda(pais, ciudad, rentaventa, huespedes, cb) {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(`${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][lt]=${huespedes}`);
+            console.log(`${endPoint}Membresia/?filter[where][paisNombre][like]=${pais}&filter[where][localidadNombre][like]=${ciudad}&filter[where][venta]=${ventaVal}&filter[where][renta]=${rentaVal}&filter[where][maxOcupantes][gt]=${huespedes}`);
             console.log(`${endPoint}Membresia/busqueda/${pais}/${ciudad}/${rentaventa}/${huespedes}`);
             return cb(null, data)
         },
@@ -381,7 +382,6 @@ function setFavorito(membresiaId, userId) {
                                 makeToast('Favorito', 'Ha sido eliminado de favoritos', 'SUCCESS');
                             },
                             error: function(xhr, status, error) {
-                                consol
                                 makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
                             }
                         });

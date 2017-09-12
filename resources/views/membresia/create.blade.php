@@ -342,7 +342,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
                 <div class="col-sm-7">
@@ -352,7 +352,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
                 <div class="col-sm-7">
@@ -366,7 +366,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
                 <div class="col-sm-7">
@@ -376,7 +376,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
                 <div class="col-sm-7">
@@ -386,7 +386,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
                 <div class="col-sm-7">
@@ -396,7 +396,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.compraFecha">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
                 <div class="col-sm-7">
@@ -406,7 +406,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
                 <div class="col-sm-7">
@@ -416,7 +416,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display: none;" ng-show="membresia.compraCaduca">
+        <div class="form-group estaEnVenta" style="display: none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
                 <div class="col-sm-7">

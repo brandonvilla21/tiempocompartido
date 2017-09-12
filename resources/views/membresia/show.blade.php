@@ -42,10 +42,6 @@
                                         </div>
                                     @endif
                                 </div>
-                                {{--  <div class="owl-nav">
-                                    <i class="btn btn-primary-outline am-prev mb-1 fa fa-2x fa-chevron-left mr-1"></i>
-                                    <i class="btn btn-primary-outline am-next fa fa-2x fa-chevron-right"></i>
-                                </div>  --}}
                             </div>
                             @if(Session::has('USER_ID'))
                                 <div class="Profile__Contact" onload="isFavorite('{{$membresia->id}}', '{{Session::get('USER_ID')}}')">
@@ -67,7 +63,7 @@
                                 @if( isset($membresia->ventaNegociable) )
                                     <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
                                 @endif
-                                @if( isset($membresia->renta) && $membresia->rentaPrecio )
+                                @if( isset($membresia->renta) && isset($membresia->rentaPrecio) )
                                     <p class="lead" >Renta <strong>$ {{ money_format('%i', $membresia->rentaPrecio) }}</strong> <small>{{ pv($membresia, 'rentaMoneda') }}</small></p>
                                 @endif
                                 @if( isset($membresia->rentaNegociable) )  
@@ -137,7 +133,7 @@
                                 @endif
                                 <p>
                                 @if( isset($membresia->renta) )
-                                    <span>Rento </span> 
+                                    <span>Rento </span>
                                 @endif
                                 @if( isset($membresia->venta) )
                                     <span>Vendo </span>

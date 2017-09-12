@@ -151,7 +151,7 @@ class UserController extends Controller
             return Redirect::to('/mi-cuenta');
         }
         $membresias = json_decode($response->getBody()->getContents());
-
+        // return var_dump($membresias[0]->membresia->id);
         return view('user.mis-favoritos', compact('membresias'));
     }
 
