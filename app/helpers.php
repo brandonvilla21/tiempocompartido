@@ -245,10 +245,5 @@ function emailForVerification($id, $email, $verifyLink)
     <img src="https://mandrillapp.com/track/open.php?u=9812467&amp;id=bca57efeee894396adad890ad5feefe1" height="1" width="1">
     
     </body>  
-    <script>  
-        function myscript() {
-            console.log(\'Hello\');
-        }
-    </script>  
     ';
 }
