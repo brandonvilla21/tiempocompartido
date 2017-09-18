@@ -36,10 +36,6 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {   
-        // Verify route
-        if (!Session::has('ACCESS_TOKEN'))
-            return Redirect::to('/');
-
         // Validation form from server side
          $this->validate($request, [
             'user'              => 'required',
@@ -57,7 +53,7 @@ class RegistrationController extends Controller
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrarte, por favor intente de nuevo');
-            return view('registration.signup'); 
+            return view('registration.signup');
         } catch (RequestException $e) {
             
             $statusCode =  $e->getResponse()->getStatusCode();
@@ -72,6 +68,8 @@ class RegistrationController extends Controller
         }
         $user = json_decode($response->getBody()->getContents());
         
+        // return var_dump($user);
+
         // Send email for confirmation
         $response = self::sendMail($user);
         if( $response ) {
@@ -87,7 +85,7 @@ class RegistrationController extends Controller
 
     private function sendMail($user)
     {
-        $linkToVerify = 'http://localhost:8000/verifyEmail/';//'https://582e389b.ngrok.io/verifyEmail/';
+        $linkToVerify = $_ENV['HOST'].'verifyEmail/';//'https://582e389b.ngrok.io/verifyEmail/';
         $to = $user->email;
         $subject = "CONFIRMA TU CORREO ELECTRONICO - TIEMPOCOMPARTIDO";
 

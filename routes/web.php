@@ -43,6 +43,11 @@ Route::get('/busqueda', 'BusquedaController@index');
 // EMAIL
 Route::get('/verifyEmail/{id}', 'EmailController@verify');
 
+// RESET PASSWORD
+Route::get('/reset-password/{access_token}', 'ResetPasswordApiController@index');
+Route::post('/save-reseted-password', 'ResetPasswordApiController@store');
+
+
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');
 });
