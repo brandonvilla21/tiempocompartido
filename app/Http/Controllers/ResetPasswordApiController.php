@@ -20,7 +20,6 @@ class ResetPasswordApiController extends Controller
                 'Accept'  => 'application/json'
             ],
             'form_params' => [
-                'userId'  => 'application/json'
                 'newPassword'  => 'application/json'
             ]
         ]);

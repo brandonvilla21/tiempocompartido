@@ -3,6 +3,11 @@
 // HOME
 Route::get('/', 'HomeController@index')->name('home');
 
+// SUPER USER
+Route::get('/controlpanel', 'SuperUserController@index');
+Route::get('/su-login', 'SuperUserController@create');
+Route::post('/su-login', 'SuperUserController@store');
+
 // SESSION
 Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
@@ -36,6 +41,12 @@ Route::post('/save-image', 'MembresiaController@storeImage')->name('saveImage');
 // PROMOCIONES
 Route::get('/promociones', 'PromocionController@index');
 Route::get('/promociones/{titulo}/{id}', 'PromocionController@show');
+Route::get('/promocion/create', 'PromocionController@create');
+Route::post('/promocion', 'PromocionController@store');
+Route::get('/edit-promocion/{id}', 'PromocionController@edit');
+Route::put('/save-promocion', 'PromocionController@update');
+Route::get('/guardar-imagenes-promocion/{id}', 'PromocionController@createImage');
+Route::post('/save-image-promocion', 'PromocionController@storeImage')->name('saveImagePromocion');
 
 // BUSQUEDA
 Route::get('/busqueda', 'BusquedaController@index');
@@ -63,6 +74,7 @@ Route::get('/politicas-de-privacidad', function () {
 Route::get('/preguntas-frecuentes-sobre-tiempos-compartidos', function () {
     return view('preguntas-frecuentes-sobre-tiempos-compartidos');
 });
+
 Route::get('/mi-cuenta', function () {
     return view('mi-cuenta');
 });
@@ -82,6 +94,7 @@ Route::get('/listados/{categoria}/{subcategoria}/{titulo}', function () {
 Route::get('/concepto-de-tiempo-compartido', function () {
     return view('concepto-de-tiempo-compartido');
 });
+
 
 
 

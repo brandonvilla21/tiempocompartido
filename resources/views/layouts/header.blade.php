@@ -7,6 +7,12 @@
         <button type="button" class="boton-buscar hidden-md-up" data-toggle="collapse" data-target="#menu-principal" aria-expanded="false">
             <i class="fa fa-bars" aria-hidden="true"></i></button>
         <nav id="menu-principal" class="collapse">
+        @if(Session::has('SUPER_USER'))
+            <ul>
+                <li><a href="/promocion/create" class="border-rigth"><i  class="fa fa-star"></i> Agregar promoción</a></li>
+                <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>             
+            </ul>  
+        @else
             <ul>
                 @if(Session::has('EMAIL'))
                     <li><a class="border-rigth">{{ Session::get('NAME') }}</a></li>
@@ -22,6 +28,7 @@
                     <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
                 @endif    
             </ul>
+        @endif
         </nav>
     </div>
 </header>

@@ -249,9 +249,10 @@
                                     @endif
                                     @if( isset($membresia->creador->usuarioTipo) )
                                         <li><strong>Tipo de membresia: </strong> {{ $membresia->creador->usuarioTipo }}</li>
-                                    @endif                                    
-                                    <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
-                                    
+                                    @endif
+                                    @if( isset($membresia->creador->email)  )
+                                        <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
+                                    @endif
                                     @if( isset($membresia->creador->ciudad) )
                                         <li><strong>Ciudad: </strong> {{ $membresia->creador->ciudad }}</li>
                                     @endif
