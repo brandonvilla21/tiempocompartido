@@ -2,6 +2,7 @@
 
 // HOME
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/searchFromHome', 'HomeController@search');
 
 // SUPER USER
 Route::get('/controlpanel', 'SuperUserController@index');

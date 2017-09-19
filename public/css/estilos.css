@@ -768,3 +768,9 @@ EMPIEZAN LAS MEDIAS QUERIES
   
 }
 
+.margin-fixed {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+

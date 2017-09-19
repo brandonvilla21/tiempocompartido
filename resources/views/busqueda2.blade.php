@@ -21,27 +21,47 @@
                     
                     <div class="form-group">
                         <label for="cmb__Country">País</label>
-                        <select class="form-control" id="pais" name="pais" onchange="setLocalidadesBusqueda()">
-                            @if (isset($paises))
-                                @foreach($paises as $pais)
-                                    <option value="{{ $pais->id}}"> {{ $pais->nombre }} </option>
-                                @endforeach
-                            @endif
-                        </select>
+                        @if(isset($search))
+                            {{ Form::select(
+                                'pais', $paises, 
+                                $search['pais'], [
+                                    'class'     => 'form-control',
+                                    'id'        => 'pais',
+                                    'onchange' => 'setLocalidadesBusqueda()'
+                            ])}}
+                        @else
+                            <select class="form-control" id="pais" name="pais" onchange="setLocalidadesBusqueda()">
+                                @if (isset($paises))
+                                    @foreach($paises as $pais)
+                                        <option value="{{ $pais->id}}"> {{ $pais->nombre }} </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        @endif
                     </div>
                     <div class="form-group ciudad-busqueda">
                         
                     </div>
                     <div class="form-group">
                         <label>Busco en</label>
-                        <select class="form-control" id="busco" name="busco">
-                            <option value="RENTA" selected>Renta</option>
-                            <option value="VENTA" >Venta</option>
-                        </select>
+                        @if(isset($search))
+                            {{ Form::select(
+                                'busco', ['RENTA' => 'Renta', 'VENTA' => 'Venta'], 
+                                $search['rentaventa'], [
+                                    'class'     => 'form-control',
+                                    'id'        => 'busco'
+                            ])}}
+                        @else
+                            <select class="form-control" id="busco" name="busco">
+                                <option value="RENTA" selected>Renta</option>
+                                <option value="VENTA" >Venta</option>
+                            </select>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="">Huéspedes</label>
-                        <input type="number" class="form-control" min="1" max="30" name="huespedes" id="huespedes" value="1">
+                        <input type="number" class="form-control" min="1" max="30" name="huespedes" id="huespedes" 
+                        value="{{ isset($search['huespedes']) ? $search['huespedes'] : '1' }}">
                     </div>  
                     <div class="form-group">
                         <label for="">Donde se encuentra ubicado</label>
