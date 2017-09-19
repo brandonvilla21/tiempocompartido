@@ -214,7 +214,7 @@ class Membresia extends Model
      */
      public static function getTipoInmueble($client, $tipoInmueble)
      {
-         return $client->request('GET', 'Membresia/findTipoInmueble/'. $tipoInmueble, [
+         return $client->request('GET', 'Membresia/?filter[where][tipoInmueble]='. $tipoInmueble, [
              'headers' => [
                  'Accept' => 'application/json'
              ]

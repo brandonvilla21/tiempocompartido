@@ -13,7 +13,7 @@ class Destacado extends Model
      */
      public static function getAll($client)
      {
-        return $client->request('GET', 'Destacados', [
+        return $client->request('GET', 'Destacados?filter[include][membresia]=imagenes', [
             'headers' => [
                 'Accept' => 'application/json'
             ]
