@@ -304,7 +304,7 @@ class MembresiaController extends Controller
             $client = getClient();
             
             foreach($post_image as $key => $image ) {
-                $filename = $request->membresiaTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
+                $filename = $request->membresiaTitulo . '-' .time(). '-'. $key . '.' . $image->getClientOriginalExtension();
                 $description = $request->{'descripcion-'.$key};
             
                 // Save image in original size without oversized up to 1900

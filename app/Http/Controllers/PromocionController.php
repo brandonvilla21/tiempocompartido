@@ -89,6 +89,7 @@ class PromocionController extends Controller
             $response = Promocion::findById(getClient(), $id);
         } catch (RequestException $e) {
             
+
             // In case something went wrong it will redirect to /promociones
             session()->flash('error', 'Ocurrio un error al acceder a esta promoción, por favor, intente de nuevo.');
             return view('promocion.index');
@@ -96,7 +97,8 @@ class PromocionController extends Controller
         
         // Get the response body from HTTP Request and parse to Object        
         $promocion = json_decode($response->getBody()->getContents());
-
+        // return var_dump($promocion->imagenes);
+        
         //Return to /promociones/{titulo}/{id} with the Object: $promocion
         return view('promocion.show', compact('promocion'));
     }
@@ -186,7 +188,7 @@ class PromocionController extends Controller
              $client = getClient();
              
              foreach($post_image as $key => $image ) {
-                 $filename = $request->promocionTitulo . '-' .time() . '.' . $image->getClientOriginalExtension();
+                 $filename = $request->promocionTitulo . '-' .time().'-'. $key . '.' . $image->getClientOriginalExtension();
                 //  $description = $request->{'descripcion-'.$key};
              
                  // Save image in original size without oversized up to 1900
