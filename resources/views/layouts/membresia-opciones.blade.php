@@ -1,22 +1,23 @@
     <a  style="cursor:pointer;" data-toggle="modal" data-target="#exampleModalLabel-{{$index}}">
-        <i style="color:#FFD700;"class="fa fa-2x fa-usd pull-right"
-            ng-click="membresiaImagenes(membresia)">
+        <i style="color:#FFD700;"class="fa fa-2x fa-usd pull-right">
         </i>
     </a>
+    <a  href="/amenidades-agregar">
+        <i class="fa fa-2x fa-bicycle pull-right"></i>
+    </a>
+    <a  href="/amenidades-agregar">
+        <i class="fa fa-2x fa-calendar-check-o pull-right"></i>
+    </a>
     <a  href="/guardar-imagenes/{{ $membresia->id }}">
-        <i class="fa fa-2x fa-image pull-right"
-            ng-click="membresiaImagenes(membresia)">
+        <i class="fa fa-2x fa-image pull-right">
         </i>
     </a>
     <a  href="/mi-cuenta/membresia-ubicacion/{{ $membresia->id }}">
-        <i class="fa fa-2x fa-map pull-right"
-            ng-click="membresiaUbicacion(membresia)">
+        <i class="fa fa-2x fa-map pull-right">
         </i>
     </a>
     <a  href="">
-        <i class="fa fa-2x fa-img pull-right"
-            ng-click="membresiaAfiliaciones(membresia)">
-        </i>
+        <i class="fa fa-2x fa-img pull-right"></i>
     </a>
     <a  style="cursor:pointer;color:#0275d8;"  onclick="publish('{{ $membresia->id }}', 'BAJA')">
         <i class="fa fa-2x fa-remove pull-right">

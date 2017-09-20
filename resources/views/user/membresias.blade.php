@@ -27,7 +27,7 @@
                             Para Contratar Este Nuevo Servicio Clic En El Boton Destacar Membresia</br>
                         </div>
                         @foreach($membresias as $index => $membresia)
-                            <div class="card">
+                            {{--  <div class="card">
                                 <div class="row">
                                     <div class="col-md-4">
                                         @if ( App\User::getPrincipalImage(getClient(), $membresia->id) != null)
@@ -58,6 +58,29 @@
                                                 </div>
                                             </div>
                                         </div>
+                                </div>
+                            </div>  --}}
+                            <div class="row mt-1 mb-1" style="border-style: solid;border-width: 1px; border-color: #DEDEDE">
+                                <div class="col-md-5 pl-0">
+                                    @if ( App\User::getPrincipalImage(getClient(), $membresia->id) != null)
+                                        <img src="uploads/membresias-images/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop" style="max-width:100%">
+                                    @else 
+                                        <img src="assets/img/sin-imagen.jpg" class="card-image-desktop" style="max-width:100%">
+                                    @endif
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="card-title mt-1">{{ $membresia->titulo }}</h4>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="card-text">{{ $membresia->descripcion }}</p>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12 mb-1">
+                                            @include('layouts.membresia-opciones')                                              
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Modal -->
