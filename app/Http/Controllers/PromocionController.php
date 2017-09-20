@@ -17,8 +17,6 @@ class PromocionController extends Controller
      */
     public function index()
     {
-        if (!Session::has('ACCESS_TOKEN'))
-            return Redirect::to('/');
         // Get the instance to make HTTP Requests
         $client = getClient();
         try {
@@ -82,8 +80,6 @@ class PromocionController extends Controller
      */
     public function show($titulo, $id)
     {
-        if (!Session::has('ACCESS_TOKEN'))
-            return Redirect::to('/');
         try {
             // Get a single promocion
             $response = Promocion::findById(getClient(), $id);

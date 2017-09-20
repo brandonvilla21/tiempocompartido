@@ -19,6 +19,19 @@ class Promocion extends Model
             ]
         ]);
      }
+    /**
+     * Get all Promociones with filter limit by HTTP Request 
+     * Method: GET
+     * URI: http://0.0.0.0:3000/api/promociones
+     */
+     public static function getAllLimit($client, $limit)
+     {
+        return $client->request('GET', 'promociones?filter[limit]='. $limit, [
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+     }
 
      /**
      * Get a single Promocion by HTTP Request 
@@ -93,4 +106,5 @@ class Promocion extends Model
             ]
         ]);
     }
+
 }

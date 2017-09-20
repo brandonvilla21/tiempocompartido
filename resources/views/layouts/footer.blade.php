@@ -36,9 +36,9 @@
                 <div class="Footer__Title">
                     <h4 class="title">Promoción destacada</h4>
                 </div>
-                <div class="Footer__Content text-center">
-                    <div class="Card__Image">
-                        {{--  <img src="{{URL::to('promocion.imagenes[0].src')}}" alt="imagen">  --}}
+                <div class="Footer__Content text-center" id="promocion-destacada-footer">
+                    {{--  <div class="Card__Image">
+                        <img src="{{URL::to('promocion.imagenes[0].src')}}" alt="imagen">
                         <img src="http://www.tiempocompartido.com/catalogo_imgs/marriottnewportcoastvillas-newportcoast--3149.jpg" alt="imagen">
                     </div>
                     <p class="lead">
@@ -49,7 +49,7 @@
                     </p>
                     <p class="">
                         <a href="/promociones" class="btn btn-success">Promociones de tiempos compartidos</a>
-                    </p>
+                    </p>  --}}
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ use App\User;
 use App\Pais;
 use App\Unidad;
 use App\Ubicado;
+use App\Promocion;
 use App\Destacado;
 use App\Membresia;
 
@@ -32,6 +33,8 @@ class HomeController extends Controller
             $responseDestacados = Destacado::getAll(getClient());
             // Get all paises
             $responsePaises = Pais::allPaises(getClient());
+
+            $responsePromocionLimit = Promocion::getAllLimit(getClient(), 1);
             
         } catch (RequestException $e) {
             // In case something went wrong it will redirect to home page
@@ -46,10 +49,12 @@ class HomeController extends Controller
         $destacados = json_decode($responseDestacados->getBody()->getContents());
         // Get the response body from HTTP Request and parse to Object
         $paises = json_decode($responsePaises->getBody()->getContents());
-        
+        // Get the response body from HTTP Request and parse to Object
+        $promocionDestacada = json_decode($responsePromocionLimit->getBody()->getContents());
+        // return var_dump($promocionDestacada);
         
         // Return to home view with the Object: $membresias
-        return view('home.index', compact(['membresias', 'membresiasInmueble', 'destacados', 'paises']));
+        return view('home.index', compact(['membresias', 'membresiasInmueble', 'destacados', 'paises', 'promocionDestacada']));
     }
 
     public function search(Request $request)

@@ -10,13 +10,13 @@
                 </div>
                 <div class="col-md-4 col-xl-3 wow bounceIn text-center" data-wow-delay=".6s">
                     <div class="Card__Image">
-                        {{--  <img src="promocion.imagenes[0].src" alt="imagen">  --}}
-                        <img src="http://www.tiempocompartido.com/catalogo_imgs/marriottnewportcoastvillas-newportcoast--3149.jpg" alt="imagen">
+                        {{--  <img src="promociones/thumbs/{{promocionDestacada[0]->imagenes[0]->src}}" alt="imagen">  --}}
+                        <img src="{{ isset($promocionDestacada[0]->imagenes[0]->src) ?  'uploads/promociones/thumbs/' . $promocionDestacada[0]->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                        
                     </div>
                     <div class="Footer__Content">
                         <p class="lead">
-                        {{--  promocion.titulo  --}}
-                        3 Noches Gratis!
+                            {{ $promocionDestacada[0]->titulo }}
                         </p>
                         <a href="/promociones" class="btn btn-success">Ver más promociones</a href="/promociones">
                     </div>

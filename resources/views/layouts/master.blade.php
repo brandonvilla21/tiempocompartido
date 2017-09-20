@@ -84,119 +84,15 @@
         new WOW().init()
     </script>
     
-    <script>
-      $(document).ready(function() {
-          var pathname = window.location.pathname;
-          if (pathname == '/') {
-              $('.bienvenidos').css('height', '100vh');
-              $('.ir-arriba').attr("href", "#encabezado");
-              $('.ir-arriba').append('<i class="fa fa-arrow-circle-up" aria-hidden="true"> </i>');
-          } else  {
-              $('.bienvenidos').css('height', '50vh');
-              $('.ir-arriba').attr("href", "javascript:history.back()");
-              $('.ir-arriba').append('<i class="fa fa-arrow-circle-left" aria-hidden="true"> </i>');
-          }
-      });
-    </script>
+    <script src="{{URL::to('js/float-button.js')}}"></script>
 
     <script src="{{URL::to('assets/js/owl.carousel.min.js')}}"></script>
 
-    <script>
-        $(document).ready(function() {
-            var pathname = window.location.pathname;
-            var properties = {};
-            if (pathname == '/') {
-                properties = {
-                    margin:10,
-                    loop:true,
-                    autoHeight:true,
-                    dots: true,
-                    autoplay:true,
-                    autoplayTimeout:4000,
-                    navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:1
-                        },
-                        1000:{
-                            items:3
-                        }
-                    }
-                }; 
-            } else if(pathname.indexOf('promociones')) {
-                properties = {
-                    margin:10,
-                    loop:true,
-                    autoHeight:true,
-                    dots: true,
-                    autoplay:true,
-                    autoplayTimeout:4000,
-                    navText: ["<i class='fa fa-arrow-left'></i>","<i class='fa fa-arrow-right'></i>"],
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:1
-                        },
-                        1000:{
-                            items:1
-                        }
-                }
-                }; 
-            }else {
-                properties = {
-                    margin:10,
-                    nav:true,
-                    navText: [$('.am-prev'), $('.am-next')],
-                    autoHeight:true,
-                    dots: true,
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:1
-                        },
-                        1000:{
-                            items:1
-                        }
-                    }
-                }; 
-            }
-            $('.owl-carousel').owlCarousel(properties);
-            //$('.owl-carousel-custom').owlCarousel(properties);
-        });
-      
-    </script>
+    <script src="{{URL::to('js/path.js')}}"></script>
 
     <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key=AIzaSyAbAjqtjoZv3JPUupkEWkQ2Xbqx5ZlwXU8&callback=initMap'></script>
     <script src="{{URL::to('assets/js/locationpicker.jquery.js')}}"></script>
-    <script>
-        $('#map-component').locationpicker({
-            location: {
-                latitude: $('#us2-lat').val(),
-                longitude: $('#us2-lon').val(),
-            },
-            radius: 300,
-            inputBinding: {
-                locationNameInput: $('#us2-address'),
-                latitudeInput: $('#us2-lat'),
-                longitudeInput: $('#us2-lon')
-            },
-            enableAutocomplete: true,
-            onchanged: function (currentLocation, radius, isMarkerDropped) {
-                var addressComponents = $(this).locationpicker('map').location.addressComponents;
-                updateControls(addressComponents);
-            }
-
-        });
-        function updateControls(addressComponents) {
-            $('#us2-city').val(addressComponents.city);
-        }
-    </script>
+    <script src="{{URL::to('js/map.js')}}"> </script>
+    <script src="{{URL::to('js/promocion-destacada.js')}}"> </script>
   </body>
 </html>
