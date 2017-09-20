@@ -360,4 +360,15 @@ class MembresiaController extends Controller
         return view('membresia.ubicacion', compact('membresia'));
     }
 
+    // DSIPONIBILIDADES
+    public function createDisponibilidad($id)
+    {
+        return view('membresia.disponibilidad');
+    }
+
+    public function saveDisponibilidad(Request $request)
+    {
+        return var_dump($request->fecha_inicial);
+    }
+
 }

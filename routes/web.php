@@ -37,6 +37,8 @@ Route::get('/membresia/{titulo}/{id}', 'MembresiaController@show');
 Route::get('/edit-membresia/{id}', 'MembresiaController@edit');
 Route::put('/update-membresia', 'MembresiaController@update');
 Route::get('/mi-cuenta/membresia-ubicacion/{id}','MembresiaController@setLocation');
+Route::get('/disponibilidad/{id}','MembresiaController@createDisponibilidad');
+Route::post('/saveDisponibilidad','MembresiaController@saveDisponibilidad');
 
 // MEMBRESIAS->IMAGENES
 Route::get('/guardar-imagenes/{membresia}', 'MembresiaController@createImage');

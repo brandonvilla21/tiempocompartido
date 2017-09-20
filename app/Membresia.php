@@ -220,4 +220,23 @@ class Membresia extends Model
              ]
          ]);
      }
+
+    /**
+     * Create a disponibilidad related to a membresia by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}/disponibilidades
+     */
+     public static function createDisponibilidad($client, $idMembresia, $entrada, $salida, $libre)
+     {
+        return $client->request('POST', 'disponibilidades/'. $idMembresia. '/disponibilidades', [
+            'form_params' => [
+                "entrada"  => $entrada,
+                "salida"   => $salida,
+                "libre"    => $libre,
+            ],
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
 }

@@ -5,7 +5,7 @@
     <a  href="/amenidades-agregar">
         <i class="fa fa-2x fa-bicycle pull-right"></i>
     </a>
-    <a  href="/amenidades-agregar">
+    <a  href="/disponibilidad/{{ $membresia->id }}">
         <i class="fa fa-2x fa-calendar-check-o pull-right"></i>
     </a>
     <a  href="/guardar-imagenes/{{ $membresia->id }}">
