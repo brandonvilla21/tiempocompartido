@@ -156,18 +156,18 @@
                                 <h2><i class="fa fa-envelope-o"></i> Contácta al propietario</h2>
                             </div>
                             <div class="col-xs-12 col-lg-12">
-                                <form name="contactForm" >
+                                <form name="contactForm" method="POST" action="/contact-owner">
+                                    {{csrf_field()}}
+                                    @if(isset($membresia->creador->id))
+                                        <input type="hidden" id="destinatario"name="destinatario" value="{{$membresia->creador->id}}"/>
+                                    @endif
                                     <div class="form-group">
                                         <label for="InputEmail">Nombre</label>
-                                        <input type="email" class="form-control" id="InputEmail" placeholder="Email" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="InputPassword">Correo</label>
-                                        <input type="password" class="form-control" id="InputPassword" placeholder="Password" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="InputFile">Mensaje</label>
-                                        <textarea class="form-control" rows="5" required></textarea>
+                                        <textarea class="form-control" rows="5" name="cuerpo" required></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-default">Enviar <i class="fa fa-paper-plane"></i></button>
                                 </form>

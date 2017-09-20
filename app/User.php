@@ -27,7 +27,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-
+    /**
+     * Find Person by ID by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/People/{id}
+     */
+     public static function findById($client, $id)
+     {
+        return $client->request('GET', 'People/'. $id , [
+            'headers' => [
+                'Accept'        => 'application/json'
+            ]
+        ]);
+     }
     /**
      * Register a new User by HTTP Request 
      * Method: POST

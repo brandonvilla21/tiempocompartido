@@ -28,6 +28,6 @@ class EmailController extends Controller
             session()->flash('error', 'Ha ocurrido un problema al intentar verificar tu cuenta, por favor, intentalo de nuevo.');
             return Redirect::to('/');
         }
-
     }
+
 }

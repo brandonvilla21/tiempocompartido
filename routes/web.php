@@ -27,6 +27,9 @@ Route::get('/mis-membresias', 'UserController@showMembresias');
 Route::get('/mis-favoritos', 'UserController@showFavoritos');
 Route::post('/store-message', 'UserController@storeMessage');
 
+// CORREO
+Route::post('/contact-owner', 'CorreoController@contactOwner');
+
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');
 Route::post('/new-membresia', 'MembresiaController@store');
@@ -58,7 +61,6 @@ Route::get('/verifyEmail/{id}', 'EmailController@verify');
 // RESET PASSWORD
 Route::get('/reset-password/{access_token}', 'ResetPasswordApiController@index');
 Route::post('/save-reseted-password', 'ResetPasswordApiController@store');
-
 
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');

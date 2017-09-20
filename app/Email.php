@@ -25,5 +25,6 @@ class Email extends Model
             ->body(json_encode($data))
             ->sendsJson()
             ->send();
-     }
+    }
+
 }
