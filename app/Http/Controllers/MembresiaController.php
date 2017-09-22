@@ -361,6 +361,10 @@ class MembresiaController extends Controller
     // DSIPONIBILIDADES
     public function createDisponibilidad($id)
     {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+            
         try {
             $response = Membresia::allDisponibilidades(getClient(), $id);
         } catch (RequestException $e) {
