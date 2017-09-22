@@ -333,9 +333,7 @@ class MembresiaController extends Controller
             session()->flash('error', 'Por favor intente subir la(s) imagen(es) de nuevo');
             return back()->withInput();
         }
-        
-        // Make POST to API
-        
+                
         return Redirect::to('/guardar-imagenes/' . $request->membresiaId . '#mis-imagenes');
         // return Redirect::back()->with('message','Las imágenes han sido guardadas.');
         

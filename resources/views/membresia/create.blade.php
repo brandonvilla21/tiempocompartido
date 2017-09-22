@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div id="cualSemanaFijaDiv" class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
+        <div id="cualSemanaFijaDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
                 <div class="col-sm-7">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
+        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
                 <div class="col-sm-7">
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cuantosPuntosDiv" class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
+        <div style="display: none;" id="cuantosPuntosDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
                 <div class="col-sm-7">
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cuantasNochesDiv" class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
+        <div style="display: none;" id="cuantasNochesDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
                 <div class="col-sm-7">

@@ -18,7 +18,7 @@
                             <label class="col-sm-3" for="email" style="display:flex;align-items:center"> Fecha inicial </label>
                             <div class="col-sm-7">
                                 <span class="block input-icon input-icon-right">
-                                    <input type="date" class="form-control" id="fecha_inicial"name="fecha_incial" required/>
+                                    <input type="date" class="form-control" id="fecha_inicial"name="fecha_inicial" required/>
                                 </span>
                             </div>
                         </div>
