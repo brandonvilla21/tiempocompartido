@@ -265,6 +265,7 @@
                 <span class="block input-icon input-icon-right">
                 <select class="form-control pais-select-membresia" placeholder="Pais" id="idPais" name="idPais" onchange="setLocalidadesMembresia()">
                     @if (isset($paises))
+                        <option value=""> Selecciona un país </option>
                         @foreach($paises as $pais)
                             <option value="{{ $pais->id}}"> {{ $pais->nombre }} </option>
                         @endforeach

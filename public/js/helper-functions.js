@@ -181,7 +181,7 @@ function setLocalidadesMembresia() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            var selectTag = $("<select id='localidadNombre' name='localidadNombre' class='form-control localidadNombre-select'></select>");
+            var selectTag = $("<select id='localidadNombre' name='localidadNombre' class='form-control localidadNombre-select' required></select>");
             data.forEach(function(city) {
                 selectTag.append(`<option value="${city.nombre}" >${city.nombre}</option>`);
             });
