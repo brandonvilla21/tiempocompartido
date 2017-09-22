@@ -51,6 +51,15 @@ function pvsDat($object, $attribute)
     } else 
         return '';
 }
+function pvDayMonth($object, $attribute)
+{
+    $months = ['Enero','Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    if(isset($object->{$attribute})) {
+        $dateArray = date_parse($object->{$attribute});
+        return $dateArray['day']. ' / '. $months[$dateArray['month'] - 1];
+    } else 
+        return '';
+}
 /**
 * Create an associative array giving an object.
 *

@@ -18,7 +18,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="Footer__Title">
                     <h4 class="title">Concepto de Tiempo Compartido (Vacaciones)</h4>
                 </div>
@@ -30,26 +30,6 @@
                     <p>
                         <a href="/concepto-de-tiempo-compartido" class="btn btn-warning">Concepto de tiempo compartido</a>
                     </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="Footer__Title">
-                    <h4 class="title">Promoción destacada</h4>
-                </div>
-                <div class="Footer__Content text-center" id="promocion-destacada-footer">
-                    {{--  <div class="Card__Image">
-                        <img src="{{URL::to('promocion.imagenes[0].src')}}" alt="imagen">
-                        <img src="http://www.tiempocompartido.com/catalogo_imgs/marriottnewportcoastvillas-newportcoast--3149.jpg" alt="imagen">
-                    </div>
-                    <p class="lead">
-                    promocion.titulo
-                    </p>
-                    <p class="text">
-                    promocion.descripcion
-                    </p>
-                    <p class="">
-                        <a href="/promociones" class="btn btn-success">Promociones de tiempos compartidos</a>
-                    </p>  --}}
                 </div>
             </div>
         </div>

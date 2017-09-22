@@ -228,13 +228,26 @@ class Membresia extends Model
      */
      public static function createDisponibilidad($client, $idMembresia, $entrada, $salida, $libre)
      {
-        return $client->request('POST', 'disponibilidades/'. $idMembresia. '/disponibilidades', [
+        return $client->request('POST', 'Membresia/'. $idMembresia. '/disponibilidades', [
             'form_params' => [
-                "entrada"  => $entrada,
-                "salida"   => $salida,
-                "libre"    => $libre,
+                'entrada'  => $entrada,
+                'salida'   => $salida,
+                'libre'    => $libre
             ],
-            'headers' => [
+            'header' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
+    /**
+     * Get all disponibilidades related to a membresia by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}/disponibilidades
+     */
+     public static function allDisponibilidades($client, $idMembresia)
+     {
+        return $client->request('GET', 'Membresia/'. $idMembresia. '/disponibilidades', [
+            'header' => [
                 'Content-Type' => 'application/json'
             ]
         ]);

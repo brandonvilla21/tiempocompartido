@@ -437,3 +437,32 @@ function setFavorito(membresiaId, userId) {
 $(function(){
     $('div[onload]').trigger('onload');
 });
+
+function setDisponible( id ) {
+    $.ajax({
+        type: 'GET',
+        url: `${endPoint}/disponibilidades/${id}`,
+        success: function (data) {
+            if ( data ) {
+                
+                $.ajax({
+                    type: 'PATCH',
+                    url: `${endPoint}/disponibilidades/${id}`,
+                    data: {
+                        libre: !data.libre
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function(xhr, status, error) {
+                        makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+                    }
+                });
+            }
+
+        },
+        error: function(xhr, status, error) {
+            makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+        }
+    });
+}

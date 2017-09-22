@@ -9,10 +9,10 @@
     
     <div class="container mb-3">
         <div class="row">
-            <div class="col-md-3"></div>
             <div class="col-md-6">
                 <form method="POST" action="/saveDisponibilidad">
                     {{csrf_field()}}
+                    <input type="hidden" name="membresiaId" value="{{ isset($id) ? $id: ''}}">
                     <div class="form-group">
                         <div class="row">
                             <label class="col-sm-3" for="email" style="display:flex;align-items:center"> Fecha inicial </label>
@@ -45,6 +45,32 @@
                         </div>
                     </div>
                 <form>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Libre</th>
+                                <th>Entrada</th>
+                                <th>Salida</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            @if(isset($disponibilidades))
+                                @foreach($disponibilidades as $disponibilidad)
+                                    <tr>
+                                        <th>
+                                            <input onchange="setDisponible('{{pv($disponibilidad, 'id')}}')" type="checkbox" class="form-control text-center" {{ $disponibilidad->libre ? 'checked' : '' }}>
+                                        </th>
+                                        <td> {{ pvDayMonth($disponibilidad, 'entrada')}} </td>
+                                        <td> {{ pvDayMonth($disponibilidad, 'salida')}} </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

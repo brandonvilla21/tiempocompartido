@@ -22,35 +22,40 @@
                 </div>
                 <div class="row " >
                     <div class="col-xs-12 col-md-7 col-lg-7 margin-bottom">
-                        <div class="Profile__Gallery">
-                            <div class="Profile__Title">
-                                <h2><i class="fa fa-picture-o"></i> Galería</h2>
-                            </div>
-                            <div class="">
-                                <div class="owl-carousel owl-theme">
-                                    @if(isset($membresia->imagenes[0]))
-                                        @foreach($membresia->imagenes as $imagen)
-                                            @if($imagen->tipo == 'thumb')
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="Profile__Gallery">
+                                    <div class="Profile__Title">
+                                        <h2><i class="fa fa-picture-o"></i> Galería</h2>
+                                    </div>
+                                    <div class="">
+                                        <div class="owl-carousel owl-theme">
+                                            @if(isset($membresia->imagenes[0]))
+                                                @foreach($membresia->imagenes as $imagen)
+                                                    @if($imagen->tipo == 'thumb')
+                                                        <div>
+                                                            <img src="uploads/membresias-images/{{ $imagen->src }}" alt="imagen" style="width:100%;">
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            @else
                                                 <div>
-                                                    <img src="uploads/membresias-images/{{ $imagen->src }}" alt="imagen" style="width:100%;">
+                                                    <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">
                                                 </div>
                                             @endif
-                                        @endforeach
-                                    @else
-                                        <div>
-                                            <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">
+                                        </div>
+                                    </div>
+                                    @if(Session::has('USER_ID'))
+                                        <div class="Profile__Contact" onload="isFavorite('{{$membresia->id}}', '{{Session::get('USER_ID')}}')">
+                                            <i id="favoritos-heart" class="fa fa-3x fa-heart pull-right " onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}')" style="cursor:pointer;"></i>
                                         </div>
                                     @endif
                                 </div>
                             </div>
-                            @if(Session::has('USER_ID'))
-                                <div class="Profile__Contact" onload="isFavorite('{{$membresia->id}}', '{{Session::get('USER_ID')}}')">
-                                    <i id="favoritos-heart" class="fa fa-3x fa-heart pull-right " onclick="setFavorito('{{$membresia->id}}', '{{Session::get('USER_ID')}}')" style="cursor:pointer;"></i>
-                                </div>
-                            @endif
-                        </div>
 
+                        </div>
                     </div>
+                    
                     <div class="col-xs-12 col-md-5 col-lg-5 margin-bottom">
                         <div class="Profile__Cost">
                             <div class="Profile__Title">
@@ -99,20 +104,39 @@
                                         <i class="fa fa-calendar-o"></i> Tipo de semana {{ pv($membresia, 'semanaTipo') }}
                                     </p>
                                     <p>
-                                        <i class="fa fa-calendar"></i>
-                                        <strong>Fecha de entrada: </strong>
-                                        membresia.entrada
-                                    </p>
-                                        <i class="fa fa-calendar"></i>
-                                        <strong>Fecha de salida: </strong>
-                                        membresia.salida
-                                    </p>
-                                    <p>
                                         <i class="fa fa-internet-explorer"></i>
                                         <strong>URL del Club: </strong>
                                          <a href="{{ pv($membresia, 'clubUrl') }}" target="_blank">{{ pv($membresia, 'clubUrl') }}</a> 
                                     </p>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="Profile__Availability">
+                    
+                            <div class="Profile__Title">
+                                <h2><i class="fa fa-bookmark-o"></i> Disponibilidades</h2>
+                            </div>
+                            <div class="Profile__Title">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Entrada</th>
+                                            <th>Salida</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                        @if(isset($membresia->disponibilidades[0]))
+                                            @foreach($membresia->disponibilidades as $disponibilidad)
+                                                @if($disponibilidad->libre)
+                                                    <tr>
+                                                        <td> {{ pvDayMonth($disponibilidad, 'entrada')}} </td>
+                                                        <td> {{ pvDayMonth($disponibilidad, 'salida')}} </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

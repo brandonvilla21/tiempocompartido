@@ -361,12 +361,34 @@ class MembresiaController extends Controller
     // DSIPONIBILIDADES
     public function createDisponibilidad($id)
     {
-        return view('membresia.disponibilidad');
+        try {
+            $response = Membresia::allDisponibilidades(getClient(), $id);
+        } catch (RequestException $e) {
+            return var_dump(json_decode($e->getResponse()->getBody()));
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::back();
+        }
+        
+        $disponibilidades = json_decode($response->getBody()->getContents());
+
+        return view('membresia.disponibilidad', compact(['id', 'disponibilidades']));
     }
 
     public function saveDisponibilidad(Request $request)
     {
-        return var_dump($request->fecha_inicial);
+        if(strtotime($request->fecha_inicial) > strtotime($request->fecha_final)) {
+            session()->flash('error', 'La fecha inicial es mayor a la fecha final');
+            return Redirect::back();
+        }
+        try {
+            $response = Membresia::createDisponibilidad(getClient(), $request->membresiaId, $request->fecha_inicial, $request->fecha_final, false);
+        } catch (RequestException $e) {
+            return var_dump(json_decode($e->getResponse()->getBody()));
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::back();
+        }
+        
+        return Redirect::back();
     }
 
 }
