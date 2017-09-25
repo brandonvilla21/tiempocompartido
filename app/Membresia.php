@@ -252,4 +252,31 @@ class Membresia extends Model
             ]
         ]);
      }
+    /**
+     * Get all amenidades by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/amenidades
+     */
+     public static function allAmenidades($client)
+     {
+        return $client->request('GET', 'amenidades', [
+            'header' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
+     ///Membresia/{id}/amenidades
+    /**
+     * Get all amenidades related to a membresia by HTTP Request
+     * Method: POST 
+     * URI: http://0.0.0.0:3000/api/Membresia/{id}/amenidades
+     */
+     public static function allAmenidadesByMembresia($client, $membresiaId)
+     {
+        return $client->request('GET', 'Membresia/'. $membresiaId.'/amenidades', [
+            'header' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
 }

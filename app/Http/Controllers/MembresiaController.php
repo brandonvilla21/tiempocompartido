@@ -12,6 +12,7 @@ use Exception;
 use App\Unidad;
 use App\Imagen;
 use App\Ubicado;
+
 use App\Localidad;
 use App\Membresia;
 use GuzzleHttp\Psr7;
@@ -387,12 +388,36 @@ class MembresiaController extends Controller
         try {
             $response = Membresia::createDisponibilidad(getClient(), $request->membresiaId, $request->fecha_inicial, $request->fecha_final, false);
         } catch (RequestException $e) {
-            return var_dump(json_decode($e->getResponse()->getBody()));
+            // return var_dump(json_decode($e->getResponse()->getBody()));
             session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
             return Redirect::back();
         }
         
         return Redirect::back();
+    }
+
+    // AMENIDADES
+    public function createAmenidad($id)
+    {
+        try {
+            $responseAmenidades = Membresia::allAmenidades(getClient());
+            $responseAmenidadesByMembresia = Membresia::allAmenidadesByMembresia(getClient(), $id);
+        } catch( RequestException $e ) {
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::back();
+        }
+        $amenidades = json_decode($responseAmenidades->getBody()->getContents());
+        $amenidadesMembresia = json_decode($responseAmenidadesByMembresia->getBody()->getContents());
+        
+        $allAmenidades = [];
+        foreach ($amenidades as $key => $amenidad) {
+            $allAmenidades[$key][0] = $amenidad->id;
+            $allAmenidades[$key][1] = $amenidad->nombre;
+            $allAmenidades[$key][2] = in_array($amenidades[$key], $amenidadesMembresia) ? true : false;
+            
+        }
+
+        return view('membresia.amenidad', compact(['id', 'allAmenidades']));
     }
 
 }

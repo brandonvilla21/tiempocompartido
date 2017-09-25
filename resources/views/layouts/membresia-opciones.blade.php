@@ -2,7 +2,7 @@
         <i style="color:#FFD700;"class="fa fa-2x fa-usd pull-right">
         </i>
     </a>
-    <a  href="/amenidades-agregar">
+    <a  href="/amenidades/{{ $membresia->id }}">
         <i class="fa fa-2x fa-bicycle pull-right"></i>
     </a>
     <a  href="/disponibilidad/{{ $membresia->id }}">

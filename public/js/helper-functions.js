@@ -459,10 +459,43 @@ function setDisponible( id ) {
                     }
                 });
             }
-
         },
         error: function(xhr, status, error) {
             makeToast('Error','Ha ocurrido un error, vuelva a intentarlo.', 'WARNING');
+        }
+    });
+}
+
+function selectAmenidad( amenidadId, membresiaId ) {
+    $.ajax({
+        type: 'GET',
+        url: `${endPoint}/Membresia/${membresiaId}/amenidades/${amenidadId}`,
+        success: function (data) {
+            console.log(data);
+            setAmenidad( amenidadId, membresiaId, 'DELETE', function( error, result ) {
+
+            });
+        },
+        error: function(xhr, status, error) {
+            if ( error === 'Not Found') {
+                setAmenidad( amenidadId, membresiaId, 'PUT', function( error, result ) {
+                    
+                });
+            }
+        }
+    });
+}
+
+function setAmenidad( amenidadId, membresiaId, method, cb ) {
+    $.ajax({
+        type: method,
+        url: `${endPoint}/Membresia/${membresiaId}/amenidades/rel/${amenidadId}`,
+        success: function (data) {
+            return cb(null, data);
+            
+        },
+        error: function(xhr, status, error) {
+            return cb(error);
         }
     });
 }

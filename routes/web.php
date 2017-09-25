@@ -27,6 +27,7 @@ Route::get('/mis-membresias', 'UserController@showMembresias');
 Route::get('/mis-favoritos', 'UserController@showFavoritos');
 Route::post('/store-message', 'UserController@storeMessage');
 
+Route::get('/mis-mensajes', 'UserController@correos');
 // CORREO
 Route::post('/contact-owner', 'CorreoController@contactOwner');
 
@@ -39,6 +40,7 @@ Route::put('/update-membresia', 'MembresiaController@update');
 Route::get('/mi-cuenta/membresia-ubicacion/{id}','MembresiaController@setLocation');
 Route::get('/disponibilidad/{id}','MembresiaController@createDisponibilidad');
 Route::post('/saveDisponibilidad','MembresiaController@saveDisponibilidad');
+Route::get('/amenidades/{id}','MembresiaController@createAmenidad');
 
 // MEMBRESIAS->IMAGENES
 Route::get('/guardar-imagenes/{membresia}', 'MembresiaController@createImage');
@@ -84,9 +86,6 @@ Route::get('/mi-cuenta', function () {
     return view('mi-cuenta');
 });
 
-Route::get('/mis-mensajes', function () {
-    return view('mis-mensajes');
-});
 Route::get('/listados', function () {
     return view('listados');
 });

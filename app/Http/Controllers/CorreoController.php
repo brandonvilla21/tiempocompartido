@@ -20,7 +20,47 @@ class CorreoController extends Controller
         // Post correo to API
         try {
             // Store a new membresia
-            $response = Correo::create(getClient(), $request, Session::get('USER_ID'), $request->destinatario );
+            $response = Correo::create(getClient(), $request, Session::get('USER_ID'), $request->destinatario, $request->membresiaId );
+        } catch (ClientException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
+            return Redirect::back();
+        }
+
+        $confirm = json_decode($response->getBody()->getContents());
+
+        if(isset($confirm->id)) {
+            try {
+
+                $responseDestinatario = User::findById(getClient(), $confirm->destinatarioId );
+
+                $responseRemitente = User::findById(getClient(), $confirm->remitenteId );
+            } catch (ClientException $e) {
+                // In case something went wrong it will redirect to register view
+                session()->flash('error', 'Hubo un error, por favor intente de nuevo');
+                return Redirect::back();
+            }
+
+            $destinatario = json_decode($responseDestinatario->getBody()->getContents());
+            $remitente = json_decode($responseRemitente->getBody()->getContents());
+            // Send Email
+            self::sendMail(pv($destinatario, 'email'), $request->nombre, $request->cuerpo);
+            
+            session()->flash('message','Su mensaje ha sido enviado');
+            return Redirect::back();
+        }
+    }
+
+    public function contactSender(Request $request)
+    {   
+        if ( !Session::has('ACCESS_TOKEN') ) {
+            session()->flash('error', 'Necesitas iniciar sesion para contactar al propietario');
+            return Redirect::back();
+        }
+        // Post correo to API
+        try {
+            // Store a new membresia
+            $response = Correo::create(getClient(), $request, Session::get('USER_ID'), $request->destinatario, $request->membresiaId );
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');

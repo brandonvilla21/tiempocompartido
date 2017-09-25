@@ -184,6 +184,8 @@
                                     {{csrf_field()}}
                                     @if(isset($membresia->creador->id))
                                         <input type="hidden" id="destinatario"name="destinatario" value="{{$membresia->creador->id}}"/>
+                                        <input type="hidden" id="membresiaId" name="membresiaId" value="{{$membresia->id}}"/>
+
                                     @endif
                                     <div class="form-group">
                                         <label for="InputEmail">Nombre</label>

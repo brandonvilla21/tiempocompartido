@@ -11,7 +11,7 @@ class Correo extends Model
      * Method: POST
      * URI: http://0.0.0.0:3000/api/Correos
      */
-     public static function create($client, $request, $remitenteId, $destinatarioId)
+     public static function create($client, $request, $remitenteId, $destinatarioId, $membresiaId)
      {
          return $client->request('POST', 'correos', [
             'form_params' => [
@@ -19,6 +19,7 @@ class Correo extends Model
                 "cuerpo" => $request->cuerpo,
                 "remitenteId" => $remitenteId,
                 "destinatarioId" => $destinatarioId,
+                "membresiaId" => $membresiaId,
             ],
             'headers' => [
                  'Accept' => 'application/json'

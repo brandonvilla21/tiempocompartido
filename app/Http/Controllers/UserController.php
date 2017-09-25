@@ -196,4 +196,52 @@ class UserController extends Controller
         session()->flash('message', '¡Se ha enviado el comentario!');
         return Redirect::to(URL::previous() . "#comments");
     }
+
+    public function correos()
+    {
+        // Verify route
+        if (!Session::has('ACCESS_TOKEN'))
+            return Redirect::to('/');
+    
+        try {
+            $response = User::getCorreos(getClient(), Session::get('USER_ID'));
+
+        } catch (RequestExeption $e) {
+            // If something went wrong it will redirect to /mi-cuenta
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::to('/mi-cuenta');
+        }
+
+        $correos = json_decode($response->getBody()->getContents());
+        
+        $membresias = []; // Contains all membresias without repeting
+        $numMensajes = []; // Contains the number of messages of each membresia (this array is parallel to $membresias)
+        foreach ($correos as $key => $correo) {
+            if ( self::existOnArray($membresias, $correo->membresia) ) {
+                $numMensajes[self::getIndexMembresia($correo->membresia->id, $membresias)] += 1; 
+            } else {
+                $membresias[] = $correo->membresia;
+                $numMensajes[] += 1; 
+            }
+        }
+        // return var_dump($membresias);
+        return view('user.mis-mensajes', compact(['membresias', 'numMensajes']));
+    }
+
+    private function existOnArray($membresias, $membresiaToSearch)
+    {
+        foreach ($membresias as $membresia) 
+            if( $membresia->id == $membresiaToSearch->id )
+                return true;
+        return false;
+    }
+
+    private function getIndexMembresia($id, $membresias)
+    {
+        foreach ($membresias as $key => $membresia) 
+            if ($membresia->id == $id)
+                return $key;
+        return -1;
+    }
+
 }

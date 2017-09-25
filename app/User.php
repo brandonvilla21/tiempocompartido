@@ -269,4 +269,17 @@ class User extends Authenticatable
             ]
         ]);
      }
+    /**
+     * Get all correos related to a Person by HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/correos
+     */
+     public static function getCorreos($client, $personId)
+     {
+        return $client->request('GET', 'People/'. $personId .'/correos?filter[include]=remitente&filter[include][membresia]=imagenes', [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
 }
