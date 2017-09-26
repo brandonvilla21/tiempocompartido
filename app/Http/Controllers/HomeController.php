@@ -87,7 +87,6 @@ class HomeController extends Controller
 
         $ubicaciones = json_decode($responseUbicado->getBody()->getContents());
         $unidades = json_decode($responseUnidades->getBody()->getContents());
-
         // return var_dump($search);
         return view('busqueda2', compact(['search', 'paises', 'ubicaciones', 'unidades']));
 

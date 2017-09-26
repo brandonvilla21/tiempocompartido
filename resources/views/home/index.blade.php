@@ -42,7 +42,7 @@
                                 <label for="cmb__Country">Dónde?</label>
                                 <select id="paisbusqueda" name="paisbusqueda" class="form-control">
                                     @foreach( $paises as $pais)
-                                        <option value="{{ $pais->nombre }}">{{ $pais->nombre }}</option>
+                                        <option value="{{ $pais->id }}">{{ $pais->nombre }}</option>
                                     @endforeach    
                                 </select>
                             </div>
