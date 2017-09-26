@@ -774,3 +774,12 @@ EMPIEZAN LAS MEDIAS QUERIES
   align-items: center;
 }
 
+.tiempocompartido-list {
+  color: #555;
+  background-color: #EBEBEB;
+}
+.tiemplocompartido-list-active:hover {
+  transition: .2s ease;
+  background-color: #0275d8;
+  color: white;
+}
