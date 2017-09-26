@@ -22,7 +22,7 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col-md-4">
-                                    <a href="/membresia/tiempo-compartido-en-{{ slugify($membresia->membresia->localidadNombre) }}-{{ slugify($membresia->membresia->clubNombre) }}-{{ slugify($membresia->membresia->paisNombre) }}/{{ $membresia->membresia->id }}">   
+                                    <a href="/membresia/tiempo-compartido-en-{{ slugify (pv($membresia->membresia, 'localidadNombre')) }}-{{ slugify(pv($membresia->membresia, 'clubNombre')) }}-{{ slugify(pv($membresia->membresia, 'paisNombre')) }}/{{ pv($membresia->membresia, 'id') }}">   
                                         @if ( App\User::getPrincipalImage(getClient(), $membresia->idMembresia) != null)
                                                 <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-desktop">
                                                 <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-mobile w-100">
@@ -34,14 +34,14 @@
                                     </div>
                                     <div class="card-image-mobile col-md-8 px-3"> 
                                         <div class="card-block" style="padding-left: 0; padding-right:0;">
-                                            <h4 class="card-title">{{ $membresia->membresia->titulo }}</h4>
-                                            <p class="card-text">{{ $membresia->membresia->descripcion }}</p>
+                                            <h4 class="card-title">{{ pv($membresia->membresia, 'titulo') }}</h4>
+                                            <p class="card-text">{{ pv($membresia->membresia, 'descripcion') }}</p>
                                         </div>
                                     </div>
                                     <div class="card-image-desktop col-md-8 px-3"> 
                                         <div class="card-block pl-3">
-                                            <h4 class="card-title">{{ $membresia->membresia->titulo }}</h4>
-                                            <p class="card-text">{{ $membresia->membresia->descripcion }}</p>
+                                            <h4 class="card-title">{{ pv($membresia->membresia, 'titulo') }}</h4>
+                                            <p class="card-text">{{ pv($membresia->membresia, 'descripcion') }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -73,8 +73,18 @@
                                          <div class="modal-body">
                                             <img style="width:100%;"src="uploads/membresias-images/{{ $image->src }}"/>                                         
                                             <div class="mt-1">
-                                                <label for="descripcion">Descripción de la imagen</label>
-                                                <input id="modif-descripcion-{{$key}}"class="form-control" type="text" value="{{ pv($image, 'descripcion')}}" placeholder="Agregue una descripción...">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pl-0">
+                                                            <label for="descripcion">Descripción de la imagen</label>
+                                                        </div>
+                                                        {{--  <div class="col-md-6 pl-0 form-inline text-right">
+                                                            Imagen principal 
+                                                            <input id="modif-checkbox-{{$key}}"class="form-control" type="checkbox" />
+                                                        </div>  --}}
+                                                        <input id="modif-descripcion-{{$key}}"class="form-control" type="text" value="{{ pv($image, 'descripcion')}}" placeholder="Agregue una descripción...">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div id="successEdit-{{$key}}" class="alert alert-success mt-1" style="display:none;" role="alert">
                                                 <strong>Cambios guardados!</strong> Se han guardado los cambios correctamente.
@@ -84,7 +94,6 @@
                                             <button type="button" class="btn btn-primary" onclick="setDescription({{$key}})">Guardar cambios</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

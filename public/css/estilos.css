@@ -22,12 +22,21 @@ body {
       -ms-flex-direction: column;
           flex-direction: column; }
 
-.encabezado {
-  background: transparent;
-  color: #fff;
- 
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease; }
+@media (max-width: 800px) {
+  .encabezado {
+    background: #7fb2d4;
+    padding: 1rem 0 0 0;
+  }
+}
+@media (min-width: 800px) {
+  .encabezado {
+    
+    background: transparent;
+    color: #fff;
+   
+    -webkit-transition: all .5s ease;
+            transition: all .5s ease; }
+}  
 
 .encabezado.fondo-menu {
   background: #7fb2d4;

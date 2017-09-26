@@ -5,8 +5,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-xl-9 wow bounceIn" data-wow-delay=".3s">
-                    <h2 class="h3 text-xs-center text-md-left margin-bottom">¿Buscas vacaciones de calidad y al mejor precio para toda la familia?</h2>
-                    <p>Experimenta una diferente forma de vacacionar, disfruta de un tiempo compartido en los clubes mas importantes del mundo haciendo trato directo con los propietarios, sin intermediación, consiguiendo los mejores precios, ¿que esperas?, ¡Comienza el Viaje Ahora!.</p>
+                    <h1 class="h3 text-xs-center text-md-left margin-bottom">¿Buscas vacaciones de calidad y al mejor precio para toda la familia?</h1>
+                    <blockquote class="blockquote">
+                        <p>Experimenta una diferente forma de vacacionar, disfruta de un tiempo compartido en los clubes mas importantes del mundo haciendo trato directo con los propietarios, sin intermediación, consiguiendo los mejores precios, ¿que esperas?, ¡Comienza el Viaje Ahora!.</p>
+                    </blockquote>
                 </div>
                 <div class="col-md-4 col-xl-3 wow bounceIn text-center" data-wow-delay=".6s">
                     <div class="Card__Image">
@@ -85,32 +87,34 @@
                     <span class="tiempo-line-bottom"></span>
                 </div>
                 <div class="Latest__content">
-                    <div class="owl-carousel owl-theme">                
-                        @foreach($destacados as $destacado)
-                            <div class="Card">
-                                <a href="/membresia/tiempo-compartido-en-{{ slugify($destacado->membresia->localidadNombre) }}-{{ slugify($destacado->membresia->clubNombre) }}-{{ slugify($destacado->membresia->paisNombre) }}/{{ $destacado->membresia->id }}">   
-                                    <div class="Card__Image">
-                                        <img src="{{ isset($destacado->membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $destacado->membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
-                                    </div>
-                                </a>
-                                <div class="Card__Content">
-                                    <h4 class="Card__Content__Title">
-                                        {{ pv($destacado->membresia,'titulo') }}
-                                    </h4>
-                                    <p  class="Card__Content__Description">
-                                        {{ pv($destacado->membresia,'precioRenta') }}
-                                    </p>
-                                    <p  class="Card__Content__Description">
-                                        {{ pv($destacado->membresia,'precioVenta') }}
-                                    </p>
-                                    <div class="Card__Actions no-padding-sides text-right">
-                                        <a  class="btn btn-primary-outline" href="/membresia/tiempo-compartido-en-{{ slugify($destacado->membresia->localidadNombre) }}-{{ slugify($destacado->membresia->clubNombre) }}-{{ slugify($destacado->membresia->paisNombre) }}/{{ $destacado->membresia->id }}">
-                                            {{ pv($destacado->membresia,'clubNombre') }}
-                                        </a>
+                    <div class="owl-carousel owl-theme">
+                        @if( isset($destacados) )
+                            @foreach($destacados as $destacado)
+                                <div class="Card">
+                                    <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($destacado->membresia, 'localidadNombre') ) }}-{{ slugify( pv($destacado->membresia, 'clubNombre') ) }}-{{ slugify( pv($destacado->membresia, 'paisNombre') ) }}/{{ pv($destacado->membresia, 'id') }}">   
+                                        <div class="Card__Image">
+                                            <img src="{{ isset($destacado->membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $destacado->membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                        </div>
+                                    </a>
+                                    <div class="Card__Content">
+                                        <h4 class="Card__Content__Title">
+                                            {{ pv($destacado->membresia,'titulo') }}
+                                        </h4>
+                                        <p  class="Card__Content__Description">
+                                            {{ pv($destacado->membresia,'precioRenta') }}
+                                        </p>
+                                        <p  class="Card__Content__Description">
+                                            {{ pv($destacado->membresia,'precioVenta') }}
+                                        </p>
+                                        <div class="Card__Actions no-padding-sides text-right">
+                                            <a  class="btn btn-primary-outline" href="/membresia/tiempo-compartido-en-{{ slugify( pv($destacado->membresia, 'localidadNombre') ) }}-{{ slugify( pv($destacado->membresia, 'clubNombre') ) }}-{{ slugify( pv($destacado->membresia, 'paisNombre') ) }}/{{ pv($destacado->membresia, 'id') }}">
+                                                {{ pv($destacado->membresia,'clubNombre') }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -127,25 +131,28 @@
                 <div class="row" >
                     <div class="col-md-12">
                             <div class="owl-carousel owl-theme">
-                                @foreach($membresias as $membresia)
-                                    <div class="Card">
-                                        <a href="/membresia/tiempo-compartido-en-{{ slugify($membresia->localidadNombre) }}-{{ slugify($membresia->clubNombre) }}-{{ slugify($membresia->paisNombre) }}/{{ $membresia->id }}">   
-                                            <div class="Card__Image">
-                                                <img src="{{ isset($membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
-                                            </div>
-                                        </a>
-                                        <div class="Card__Content">
-                                            <h4 class="Card__Content__Title tiempo-title-2">
-                                                {{ $membresia->titulo }}  
-                                            </h4>
-                                            <div class="Card__Actions no-padding-sides text-right">
-                                                <a  class="btn btn-primary-outline" href="/membresia/tiempo-compartido-en-{{ slugify($membresia->localidadNombre) }}-{{ slugify($membresia->clubNombre) }}-{{ slugify($membresia->paisNombre) }}/{{ $membresia->id }}">
-                                                    {{ $membresia->clubNombre }} 
-                                                </a>
+                                @if( isset($membresias))
+                                    @foreach($membresias as $membresia)
+                                        <div class="Card">
+                                            <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresia, 'localidadNombre') ) }}-{{ slugify( pv($membresia, 'clubNombre') ) }}-{{ slugify( pv($membresia, 'paisNombre') ) }}/{{ pv($membresia, 'id') }}">   
+                                                <div class="Card__Image">
+                                                    <img src="{{ isset($membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                                </div>
+                                            </a>
+                                            <div class="Card__Content">
+                                                <h4 class="Card__Content__Title tiempo-title-2">
+                                                    {{ pv($membresia, 'titulo') }}  
+                                                </h4>
+                                                <div class="Card__Actions no-padding-sides text-right">
+                                                    <a  class="btn btn-primary-outline" href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresia, 'localidadNombre')) }}-{{ slugify( pv($membresia, 'clubNombre') ) }}-{{ slugify( pv($membresia, 'paisNombre') ) }}/{{ pv($membresia, 'id') }}">
+                                                        {{ pv($membresia, 'clubNombre') }} 
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @endif
+                                
                             </div>
                     </div>
                 </div>
@@ -162,31 +169,33 @@
                 </div>
                 <div class="Latest__content">
                     <div class="owl-carousel owl-theme">
-                        @foreach($membresiasInmueble as $membresiaCabana)
-                            <div class="Card">
-                                <a href="/membresia/tiempo-compartido-en-{{ slugify($membresiaCabana->localidadNombre) }}-{{ slugify($membresiaCabana->clubNombre) }}-{{ slugify($membresiaCabana->paisNombre) }}/{{ $membresiaCabana->id }}">   
-                                    <div class="Card__Image">
-                                        <img src="{{ isset($membresiaCabana->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresiaCabana->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
-                                    </div>
-                                </a>
-                                <div class="Card__Content">
-                                    <h4 class="Card__Content__Title tiempo-title-2">
-                                        {{ pv($membresiaCabana, 'titulo') }}
-                                    </h4>
-                                    <p  class="Card__Content__Description">
-                                        {{ pv($membresiaCabana, 'precioRenta') }}
-                                    </p>
-                                    <p  class="Card__Content__Description">
-                                        {{ pv($membresiaCabana, 'precioVenta') }}
-                                    </p>
-                                    <div class="Card__Actions no-padding-sides text-right">
-                                        <a href="/membresia/tiempo-compartido-en-{{ slugify($membresiaCabana->localidadNombre) }}-{{ slugify($membresiaCabana->clubNombre) }}-{{ slugify($membresiaCabana->paisNombre) }}/{{ $membresiaCabana->id }}" class="btn btn-outline-success">   
-                                            {{ pv($membresiaCabana, 'clubNombre') }}
-                                        </a>
+                        @if( isset($membresiasInmueble) )
+                            @foreach($membresiasInmueble as $membresiaCabana)
+                                <div class="Card">
+                                    <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresiaCabana, 'localidadNombre' )) }}-{{ slugify( pv($membresiaCabana, 'clubNombre') ) }}-{{ slugify( pv($membresiaCabana, 'paisNombre') ) }}/{{  pv($membresiaCabana, 'id')  }}">   
+                                        <div class="Card__Image">
+                                            <img src="{{ isset($membresiaCabana->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresiaCabana->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                        </div>
+                                    </a>
+                                    <div class="Card__Content">
+                                        <h4 class="Card__Content__Title tiempo-title-2">
+                                            {{ pv($membresiaCabana, 'titulo') }}
+                                        </h4>
+                                        <p  class="Card__Content__Description">
+                                            {{ pv($membresiaCabana, 'precioRenta') }}
+                                        </p>
+                                        <p  class="Card__Content__Description">
+                                            {{ pv($membresiaCabana, 'precioVenta') }}
+                                        </p>
+                                        <div class="Card__Actions no-padding-sides text-right">
+                                            <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresiaCabana, 'localidadNombre') ) }}-{{ slugify( pv($membresiaCabana, 'clubNombre') ) }}-{{ slugify( pv($membresiaCabana, 'paisNombre') ) }}/{{  pv($membresiaCabana, 'id')  }}" class="btn btn-outline-success">   
+                                                {{ pv($membresiaCabana, 'clubNombre') }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

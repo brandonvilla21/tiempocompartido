@@ -245,7 +245,7 @@
                                                         </a>
                                                         <div class="media-body">
                                                             <small class="text-grey-400 pull-right">{{ pvsDat($message, 'created') }}</small>
-                                                            <h5 class="media-heading margin-v-5">comentario.user</h5>
+                                                            <h5 class="media-heading margin-v-5"> comentario.user</h5>
                                                             <p class="margin-none">{{ pv($message, 'text') }}</p>
                                                         </div>
                                                     </div>
