@@ -14,9 +14,6 @@
             </ul>  
         @else
             <ul>
-                @if(Session::has('EMAIL'))
-                    <li><a class="border-rigth">{{ Session::get('NAME') }}</a></li>
-                @endif
                 <li><a href="/busqueda" class="border-rigth"><i  class="fa fa-search"></i> Búsqueda</a></li>
                 <li><a href="/promociones" class="border-rigth"><i  class="fa fa-star"></i> Promociones</a></li>
                 <li><a href="/listados" class="border-rigth"><i  class="fa fa-list"></i> Listados</a></li>

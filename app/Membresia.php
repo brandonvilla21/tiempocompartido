@@ -278,5 +278,19 @@ class Membresia extends Model
                 'Content-Type' => 'application/json'
             ]
         ]);
+    }
+
+    /**
+     * Get all correos related to a Membresia by HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/correos
+     */
+     public static function getCorreos($client, $membresiaId)
+     {
+        return $client->request('GET', 'Membresia/'. $membresiaId .'/correos?filter[include]=remitente&filter[include][membresia]=imagenes', [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
      }
 }

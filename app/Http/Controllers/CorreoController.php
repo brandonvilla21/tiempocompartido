@@ -60,15 +60,16 @@ class CorreoController extends Controller
         // Post correo to API
         try {
             // Store a new membresia
-            $response = Correo::create(getClient(), $request, Session::get('USER_ID'), $request->destinatario, $request->membresiaId );
+            // $client, $request, $remitenteId, $destinatarioId, $membresiaId
+            $response = Correo::create(getClient(), $request, Session::get('USER_ID'), $request->destinatarioId, $request->membresiaId );
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
-            session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');
+            session()->flash('error', 'Hubo un error, por favor intente de nuevo');
             return Redirect::back();
         }
 
         $confirm = json_decode($response->getBody()->getContents());
-
+        // return var_dump($confirm);
         if(isset($confirm->id)) {
             try {
 
@@ -80,9 +81,10 @@ class CorreoController extends Controller
                 session()->flash('error', 'Hubo un error, por favor intente de nuevo');
                 return Redirect::back();
             }
-
             $destinatario = json_decode($responseDestinatario->getBody()->getContents());
             $remitente = json_decode($responseRemitente->getBody()->getContents());
+            
+            // return var_dump($remitente);
             // Send Email
             self::sendMail(pv($destinatario, 'email'), $request->nombre, $request->cuerpo);
             

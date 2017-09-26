@@ -26,10 +26,12 @@ Route::post('/guardar-contrasena', 'UserController@updatePassword');
 Route::get('/mis-membresias', 'UserController@showMembresias');
 Route::get('/mis-favoritos', 'UserController@showFavoritos');
 Route::post('/store-message', 'UserController@storeMessage');
-
 Route::get('/mis-mensajes', 'UserController@correos');
+Route::get('/membresia-mensajes/{id}', 'UserController@membresiaMensajes');
+
 // CORREO
 Route::post('/contact-owner', 'CorreoController@contactOwner');
+Route::post('/contact-sender', 'CorreoController@contactSender');
 
 // MEMBRESIAS
 Route::get('/new-membresia', 'MembresiaController@create');

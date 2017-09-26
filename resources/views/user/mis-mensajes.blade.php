@@ -35,12 +35,11 @@
                                             <hr>
                                         </div>
                                         <div class="col-md-12 mb-1 text-right">
-                                            <button class="btn btn-primary"> Ver más </button>
+                                            <a href="/membresia-mensajes/{{$membresia->id}}" class="btn btn-primary"> Ver más </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         @endforeach
                     @endif
                 </div>

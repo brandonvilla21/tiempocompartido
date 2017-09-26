@@ -78,7 +78,7 @@ class SessionsController extends Controller
             'EMAIL'  => $requestObj->email,
         ]);
 
-        session()->flash('message', '¡Bienvenido de nuevo a Tiempo Compartido!');
+        session()->flash('message', '¡Bienvenido de nuevo '. Session::get('NAME'). '!');
         return redirect()->home();
         
     }

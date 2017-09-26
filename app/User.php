@@ -276,7 +276,7 @@ class User extends Authenticatable
      */
      public static function getCorreos($client, $personId)
      {
-        return $client->request('GET', 'People/'. $personId .'/correos?filter[include]=remitente&filter[include][membresia]=imagenes', [
+        return $client->request('GET', 'People/'. $personId .'/correos?filter[include]=remitente&filter[include][membresia]=imagenes&filter[order]=ASC', [
             'headers' => [
                 'Content-Type' => 'application/json'
             ]

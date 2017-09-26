@@ -416,7 +416,6 @@ class MembresiaController extends Controller
             $allAmenidades[$key][2] = in_array($amenidades[$key], $amenidadesMembresia) ? true : false;
             
         }
-
         return view('membresia.amenidad', compact(['id', 'allAmenidades']));
     }
 

@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Session;
 use Redirect;
 use URL;
-use App\User;
 use App\Pais;
+use App\User;
 use Exception;
+use App\Membresia;
 use App\Localidad;
 use GuzzleHttp\Psr7;
 use Illuminate\Http\Request;
@@ -224,8 +225,22 @@ class UserController extends Controller
                 $numMensajes[] += 1; 
             }
         }
-        // return var_dump($membresias);
         return view('user.mis-mensajes', compact(['membresias', 'numMensajes']));
+    }
+
+    public function membresiaMensajes($id)
+    {
+        try {
+            $response = Membresia::getCorreos(getClient(), $id);
+        } catch (RequestExeption $e) {
+            // If something went wrong it will redirect to /mi-cuenta
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return Redirect::to('/mi-cuenta');
+        }
+
+        $correos = json_decode($response->getBody()->getContents());
+        // return var_dump($correos);
+        return view('user.membresia-mensajes', compact('correos'));
     }
 
     private function existOnArray($membresias, $membresiaToSearch)
