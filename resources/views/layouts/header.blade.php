@@ -35,22 +35,26 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
-        <li data-target="#myCarousel" data-slide-to="4"></li>
+        {{--  <li data-target="#myCarousel" data-slide-to="4"></li>  --}}
       </ol>
       <div class="carousel-inner" >
-        <div class="carousel-item active bienvenidos" style="background: url('../assets/img/cover-home.jpg') no-repeat center top;">
+        <div class="carousel-item active bienvenidos" style="background: url('../assets/img/slide-4.jpg') no-repeat center top;">
           <img class="first-slide img-responsive responsive-tiempo"/>
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-left" style="bottom:9rem;">
-                <h1 class="display-4 wow bounceIn">¡Vacaciones Increibles!</h1>
-                <a  data-scroll href="#inicia" class="btn btn-primary btn-lg mt-1">Comienza ahora</a>
-                <div class="flecha-bajar text-xs-center">
-                    <a data-scroll href="#inicia"> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                </div>
+                <h1 class="hidden-sm-down  display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                <h1 class="hidden-md-up"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                <ul class="hidden-sm-down" style="list-style-type: none;">
+                    Cómodas y Espaciosas Suites, Condominios y Villas para toda la familia.
+                    Exclusividad y menor costo que reservar varios cuartos de hotel.
+                    Ahorra en el costo de tus próximas vacaciones familiares.
+                    Conoce las ventajas y experiencias de los mismos propietarios y sus familias.
+                </ul>
+                <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Tiempos Compartidos en Alquiler</a></p>
             </div>
           </div>
         </div>
-        <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-2.jpg') no-repeat center top;">
+        {{--  <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-2.jpg') no-repeat center top;">
           <img class="second-slide img-responsive responsive-tiempo">
             <div class="container">
                 <div class="carousel-caption d-none d-md-block ">
@@ -65,7 +69,7 @@
                     <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Tiempos Compartidos en Alquiler</a></p>
                 </div>
             </div>
-        </div>
+        </div>  --}}
         <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-3.jpg') no-repeat center top;">
           <img class="second-slide responsive-tiempo">                
           <div class="container">
@@ -82,7 +86,7 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-4.jpg') no-repeat center top;">
+        <div class="carousel-item bienvenidos" style="background: url('../assets/img/cover-home.jpg') no-repeat center top;">
           <img class="second-slide responsive-tiempo">
           <div class="container">
             <div class="carousel-caption d-none d-md-block">
