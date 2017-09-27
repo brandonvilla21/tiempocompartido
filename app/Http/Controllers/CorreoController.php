@@ -94,19 +94,59 @@ class CorreoController extends Controller
     }
     private function sendMail($emailDestinatario, $nombreRemitente, $mensaje)
     {
-        $subject = "TIENES UN NUEVO MENSAJE EN TIEMPO COMPARTIDO";
+        $subject = $nombreRemitente.' te envió un mensaje.';
         $html = '
          <html>
-            <title></title>
-            <div>
-                <h1>'. $nombreRemitente .' te ha mandado un mensaje</h1>
-                <hr>
-                <p>
-                    '. $mensaje .'
-                </p>
-                <p>Para ver mas información sobre el mensaje entra a tus mensajes</p>
-                <a href="'.$_ENV['HOST'].'mis-mensajes" >Ir a mis mensajes</a>
-            </div>
+            <head>
+                <title></title>
+                <style>
+                    .wrapper {
+                        width: 100%; 
+                        color: black;
+                    }
+                    .button-wrapper {
+                        width: 50%; 
+                        margin: 0 auto;
+                    }
+                    .button {
+                        background-color: #4A608C; 
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+
+                    }
+                    .header-title {
+                        display: flex;
+                        justify-content: center;
+                        width: 50%; 
+                        margin: 0 auto;
+                    }
+                    
+                </style>
+            </head>
+            <body>
+                    
+                <div class="wrapper">
+                    <h1 class="header-title">'. $nombreRemitente .' te envió un mensaje</h1>
+                    <hr>
+                    <p>Deberás entrar a tu cuenta en tiempocompartido.com para ver y responder el mensaje de '. $nombreRemitente. '.</p>
+                    <div class="button-wrapper">
+                        <a class="button" href="'.$_ENV['HOST'].'mis-mensajes" >Ir a mis mensajes</a><br/>
+                    </div>                    
+                    <p>O puedes ingresar al siguiente enlace: '.$_ENV['HOST'].'mis-mensajes </p>
+                    <p>
+                        <small>
+                            Recomendamos que toda la comunicación con otros usuarios sea mediante este sistema de mensajes. 
+                            Existen empresas enviando mensajes argumentando tener un comprador muy interesado y que se comuniquen con ellos por otros medios. 
+                            Después de exigir un pago por sus servicios por intermediar, cambian los numeros de teléfonos y domicilio para continuar estafando.
+                        </small>
+                    </p>
+                </div>
+            </body>
          </html>
         ';
         $headers = "MIME-Version: 1.0" . "\r\n";

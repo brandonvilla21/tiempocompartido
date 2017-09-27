@@ -64,6 +64,10 @@ Route::get('/busqueda', 'BusquedaController@index');
 // EMAIL
 Route::get('/verifyEmail/{id}', 'EmailController@verify');
 
+// VENTA SEARCH
+Route::get('/venta', 'VentaSearchController@index');
+
+
 // RESET PASSWORD
 Route::get('/reset-password/{access_token}', 'ResetPasswordApiController@index');
 Route::post('/save-reseted-password', 'ResetPasswordApiController@store');

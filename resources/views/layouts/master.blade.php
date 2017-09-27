@@ -30,10 +30,10 @@
         margin-top      : 1em;
       } 
 
-        .owl-theme .owl-dots .owl-dot span {
-            background: #6daaab;
+      .owl-theme .owl-dots .owl-dot span {
+          background: #6daaab;
 
-        }
+      }
 
     </style>
 
@@ -52,8 +52,9 @@
 
   </head>
   <body ng-app="app">
+  
     @include('layouts.message')
-    <section class="bienvenidos">    
+    <section class="bienvenidos" style="{{ !\Request::is('/') ? 'height: 50vh !important': ''}}">
         @include('layouts.header')    
     </section>
     @yield('content')

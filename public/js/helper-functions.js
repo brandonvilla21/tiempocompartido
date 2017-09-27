@@ -242,9 +242,8 @@ function searchMembresias() {
             membresias.forEach(function(membresia) {
                 var image = membresia.imagenes[0] == null ? 'assets/img/sin-imagen-land.jpg' :  `uploads/membresias-images/thumbs/${membresia.imagenes[0].src}`;
                 card = $(`
-                    <div class="col-md-4">
-                        <div class="col-md-6">
-                            <div class="card" style="width: 25rem;">
+                    <div class="col-md-4" style="max-width:100%;">
+                            <div class="card">
                                 <img style="width:100%;"class="card-img-top" src="${image}" alt="imagen">
                                 <div class="card-block">
                                     <h4 class="card-title">${membresia.titulo}</h4>
@@ -252,7 +251,6 @@ function searchMembresias() {
                                     <a class="btn btn-primary" href="/membresia/tiempo-compartido-en-${slugify(membresia.localidadNombre)}-${slugify(membresia.clubNombre)}-${slugify(membresia.paisNombre)}/${membresia.id}">Ir a membresia</a>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 `);
                 $('.resultados-content').append(card);

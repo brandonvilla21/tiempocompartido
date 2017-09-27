@@ -64,7 +64,7 @@
                         value="{{ isset($search['huespedes']) ? $search['huespedes'] : '1' }}">
                     </div>  
                     <div class="form-group">
-                        <label for="">Donde se encuentra ubicado</label>
+                        <label for="">Tipo de destino</label>
                         <select class="form-control" name="ubicacion" id="ubicacion">
                             @if(isset($ubicaciones))
                                 <option value="" selected>Todas</option>
@@ -75,7 +75,7 @@
                         </select>
                     </div>  
                     <div class="form-group">
-                        <label for="">Tipo de inmueble</label>
+                        <label for="">Tipo de hospedaje</label>
                         <select class="form-control" name="inmueble" id="inmueble">
                             @if(isset($unidades))
                                 <option value="" selected>Todos</option>

@@ -1,4 +1,4 @@
-<header class="encabezado navbar-fixed-top" role="banner" id="encabezado" >
+<header class="encabezado navbar-fixed-top" role="banner" id="encabezado">
     <div class="container">
         <a href="/" class="logo text-white" style="text-decoration:none">
             <span class="hidden-md-up"><figure class="img"><img src="assets/img/logo_nb.png" alt="www.tiempocompartido.com"></figure></span>
@@ -9,19 +9,22 @@
         <nav id="menu-principal" class="collapse">
         @if(Session::has('SUPER_USER'))
             <ul>
-                <li><a href="/promocion/create" class="border-rigth"><i  class="fa fa-star"></i> Agregar promoción</a></li>
+                <li><a href="/promocion/create" class="border-rigth pr-0 pl-0"><i  class="fa fa-star"></i> Agregar promoción</a></li>
                 <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>             
             </ul>  
         @else
             <ul>
-                <li><a href="/busqueda" class="border-rigth"><i  class="fa fa-search"></i> Búsqueda</a></li>
-                <li><a href="/promociones" class="border-rigth"><i  class="fa fa-star"></i> Promociones</a></li>
-                <li><a href="/listados" class="border-rigth"><i  class="fa fa-list"></i> Listados</a></li>
+                <li><a href="/busqueda" class="border-rigth pr-0 pl-0"><i  class="fa fa-search"></i> Búsqueda</a></li>
+                <li><a href="/recomendados" class="border-rigth pr-0 pl-0"><i  class="fa fa-thumbs-o-up"></i> Recomendados</a></li>
+                <li><a href="/venta" class="border-rigth pr-0 pl-0"><i  class="fa fa-money"></i> Venta</a></li>
+                <li><a href="/renta" class="border-rigth pr-0 pl-0"><i  class="fa fa-ticket"></i> Renta</a></li>
+                <li><a href="/promociones" class="border-rigth pr-0 pl-0"><i  class="fa fa-star"></i> Promociones</a></li>
+                <li><a href="/listados" class="border-rigth pr-0 pl-0"><i  class="fa fa-list"></i> Listados</a></li>
                 @if(!Session::has('ACCESS_TOKEN'))
-                    <li><a href="/login" class="border-rigth"> Ingresa </a></li>
-                    <li><a href="/signup" class="border-rigth">Regístrate</a></li>
+                    <li><a href="/login" class="border-rigth pr-0 pl-0"> Ingresa </a></li>
+                    <li><a href="/signup" class="border-rigth pr-0 pl-0">Regístrate</a></li>
                 @else
-                    <li><a href="/mi-cuenta" class="border-rigth">Mi cuenta <span class="caret"></span></a></li>
+                    <li><a href="/mi-cuenta" class="border-rigth pr-0 pl-0">Mi cuenta <span class="caret"></span></a></li>
                     <li><a href="/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
                 @endif    
             </ul>
