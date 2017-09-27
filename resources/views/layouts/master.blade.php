@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ URL::to('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/landing.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/estilos.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/main-carousel.css') }}">
     
     <link rel="stylesheet" href="{{ URL::to('assets/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{ URL::to('assets/css/owl.theme.green.min.css')}}">

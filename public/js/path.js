@@ -64,5 +64,4 @@ $(document).ready(function() {
         }; 
     }
     $('.owl-carousel').owlCarousel(properties);
-    //$('.owl-carousel-custom').owlCarousel(properties);
 });

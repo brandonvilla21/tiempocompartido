@@ -66,13 +66,17 @@
                                     <p class="lead" >Venta <strong>$ {{ money_format('%i', $membresia->ventaPrecio) }}</strong> <small>{{ pv($membresia, 'ventaMoneda') }}</small></p>
                                 @endif
                                 @if( isset($membresia->ventaNegociable) )
-                                    <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
+                                    @if( $membresia->ventaNegociable == true)
+                                        <div class="alert alert-warning" role="alert" >¡El precio de venta es Negociable!</div>
+                                    @endif
                                 @endif
                                 @if( isset($membresia->renta) && isset($membresia->rentaPrecio) )
                                     <p class="lead" >Renta <strong>$ {{ money_format('%i', $membresia->rentaPrecio) }}</strong> <small>{{ pv($membresia, 'rentaMoneda') }}</small></p>
                                 @endif
                                 @if( isset($membresia->rentaNegociable) )  
-                                    <div class="alert alert-warning" role="alert" >¡El precio de renta es Negociable!</div>
+                                    @if( $membresia->rentaNegociable == true)
+                                        <div class="alert alert-warning" role="alert" >¡El precio de renta es Negociable!</div>
+                                    @endif   
                                 @endif   
                             </div>
                             <div class="Profile__Benefits">
@@ -227,31 +231,31 @@
                                 <form action="/store-message" method="POST">
                                     {{csrf_field()}}
                                     <div class="form-group input-group">
-                                    <input name="text" type="text" class="form-control" placeholder="Agrega tus comentarios.." ></input>
-                                    <input name="membresiaId" type="hidden" value="{{ $membresia->id }}"></input>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="submit" id="agregaComentario"><i class="fa fa-plus"></i></button>
-                                    </span>
+                                    @if( Session::has('ACCESS_TOKEN'))
+                                        <input name="text" type="text" class="form-control" placeholder="Agrega tus comentarios.." ></input>
+                                        <input name="membresiaId" type="hidden" value="{{ $membresia->id }}"></input>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-primary" type="submit" id="agregaComentario"><i class="fa fa-plus"></i></button>
+                                        </span>
+                                    @endif
                                     </div>
                                 </form>
                                 @if(isset($membresia->messages))
-                                    @foreach($membresia->messages as $message)
+                                    @foreach($membresia->messages as $index => $message)
                                         <section>
                                             <div class="panel panel-default">
                                                 <div class="panel-body">
                                                     <div class="media">
-                                                        <a class="media-left" href="">
-                                                            <img class="media-object" src="assets/images/avatar.jpeg" alt="people" />
-                                                        </a>
                                                         <div class="media-body">
                                                             <small class="text-grey-400 pull-right">{{ pvsDat($message, 'created') }}</small>
-                                                            <h5 class="media-heading margin-v-5"> comentario.user</h5>
+                                                            <h5 class="media-heading margin-v-5"> {{ pv($personInfo[$index], 'nickname') }} </h5>
                                                             <p class="margin-none">{{ pv($message, 'text') }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                    </section>
+                                        </section>
+                                        <hr>
                                     @endforeach
                                 @endif
                             </article>
@@ -305,40 +309,34 @@
                             Otros tiempos compartidos relacionados.
                         </h2>
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-6 margin-bottom">
-                        <div class="Card">
-                            <div class="Card__Image">
-                                <img src="assets/img/nature.jpg" alt="">
-                            </div>
-                            <div class="Card__Content">
-                                <h4 class="Card__Content__Titl">
-                                    Residencia en el bosque de chapultepec
-                                </h4>
-                            </div>
-                            <div class="Card__Actions">
-                                <button class="btn btn-default">
-                                    Ver propiedad
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-lg-6 margin-bottom">
-                        <div class="Card">
-                            <div class="Card__Image">
-                                <img src="assets/img/nature.jpg" alt="">
-                            </div>
-                            <div class="Card__Content">
-                                <h4 class="Card__Content__Titl">
-                                    Residencia en el bosque de chapultepec
-                                </h4>
-                            </div>
-                            <div class="Card__Actions">
-                                <button class="btn btn-default">
-                                    Ver propiedad
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+
+                    {{--  <div class="owl-carousel-relacionados owl-theme">  --}}
+                        @if( isset($relacionados) )
+                            @foreach( $relacionados as $relacionado )
+                            @if( !($relacionado->id == $membresia->id) )
+                                <div class="Card col-md-4">
+                                    <div class="Card__Image">
+                                        @if(isset($relacionado->imagenes[0]))
+                                            <img src="uploads/membresias-images/{{ $relacionado->imagenes[0]->src }}" alt="imagen" style="width:100%;">
+                                        @else
+                                                <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">
+                                        @endif
+                                    </div>
+                                    <div class="Card__Content">
+                                        <h4 class="Card__Content__Titl">
+                                            {{ pv($relacionado, 'titulo') }}
+                                        </h4>
+                                    </div>
+                                    <div class="Card__Actions">
+                                        <a class="btn btn-secondary" href="/membresia/tiempo-compartido-en-{{ slugify( pv($relacionado, 'localidadNombre')) }}-{{ slugify( pv($relacionado, 'clubNombre') ) }}-{{ slugify( pv($relacionado, 'paisNombre') ) }}/{{ pv($relacionado, 'id') }}">
+                                            Ver propiedad
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif                                
+                            @endforeach
+                        @endif
+                    {{--  </div>  --}}
                 </div>
             </div>
         </div>

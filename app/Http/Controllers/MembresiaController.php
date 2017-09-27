@@ -136,9 +136,25 @@ class MembresiaController extends Controller
 
         // Get the response body from HTTP Request and parse to Object
         $membresia = json_decode($response->getBody()->getContents());
+        
+        // Get membresias relacionadas
+        try {
+            $renta = isset($membresia->renta) ? $membresia->renta : false;
+            $venta = isset($membresia->venta) ? $membresia->venta : false;
+
+            $response = Membresia::getMembresiasRelacionadas(getClient(), $membresia->paisNombre, $renta, $venta, $membresia->ubicadoEn);
+            
+        } catch (RequestException $e) {
+            // In case something went wrong it will redirect to /
+            session()->flash('error', 'Ocurrio un error al acceder a esta membresia, por favor, intente de nuevo.');
+            return view('home.index');
+        }
+        $relacionados = json_decode($response->getBody()->getContents());
+
+        $personInfo = self::getPersonInfo($membresia->messages);
 
         //Return to /membresias/{titulo}/{id} with the Object: $membresia
-        return view('membresia.show', compact(['membresia', 'isFavorito']));
+        return view('membresia.show', compact(['membresia', 'isFavorito', 'relacionados', 'personInfo']));
     }
      
     /**
@@ -417,6 +433,22 @@ class MembresiaController extends Controller
             
         }
         return view('membresia.amenidad', compact(['id', 'allAmenidades']));
+    }
+
+    private function getPersonInfo($messages)
+    {
+        $personInfo = [];
+
+        foreach ($messages as $key => $message) {
+            try {
+                $response = User::findById(getClient(), $message->personId);
+                $personInfo[] = json_decode($response->getBody()->getContents());
+            } catch( RequestException $e ) {
+                
+            }
+        }
+
+        return $personInfo;
     }
 
 }

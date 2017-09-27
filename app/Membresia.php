@@ -293,4 +293,18 @@ class Membresia extends Model
             ]
         ]);
      }
+    /**
+     * Get all membresias related to a Membresia by some properties HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/correos
+     */
+     // http://0.0.0.0:3000/api/Membresia?filter[where][paisNombre][like]=M%C3%A9xico&filter[where][renta]=true&filter[where][venta]=false&filter[where][ubicadoEn]=NIEVE
+     public static function getMembresiasRelacionadas($client, $paisNombre, $renta, $venta, $ubicadoEn)
+     {
+        return $client->request('GET', 'Membresia/?filter[where][paisNombre][like]='. $paisNombre .'&filter[where][renta]='.$renta.'&filter[where][venta]='.$venta.'&filter[where][ubicadoEn]='.$ubicadoEn, [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
 }
