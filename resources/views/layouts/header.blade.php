@@ -29,15 +29,6 @@
         </nav>
     </div>
 </header>
-{{--  <div class="texto-encabezado text-xs-center">
-    <div class="container">
-        <h1 class="display-4 wow bounceIn">¡Vacaciones Increibles!</h1>
-        <a  data-scroll href="#inicia" class="btn btn-primary btn-lg">Comienza ahora</a>
-    </div>
-</div>
-<div class="flecha-bajar text-xs-center">
-    <a data-scroll href="#inicia"> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-</div>  --}}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -63,7 +54,8 @@
           <img class="second-slide img-responsive responsive-tiempo">
             <div class="container">
                 <div class="carousel-caption d-none d-md-block ">
-                    <h1 class="display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                    <h1 class="hidden-sm-down  display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                    <h1 class="hidden-md-up"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
                     <ul class="hidden-sm-down" style="list-style-type: none;">
                         Cómodas y Espaciosas Suites, Condominios y Villas para toda la familia.
                         Exclusividad y menor costo que reservar varios cuartos de hotel.
@@ -78,7 +70,8 @@
           <img class="second-slide responsive-tiempo">                
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-right">
-              <h1 class="display-4">Ahorra en el costo de tus futuras vacaciones</h1>
+              <h1 class="hidden-sm-down  display-4">Ahorra en el costo de tus futuras vacaciones</h1>
+              <h1 class="hidden-md-up">Ahorra en el costo de tus futuras vacaciones</h1>
               <ul class="hidden-sm-down" style="list-style-type: none;"> 
                 <li>Únete a más de 20 millones de propietarios mundialmente.</li>
                 <li>Garantízale a tu familia vacaciones de calidad y un mundo de posibilidades.</li>
@@ -93,7 +86,8 @@
           <img class="second-slide responsive-tiempo">
           <div class="container">
             <div class="carousel-caption d-none d-md-block">
-                <h1 class="display-4">Vende o Alquila tu Tiempo Compartido GRATIS!</h1>
+                <h1 class="hidden-sm-down display-4">Vende o Alquila tu Tiempo Compartido GRATIS!</h1>
+                <h1 class="hidden-md-up">Vende o Alquila tu Tiempo Compartido GRATIS!</h1>
                 <ul class="hidden-sm-down" style="list-style-type: none;">
                     <li>Crea y Modifica Fácilmente tu Publicación.</li>
                     <li>Responde las preguntas y mensajes privados de los usuarios.</li>
@@ -108,7 +102,8 @@
           <img class="second-slide responsive-tiempo">
           <div class="container">
             <div class="carousel-caption d-none d-md-block text-right">
-                <h1 class="display-4">Promueve tu programa Fly&Buy o Net-Center</h1>
+                <h1 class="hidden-sm-down display-4">Promueve tu programa Fly&Buy o Net-Center</h1>
+                <h1 class="hidden-md-up">Promueve tu programa Fly&Buy o Net-Center</h1>
                 <ul class="hidden-sm-down" class="mt-1 text-right" style="list-style-type: none;">
                      <li>Clientes reales e interesados en Tiempos Compartidos.</li>
                      <li>Banners, links, encuestas de perfil y pre-calificación.</li>
