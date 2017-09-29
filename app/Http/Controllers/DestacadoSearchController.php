@@ -3,40 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Redirect;
-use App\Membresia;
+use App\Destacado;
 
-class VentaSearchController extends Controller
+class DestacadoSearchController extends Controller
 {
-
     public function show($titulo, $init, $final)
     {   
-        $filter = 'ventas';
-        $title = 'venta';
+        $filter = 'recomendados';
         if( $init <= 0) $init = 0;
         if( $init >= $final )
             return Redirect::to('/');
         // Get count of membresias, filtered by venta = true
         $pagination = $final - $init ; // Number of membresias displayed in each pagination
         try {
-            $response = Membresia::count(getClient(), 'where[venta]=true&where[renta]=false');
+            $response = Destacado::count(getClient());
         }  catch (RequestException $e) {
             // In case something went wrong it will redirect to /
             session()->flash('error', 'Ha ocurrido un error, por favor, intente de nuevo.');
-            return view('home.index');
+            return Redirect::to('/');
         }
         $count = json_decode($response->getBody()->getContents())->count;
         $paginationNumber = $count / $pagination; // Number of pages
         
         try {
-            $response = Membresia::getByFilter(getClient(), '[limit]='.$pagination.'&filter[skip]='.$init.'&filter[where][venta]=true&filter[where][renta]=false');
+            $response = Destacado::getByFilter(getClient(), '[limit]='.$pagination.'&filter[skip]='.$init.'&filter[include][membresia]=imagenes');
         }  catch (RequestException $e) {
             // In case something went wrong it will redirect to /
             session()->flash('error', 'Ha ocurrido un error, por favor, intente de nuevo.');
-            return view('home.index');
+            return  Redirect::to('/');
         }
 
-        $membresias = json_decode($response->getBody()->getContents());
-        return view('busqueda-filtro', compact(['title','membresias', 'paginationNumber', 'pagination', 'count', 'init', 'final', 'filter']));
+        $destacados = json_decode($response->getBody()->getContents());
+        return view('recomendados.index', compact(['recomendados', 'destacados', 'paginationNumber', 'pagination', 'count', 'init', 'final', 'filter']));
     }
 }

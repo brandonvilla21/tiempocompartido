@@ -127,8 +127,11 @@
                         <i class="ace-icon fa fa-plus"></i>
                             Crea nueva publicación
                     </a>
-                    </div>
-                    
+
+                    {{--  <div class="demo">
+                        <p><a href="#" data-tooltip="I’m the tooltip text.">I’m a link with a tooltip.</a></p>
+                        <p><button data-tooltip="I’m the tooltip text.">I’m a button with a tooltip</button></p>
+                    </div>  --}}
                 </div>
             </div>
         </section>

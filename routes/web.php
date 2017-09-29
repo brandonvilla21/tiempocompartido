@@ -65,7 +65,13 @@ Route::get('/busqueda', 'BusquedaController@index');
 Route::get('/verifyEmail/{id}', 'EmailController@verify');
 
 // VENTA SEARCH
-Route::get('/venta', 'VentaSearchController@index');
+Route::get('/ventas/{titulo}/{init}/{final}', 'VentaSearchController@show');
+
+// RENTA SEARCH
+Route::get('/rentas/{titulo}/{init}/{final}', 'RentaSearchController@show');
+
+// DESTACADO SEARCH
+Route::get('/recomendados/{titulo}/{init}/{final}', 'DestacadoSearchController@show');
 
 
 // RESET PASSWORD

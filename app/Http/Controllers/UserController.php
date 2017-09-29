@@ -136,7 +136,7 @@ class UserController extends Controller
     public function showMembresias()
     {
         // Verify route
-        if (!Session::has('ACCESS_TOKEN'))
+        if ( (!Session::has('ACCESS_TOKEN')) )
             return Redirect::to('/');
         // Get the instance to make HTTP Requests        
         $client = getClient();
@@ -239,6 +239,7 @@ class UserController extends Controller
         }
 
         $correos = json_decode($response->getBody()->getContents());
+        $correos = array_reverse($correos);
         // return var_dump($correos);
         return view('user.membresia-mensajes', compact('correos'));
     }

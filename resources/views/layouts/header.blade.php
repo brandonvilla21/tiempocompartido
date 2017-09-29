@@ -15,9 +15,9 @@
         @else
             <ul>
                 <li><a href="/busqueda" class="border-rigth pr-0 pl-0"><i  class="fa fa-search"></i> Búsqueda</a></li>
-                <li><a href="/recomendados" class="border-rigth pr-0 pl-0"><i  class="fa fa-thumbs-o-up"></i> Recomendados</a></li>
-                <li><a href="/venta" class="border-rigth pr-0 pl-0"><i  class="fa fa-money"></i> Venta</a></li>
-                <li><a href="/renta" class="border-rigth pr-0 pl-0"><i  class="fa fa-ticket"></i> Renta</a></li>
+                <li><a href="/recomendados/tiempos-compartidos-recomendados/0/2" class="border-rigth pr-0 pl-0"><i  class="fa fa-thumbs-o-up"></i> Recomendados</a></li>
+                <li><a href="/ventas/tiempos-compartidos-en-venta/0/2" class="border-rigth pr-0 pl-0"><i  class="fa fa-money"></i> Venta</a></li>
+                <li><a href="/rentas/tiempos-compartidos-en-renta/0/2" class="border-rigth pr-0 pl-0"><i  class="fa fa-ticket"></i> Renta</a></li>
                 <li><a href="/promociones" class="border-rigth pr-0 pl-0"><i  class="fa fa-star"></i> Promociones</a></li>
                 <li><a href="/listados" class="border-rigth pr-0 pl-0"><i  class="fa fa-list"></i> Listados</a></li>
                 @if(!Session::has('ACCESS_TOKEN'))
@@ -53,26 +53,10 @@
                     Ahorra en el costo de tus próximas vacaciones familiares.
                     Conoce las ventajas y experiencias de los mismos propietarios y sus familias.
                 </ul>
-                <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Tiempos Compartidos en Alquiler</a></p>
+                <p><a class="btn btn-lg btn-primary mt-1" href="/rentas/tiempos-compartidos-en-renta/0/2" role="button">Tiempos Compartidos en Alquiler</a></p>
             </div>
           </div>
         </div>
-        {{--  <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-2.jpg') no-repeat center top;">
-          <img class="second-slide img-responsive responsive-tiempo">
-            <div class="container">
-                <div class="carousel-caption d-none d-md-block ">
-                    <h1 class="hidden-sm-down  display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
-                    <h1 class="hidden-md-up"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
-                    <ul class="hidden-sm-down" style="list-style-type: none;">
-                        Cómodas y Espaciosas Suites, Condominios y Villas para toda la familia.
-                        Exclusividad y menor costo que reservar varios cuartos de hotel.
-                        Ahorra en el costo de tus próximas vacaciones familiares.
-                        Conoce las ventajas y experiencias de los mismos propietarios y sus familias.
-                    </ul>
-                    <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Tiempos Compartidos en Alquiler</a></p>
-                </div>
-            </div>
-        </div>  --}}
         <div class="carousel-item bienvenidos" style="background: url('../assets/img/slide-3.jpg') no-repeat center top;">
           <img class="second-slide responsive-tiempo">                
           <div class="container">
@@ -85,7 +69,7 @@
                 <li>Sin intermediación ni pagar comisiones. Trato directo con los propietarios.</li>
                 <li>Negocia el mejor precio.</li>
               </ul> 
-              <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Tiempos Compartidos en Venta</a></p>
+              <p><a class="btn btn-lg btn-primary mt-1" href="/ventas/tiempos-compartidos-en-venta/0/2" role="button">Tiempos Compartidos en Venta</a></p>
             </div>
           </div>
         </div>
@@ -101,7 +85,10 @@
                     <li>Comparte tus experiencias con los interesados en tu publicación.</li>
                     <li>Suspende temporalmente tu publicación sin perder tus datos, fácil de usar.</li>
                 </ul>
-                <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Planes de publicación</a></p>
+                {{--  <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Planes de publicación</a></p>  --}}
+                @if(!Session::has('ACCESS_TOKEN'))
+                    <p><a class="btn btn-lg btn-primary mt-1" href="/signup" role="button">Registrate ahora mismo</a></p>
+                @endif
             </div>
           </div>
         </div>
@@ -117,7 +104,7 @@
                      <li>Exposición inigualable en la red! Más de 78,000 visitas los últimos 12 meses!</li>
                      <li>Desde 1998, promoviendo la industria uniendo Vacacionistas y Propietarios.</li>
                 </ul>
-                <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Cotizar un Plan Promocional</a></p>
+                {{--  <p><a class="btn btn-lg btn-primary mt-1" href="#" role="button">Cotizar un Plan Promocional</a></p>  --}}
             </div>
           </div>
         </div>

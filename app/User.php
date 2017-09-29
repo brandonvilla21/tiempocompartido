@@ -50,6 +50,7 @@ class User extends Authenticatable
         return $client->request('POST', 'People', [
             'form_params' => [
                 'nickname'      => $request->user,
+                'usuarioTipo'   => $request->usuarioTipo,
                 'email'         => $request->email,
                 'password'      => $request->password,
                 'emailVerified' => true
@@ -133,7 +134,7 @@ class User extends Authenticatable
      */
     public static function edit($client, $request, $userId, $ACCESS_TOKEN)
     {
-        return $client->request('PUT', 'People/'.$userId, [
+        return $client->request('PATCH', 'People/'.$userId, [
              'form_params' => [
                   'name'            => $request->name,
                   'nickname'        => $request->nickname,
@@ -147,8 +148,6 @@ class User extends Authenticatable
                   'usuarioTipo'     => $request->usuarioTipo,
                   'datosVisibles'   => $request->datosVisibles,
                   'lenguaje'        => $request->lenguaje,
-                  'password'        => $request->password,
-                  'id'              => $userId,
             ],
             'headers' => [
                 'Authorization' => $ACCESS_TOKEN

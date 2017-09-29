@@ -314,12 +314,24 @@ class MembresiaController extends Controller
         // Verify route
         if (!Session::has('ACCESS_TOKEN'))
             return Redirect::to('/');
-
+        // Verify if theres more than 6 images
+        try {
+            $response = Membresia::countImages(getClient(), $request->membresiaId);
+        } catch (RequestException $e) {
+            // If something went wrong it will redirect to home page
+            session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
+            return var_dump($e->getResponse()->getBody()->getContents());
+        }
+        $count = json_decode($response->getBody()->getContents())->count;
+        $remaningImages = 6-$count;
         if ($request->hasFile('images')) {
             $post_image = $request->file('images');  
+            if ( count($post_image) * 2 > $remaningImages) {
+                session()->flash('error', 'Sólo puedes subir tres imagenes de de tu membresia');
+                return Redirect::back();
+            }
             // Get the instance to make HTTP Requests        
             $client = getClient();
-            
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time(). '-'. $key . '.' . $image->getClientOriginalExtension();
                 $description = $request->{'descripcion-'.$key};

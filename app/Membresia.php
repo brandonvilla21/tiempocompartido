@@ -310,12 +310,36 @@ class Membresia extends Model
     /**
      * Get all membresias related to a Membresia by some properties HTTP Request
      * Method: GET 
-     * URI: http://0.0.0.0:3000/api/People/{id}/correos
      */
      // $filter variable example: [where][localidadNombre]=value
      public static function getByFilter($client, $filter)
      {
         return $client->request('GET', 'Membresia/?filter'.$filter, [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
+    /**
+     * Count Membresia with filter by some properties HTTP Request
+     * Method: GET 
+     */
+     // $filter variable example: where[renta]=true
+     public static function count($client, $filter)
+     {
+        return $client->request('GET', 'Membresia/count?'.$filter, [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
+    /**
+     * Get count Images from a Membresia by HTTP Request
+     * Method: GET 
+     */
+     public static function countImages($client, $membresiaId)
+     {
+        return $client->request('GET', 'Membresia/'.$membresiaId.'/imagenes/count', [
             'headers' => [
                 'Content-Type' => 'application/json'
             ]

@@ -16,9 +16,6 @@
         <i class="fa fa-2x fa-map pull-right">
         </i>
     </a>
-    <a  href="">
-        <i class="fa fa-2x fa-img pull-right"></i>
-    </a>
     <a  style="cursor:pointer;color:#0275d8;"  onclick="publish('{{ $membresia->id }}', 'BAJA')">
         <i class="fa fa-2x fa-remove pull-right">
         </i>

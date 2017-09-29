@@ -60,8 +60,36 @@
                     </div>
                     <div class="form-group">
                         <label for="">Huéspedes</label>
-                        <input type="number" class="form-control" min="1" max="30" name="huespedes" id="huespedes" 
-                        value="{{ isset($search['huespedes']) ? $search['huespedes'] : '1' }}">
+                        @if( isset($search['huespedes']))
+                            {{ Form::select(
+                                    'huespedes', [0 => 'Ignorar',1,2,3,4,5,6,7,8,9,0,10,11,12,13,14,15,16,17,18], 
+                                    $search['huespedes'], [
+                                        'class'     => 'form-control',
+                                        'id'        => 'huespedes'
+                                ])}}
+                        @else
+                        <select class="form-control" name="huespedes" id="huespedes">
+                                <option value="0" selected>Ignorar</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                        </select>
+                        @endif
                     </div>  
                     <div class="form-group">
                         <label for="">Tipo de destino</label>

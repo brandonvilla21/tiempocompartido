@@ -12,6 +12,14 @@
                     <p>Debes completar este campo.</p>
                 </div>
             </div>
+            <div class="form-group" >
+                <label>Tipo de usuario</label>
+                <select id="usuarioTipo" name="usuarioTipo" class="form-control" >
+                    <option value="PROPIETARIO" selected>PROPIETARIO</option>
+                    <option value="NO PROPIETARIO">NO PROPIETARIO</option>
+                    <option value="EMPRESA">EMPRESA</option>
+                </select>
+            </div>
             <div class="form-group " ng-class="{'has-danger': signupForm.email.$touched && signupForm.email.$invalid, 'has-success': signupForm.email.$touched && signupForm.email.$valid}">
                 <label>Email</label>
                 <input type="email" id="email" name="email" class="form-control" placeholder="Email" ng-model="data.email" required ng-class="{'form-control-danger': signupForm.email.$touched && signupForm.email.$invalid, 'form-control-success': signupForm.email.$touched && signupForm.email.$valid}">
