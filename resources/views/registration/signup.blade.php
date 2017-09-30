@@ -29,10 +29,11 @@
             </div>
             <div class="form-group " ng-class="{'has-danger': signupForm.password.$touched && signupForm.password.$invalid, 'has-success': signupForm.password.$touched && signupForm.password.$valid}">
                 <label>Password</label>
-                <input type="password" id="password" name="password" class="form-control " placeholder="Password"  ng-minlength="7" ng-model="data.password" ng-pattern="passwordPattern" required ng-class="{'form-control-danger': signupForm.password.$touched && signupForm.password.$invalid, 'form-control-success': signupForm.password.$touched && signupForm.password.$valid}">
+                <input type="password" id="password" name="password" class="form-control " placeholder="Password"  ng-minlength="7" ng-maxlength="20" ng-model="data.password" ng-pattern="passwordPattern" required ng-class="{'form-control-danger': signupForm.password.$touched && signupForm.password.$invalid, 'form-control-success': signupForm.password.$touched && signupForm.password.$valid}">
                 <div class="form-control-feedback" ng-messages="signupForm.password.$error" ng-show="signupForm.password.$invalid && signupForm.password.$touched">
                     <p ng-show="signupForm.password.$error.required">Debes completar este campo.</p>
                     <p ng-show="signupForm.password.$error.minlength">La contraseña debe tener mínimo 7 carácteres.</p>
+                    <p ng-show="signupForm.password.$error.maxlength">La contraseña debe tener máximo 20 carácteres.</p>
                     <p ng-show="signupForm.password.$error.pattern">La contraseña debe tener letras mayúsculas, minúsculas, al menos un número y sin carácteres especiales.</p>
                 </div>                
             </div>

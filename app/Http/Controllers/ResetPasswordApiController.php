@@ -3,9 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Redirect;
 class ResetPasswordApiController extends Controller
 {
+    public function send(Request $request)
+    {
+        try {
+            $response = getClient()->request('POST', 'People/reset', [
+                'header' => [
+                    'Accept'  => 'application/json'
+                ],
+                'form_params' => [
+                    'email'  => $request->email
+                ]
+            ]);
+        } catch (Exception $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Ha ocurrido un error, por favor intente de nuevo');
+            return Redirect::back();
+        }
+        session()->flash('message', 'Hemos enviado un mensaje a tu correo');
+        return Redirect::to('/');
+    }
     public function index($access_token)
     {
         return view('reset-password.index', compact('access_token'));
@@ -13,19 +32,24 @@ class ResetPasswordApiController extends Controller
 
     public function store(Request $request)
     {
-        ///reset-password?access_token=DEqJXNoIrC9Bxz2b2VmOPYavtkCiH89ZETtQ4drz8JaP6Z9vaKaaJxKWBRBsR7Pu"
-        $url = 'People/reset-password?access_token='.$request->__access_token;
-        $response = getClient()->request('POST', $url, [
-            'headers' => [
-                'Accept'  => 'application/json'
-            ],
-            'form_params' => [
-                'newPassword'  => 'application/json'
-            ]
-        ]);
-
-        return var_dump(json_decode($response->getBody()->getContents()));
+        try {
+            ///reset-password?access_token=DEqJXNoIrC9Bxz2b2VmOPYavtkCiH89ZETtQ4drz8JaP6Z9vaKaaJxKWBRBsR7Pu"
+            $url = 'People/reset-password?access_token='.$request->__access_token;
+            $response = getClient()->request('POST', $url, [
+                'header' => [
+                    'Accept'  => 'application/json'
+                ],
+                'form_params' => [
+                    'newPassword'  => 'application/json'
+                ]
+            ]);
+        } catch (Exception $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Ha ocurrido un error, por favor intente de nuevo');
+            return Redirect::back();
+        }
+        session()->flash('message', 'Su contraseña ha sido cambiada');
+        return Redirect::to('/login');
         
-
     }
 }

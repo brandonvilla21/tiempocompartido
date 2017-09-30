@@ -186,7 +186,7 @@ class UserController extends Controller
 
             if($statusCode == 400) {
                 // In something went wrong it will redirect to home page
-                session()->flash('error', 'Ocurrio un problema al enviar el comentario, porfavor intentelo más tarde.');
+                session()->flash('error', 'Ocurrio un problema al enviar el comentario, por favor intentelo más tarde.');
                 return Redirect::to(URL::previous() . "#comments");
             } else {
                 echo Psr7\str($e->getResponse());

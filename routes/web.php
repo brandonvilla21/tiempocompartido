@@ -77,6 +77,12 @@ Route::get('/recomendados/{titulo}/{init}/{final}', 'DestacadoSearchController@s
 // RESET PASSWORD
 Route::get('/reset-password/{access_token}', 'ResetPasswordApiController@index');
 Route::post('/save-reseted-password', 'ResetPasswordApiController@store');
+Route::post('/send-confirmation-password', 'ResetPasswordApiController@send');
+
+Route::get('/cambio-de-contrasena', function() {
+    return view('cambio-de-contrasena');
+});
+
 
 Route::get('/condiciones-de-uso', function () {
     return view('condiciones-de-uso');
