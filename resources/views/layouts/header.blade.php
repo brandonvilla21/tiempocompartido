@@ -44,7 +44,7 @@
         <div class="carousel-item active bienvenidos" style="background: url('../assets/img/slide-4.jpg') no-repeat center top;">
           <img class="first-slide img-responsive responsive-tiempo"/>
           <div class="container">
-            <div class="carousel-caption d-none d-md-block text-left" style="bottom:9rem; width:50%; margin:auto">
+            <div class="carousel-caption d-none d-md-block text-left" style="bottom:9rem;">
                 {{--  <div class="row">  --}}
                     {{--  <div class="col-md-"></div>                  --}}
                     {{--  <div  style="width: 50%; margin: 0 auto;">  --}}
