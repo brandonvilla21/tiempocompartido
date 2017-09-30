@@ -22,25 +22,28 @@
             </div>
             <div class="form-group " ng-class="{'has-danger': signupForm.email.$touched && signupForm.email.$invalid, 'has-success': signupForm.email.$touched && signupForm.email.$valid}">
                 <label>Email</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Email" ng-model="data.email" required ng-class="{'form-control-danger': signupForm.email.$touched && signupForm.email.$invalid, 'form-control-success': signupForm.email.$touched && signupForm.email.$valid}">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" ng-model="data.email" ng-pattern="emailPattern" required ng-class="{'form-control-danger': signupForm.email.$touched && signupForm.email.$invalid, 'form-control-success': signupForm.email.$touched && signupForm.email.$valid}">
                 <div class="form-control-feedback" ng-messages="signupForm.email.$error" ng-show="signupForm.email.$invalid && signupForm.email.$touched">
                     <p>Email inválido.</p>
                 </div>
             </div>
             <div class="form-group " ng-class="{'has-danger': signupForm.password.$touched && signupForm.password.$invalid, 'has-success': signupForm.password.$touched && signupForm.password.$valid}">
                 <label>Password</label>
-                <input type="password" id="password" name="password" class="form-control " placeholder="Password"  ng-minlength="5" ng-model="data.password" required ng-class="{'form-control-danger': signupForm.password.$touched && signupForm.password.$invalid, 'form-control-success': signupForm.password.$touched && signupForm.password.$valid}">
+                <input type="password" id="password" name="password" class="form-control " placeholder="Password"  ng-minlength="7" ng-model="data.password" ng-pattern="passwordPattern" required ng-class="{'form-control-danger': signupForm.password.$touched && signupForm.password.$invalid, 'form-control-success': signupForm.password.$touched && signupForm.password.$valid}">
                 <div class="form-control-feedback" ng-messages="signupForm.password.$error" ng-show="signupForm.password.$invalid && signupForm.password.$touched">
                     <p ng-show="signupForm.password.$error.required">Debes completar este campo.</p>
-                    <p ng-show="signupForm.password.$error.minlength">La contraseña debe tener mínimo 5 carácteres.</p>
-                </div>
+                    <p ng-show="signupForm.password.$error.minlength">La contraseña debe tener mínimo 7 carácteres.</p>
+                    <p ng-show="signupForm.password.$error.pattern">La contraseña debe tener letras mayúsculas, minúsculas, al menos un número y sin carácteres especiales.</p>
+                </div>                
             </div>
             <div class="form-group " ng-class="{'has-danger': signupForm.password_confirm.$touched && signupForm.password_confirm.$invalid, 'has-success': signupForm.password_confirm.$touched && signupForm.password_confirm.$valid}">
                 <label>Repetir password</label>
-                <input pw-check='password' type="password" id="password_confirm" name="password_confirm" class="form-control " placeholder="Password" ng-model="data.repassword" required ng-class="{'form-control-danger': signupForm.password_confirm.$touched && signupForm.password_confirm.$invalid, 'form-control-success': signupForm.password_confirm.$touched && signupForm.password_confirm.$valid}">
+                <input pw-check='password' type="password" id="password_confirm" name="password_confirm" class="form-control " placeholder="Password" ng-model="data.repassword" ng-pattern="passwordPattern" required ng-class="{'form-control-danger': signupForm.password_confirm.$touched && signupForm.password_confirm.$invalid, 'form-control-success': signupForm.password_confirm.$touched && signupForm.password_confirm.$valid}">
                 <div class="form-control-feedback" ng-messages="signupForm.password_confirm.$error" ng-show="signupForm.password_confirm.$invalid && signupForm.password_confirm.$touched">
                     <p ng-show='signupForm.password_confirm.$error.required'>Debes completar este campo.</p>
                     <p ng-show='signupForm.password_confirm.$error.pwmatch'>Las contraseñas no coinciden.</p>
+                    <p ng-show="signupForm.password.$error.pattern">La contraseña debe tener letras mayúsculas, minúsculas, al menos un número y sin carácteres especiales.</p>
+                    
                 </div>
             </div>
             <div class="clearfix">
