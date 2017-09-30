@@ -15,7 +15,7 @@
         <div class="row no-margin margin-bottom-xl">
             <div class="col-xs-12 col-md-6 col-lg-6">
                 <figure class="img wow slideInLeft">
-                    <img class="margin-top-sm" src="assets/img/team.jpeg" alt="www.tiempocompartido.com" height="250" width="100%">
+                    <img class="margin-top-sm" src="assets/img/slide-4.jpg" alt="www.tiempocompartido.com" height="250" width="100%">
                 </figure>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-6 wow fadeIn">
@@ -47,7 +47,7 @@
             </div>
             <div class="col-xs-12 col-md-6 col-lg-6">
                 <figure class="img wow slideInRight">
-                    <img class="margin-top-sm" src="assets/img/vision.jpg" alt="www.tiempocompartido.com" height="250" width="100%">
+                    <img class="margin-top-sm" src="assets/img/slide-3.jpg" alt="www.tiempocompartido.com" height="250" width="100%">
                 </figure>
             </div>
         </div>
@@ -55,7 +55,7 @@
         <div class="row no-margin margin-bottom-xl">
             <div class="col-xs-12 col-md-6 col-lg-6">
                 <figure class="img wow slideInLeft">
-                    <img class="margin-top-sm" src="assets/img/mision.jpeg" alt="www.tiempocompartido.com" height="250" width="100%">
+                    <img class="margin-top-sm" src="assets/img/slide-5.jpg" alt="www.tiempocompartido.com" height="250" width="100%">
                 </figure>
             </div>
             <div class="col-xs-12 col-md-6 col-lg-6 wow fadeIn">

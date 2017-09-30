@@ -44,16 +44,22 @@
         <div class="carousel-item active bienvenidos" style="background: url('../assets/img/slide-4.jpg') no-repeat center top;">
           <img class="first-slide img-responsive responsive-tiempo"/>
           <div class="container">
-            <div class="carousel-caption d-none d-md-block text-left" style="bottom:9rem;">
-                <h1 class="hidden-sm-down  display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
-                <h1 class="hidden-md-up"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
-                <ul class="hidden-sm-down" style="list-style-type: none;">
-                    Cómodas y Espaciosas Suites, Condominios y Villas para toda la familia.
-                    Exclusividad y menor costo que reservar varios cuartos de hotel.
-                    Ahorra en el costo de tus próximas vacaciones familiares.
-                    Conoce las ventajas y experiencias de los mismos propietarios y sus familias.
-                </ul>
-                <p><a class="btn btn-lg btn-primary mt-1" href="/rentas/tiempos-compartidos-en-renta/0/2" role="button">Tiempos Compartidos en Alquiler</a></p>
+            <div class="carousel-caption d-none d-md-block text-left" style="bottom:9rem; width:50%; margin:auto">
+                {{--  <div class="row">  --}}
+                    {{--  <div class="col-md-"></div>                  --}}
+                    {{--  <div  style="width: 50%; margin: 0 auto;">  --}}
+                        <h1 class="hidden-sm-down  display-4"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                        <h1 class="hidden-md-up"> Visita lugares increíbles y crea recuerdos inolvidables</h1>
+                        <ul class="hidden-sm-down" style="list-style-type: none;">
+                            Cómodas y Espaciosas Suites, Condominios y Villas para toda la familia.
+                            Exclusividad y menor costo que reservar varios cuartos de hotel.
+                            Ahorra en el costo de tus próximas vacaciones familiares.
+                            Conoce las ventajas y experiencias de los mismos propietarios y sus familias.
+                        </ul>
+                        <a class="hidden-sm-down btn btn-lg btn-primary mt-1" href="/rentas/tiempos-compartidos-en-renta/0/2" role="button">Tiempos Compartidos en Alquiler</a>
+                        <a class="hidden-md-up btn btn-lg btn-primary mt-1" style="font-size: .9rem;" href="/rentas/tiempos-compartidos-en-renta/0/2" role="button">Tiempos Compartidos en Alquiler</a>
+                    {{--  </div>                
+                </div>                  --}}
             </div>
           </div>
         </div>
@@ -69,7 +75,9 @@
                 <li>Sin intermediación ni pagar comisiones. Trato directo con los propietarios.</li>
                 <li>Negocia el mejor precio.</li>
               </ul> 
-              <p><a class="btn btn-lg btn-primary mt-1" href="/ventas/tiempos-compartidos-en-venta/0/2" role="button">Tiempos Compartidos en Venta</a></p>
+              <a class="hidden-sm-down btn btn-lg btn-primary mt-1" href="/ventas/tiempos-compartidos-en-venta/0/2" role="button">Tiempos Compartidos en Venta</a>
+              <a class="hidden-md-up btn btn-lg btn-primary mt-1" style="font-size: .9rem;"  href="/ventas/tiempos-compartidos-en-venta/0/2" role="button">Tiempos Compartidos en Venta</a>
+              
             </div>
           </div>
         </div>

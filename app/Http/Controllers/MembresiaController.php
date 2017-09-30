@@ -85,7 +85,12 @@ class MembresiaController extends Controller
         // Verify route
         if (!Session::has('ACCESS_TOKEN'))
             return Redirect::to('/');
+        
+        $metodos = $request->input('metodoPago');
+        $metodos = implode(',', $metodos);
 
+        $request->metodoPago = $metodos;
+            
         try {
             // Store a new membresia
             $response = Membresia::storeMembresia(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
@@ -111,6 +116,11 @@ class MembresiaController extends Controller
         }
         session()->flash('message', 'Se ha creado su nueva membresia');        
         return Redirect::to('/mis-membresias');
+    }
+
+    private function setMetodosPago($metodosPago)
+    {
+
     }
 
     /**

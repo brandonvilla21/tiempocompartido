@@ -486,7 +486,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="metodoPago"> Método(s) de pago que aceptas para la transacción </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select id="metodoPago" name="metodoPago" id="metodoPago" class="form-control" multiple  required>
+                <select id="metodoPago" name="metodoPago[]" id="metodoPago" class="form-control" multiple  required>
                     <option value="EFECTIVO">Efectivo</option>
                     <option value="CREDITO-DEBITO">Tarjeta Crédito/Débito</option>
                     <option value="TRANSFERENCIA">Transferencia</option>
