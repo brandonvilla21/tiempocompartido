@@ -8,7 +8,7 @@
             <span class="tiempo-line-bottom"></span>
         </div>
 
-        @if( isset($membresias) )
+        @if( isset($membresias[0]) )
             <div class="row">
                     @foreach( $membresias as $index => $membresia )
                         <div class="col-md-4" style="max-width:100%;">
