@@ -73,9 +73,9 @@ class SessionsController extends Controller
         $requestObj = json_decode($response->getBody()->getContents());
         // Save the token and user information in Session
         Session::put([
-            'NAME'   => $requestObj->nickname,
-            'EMAIL'  => $requestObj->email,
-            'USER_TYPE'  => $requestObj->usuarioTipo,
+            'NAME'       => $requestObj->nickname,
+            'EMAIL'      => $requestObj->email,
+            'USER_TYPE'  => isset($requestObj->usuarioTipo) ? $requestObj->usuarioTipo : null,
         ]);
 
         session()->flash('message', '¡Bienvenido de nuevo '. Session::get('NAME'). '!');
