@@ -9,7 +9,7 @@
         </div>
 
         <div class="row">
-            @if( isset($membresias) )
+            @if( isset($membresias[0]) )
                 @foreach( $membresias as $index => $membresia )
                     <div class="col-md-4" style="max-width:100%;">
                         <div class="card">
