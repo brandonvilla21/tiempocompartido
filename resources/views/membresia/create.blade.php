@@ -30,7 +30,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="email"> Nombre del Club </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="text" class="form-control" placeholder="" id="clubNombre"name="clubNombre" ng-model="membresia.clubNombre" required/>
+                <input type="text" class="form-control" placeholder="" id="clubNombre"name="clubNombre" required/>
                 </span>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
                 <div class="col-sm-7">
                 <span class="block input-icon input-icon-right">
-                    <select class="form-control" placeholder="" id="cualTemporadaflotante"name="cualTemporadaflotante" ng-model="membresia.cualTemporadaflotante" >
+                    <select class="form-control" placeholder="" id="cualTemporadaflotante"name="cualTemporadaflotante" >
                         <option value="ALTA">Alta</option>
                         <option value="BAJA">Baja</option>
                     </select>
@@ -88,7 +88,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="number" class="form-control" id="cuantosPuntos" name="cuantosPuntos" />
+                        <input type="number" class="form-control" id="cuantosPuntos" name="cuantosPuntos" min="1" />
                     </span>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="number" class="form-control" id="cuantasNoches" name="cuantasNoches" />
+                        <input type="number" class="form-control" id="cuantasNoches" name="cuantasNoches" min="1" max="20" />
                     </span>
                 </div>
             </div>
@@ -138,7 +138,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="dormitorios"> Dormitorios </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="dormitorios"name="dormitorios" />
+                <input type="number" class="form-control" placeholder="" id="dormitorios"name="dormitorios" min="1" max="15"/>
                 </span>
             </div>
         </div>
@@ -174,7 +174,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="banosCompletos"> Baños Completos </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" id="banosCompletos" name="banosCompletos" />
+                <input type="number" class="form-control" id="banosCompletos" name="banosCompletos" min="1" max="15" />
                 </span>
             </div>
         </div>
@@ -184,7 +184,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="banosMedios"> Baños Medios </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" placeholder="" id="banosMedios" name="banosMedios" ng-model="membresia.baniosMedios" />
+                <input type="number" class="form-control" placeholder="" id="banosMedios" name="banosMedios" min="1" max="15" />
                 </span>
             </div>
         </div>
@@ -208,7 +208,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="maxOcupantes"> Máximo de Ocupantes </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control"  id="maxOcupantes" name="maxOcupantes" required/>
+                <input type="number" class="form-control"  id="maxOcupantes" name="maxOcupantes" min="1" max="15" required/>
                 </span>
             </div>
         </div>
@@ -218,7 +218,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="maxPrivacidad"> Máximo con Privacidad </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" id="maxPrivacidad" name="maxPrivacidad"  required/>
+                <input type="number" class="form-control" id="maxPrivacidad" name="maxPrivacidad" min="1" max="15" required/>
                 </span>
             </div>
         </div>
@@ -228,7 +228,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="numCamas"> Número de camas (ind/mat/king) </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" id="numCamas" id="numCamas" name="numCamas"/>
+                <input type="number" class="form-control" id="numCamas" id="numCamas" name="numCamas" min="1" max="15"/>
                 </span>
             </div>
         </div>
@@ -238,7 +238,7 @@
             <label class="col-sm-3 control-label no-padding-right" for="frecSemanasPorAnio"> ¿Cuántas Semanas Por Año? </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <input type="number" class="form-control" min="1" max="10" step="1" placeholder="" id="frecSemanasPorAnio" name="frecSemanasPorAnio" ng-model="membresia.frecSemanasPorAnio" />
+                <input type="number" class="form-control" min="1" max="10" step="1" placeholder="" id="frecSemanasPorAnio" name="frecSemanasPorAnio" min="1" max="15" />
                 </span>
             </div>
         </div>

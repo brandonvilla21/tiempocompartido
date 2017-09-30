@@ -100,7 +100,10 @@ class MembresiaController extends Controller
             $responsePais = Pais::findById(getClient(), $request->idPais);
             $pais = json_decode($responsePais->getBody()->getContents());
 
-            $responseStorePais = Membresia::storePaisNombre(getClient(), $membresia->id, $pais->nombre, Session::get('ACCESS_TOKEN'));
+            $responseStorePais = Membresia::storePaisNombre(getClient(), 
+                                                            $membresia->id, 
+                                                            $pais->nombre, 
+                                                            Session::get('ACCESS_TOKEN'));
         } catch (ClientException $e) {
             // In case something went wrong it will redirect to register view
             session()->flash('error', 'Hubo un error al registrar la nueva membresia, por favor intente de nuevo');

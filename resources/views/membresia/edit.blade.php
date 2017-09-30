@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div style="display:none;" id="cualSemanaFijaDiv" class="form-group" ng-if="membresia.semanaTipo == 'FIJA'">
+        <div style="display:none;" id="cualSemanaFijaDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cualSemanaFija"> ¿Cuál Semana Fija? </label>
                 <div class="col-sm-7">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group" ng-if="membresia.semanaTipo == 'FLOTANTE'">
+        <div style="display: none;" id="cualTemporadaflotanteDiv" class="form-group" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cualTemporadaflotante"> ¿Cuál Temporada flotante? </label>
                 <div class="col-sm-7">
@@ -92,22 +92,22 @@
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cuantosPuntosDiv" class="form-group" ng-if="membresia.semanaTipo == 'PUNTOS'">
+        <div style="display: none;" id="cuantosPuntosDiv" class="form-group">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cuantosPuntos"> ¿Cuántos Puntos? </label>
                 <div class="col-sm-7">
                 <span class="block input-icon input-icon-right">
-                    <input value="{{ pv($membresia, 'cuantosPuntos') }}" type="number" class="form-control" name="cuantosPuntos" id="cuantosPuntos" />
+                    <input value="{{ pv($membresia, 'cuantosPuntos') }}" type="number" class="form-control" name="cuantosPuntos" id="cuantosPuntos" min="1" />
                     </span>
                 </div>
             </div>
         </div>
-        <div style="display: none;" id="cuantasNochesDiv" class="form-group" ng-if="membresia.semanaTipo == 'NOCHES'">
+        <div style="display: none;" id="cuantasNochesDiv" class="form-group" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="cuantasNoches"> ¿Cuantas Noches? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input  value="{{ pv($membresia, 'cuantasNoches') }}" type="number" class="form-control" name="cuantasNoches" id="cuantasNoches"/>
+                        <input  value="{{ pv($membresia, 'cuantasNoches') }}" type="number" class="form-control" name="cuantasNoches" id="cuantasNoches" min="1" max="20"/>
                     </span>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="dormitorios"> Dormitorios </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'dormitorios') }}" type="number" class="form-control" name="dormitorios" id="dormitorios"/>
+                        <input value="{{ pv($membresia, 'dormitorios') }}" type="number" class="form-control" name="dormitorios" id="dormitorios" min="1" max="15"/>
                     </span>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="banosCompletos"> Baños Completos </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'banosCompletos') }}" type="number" class="form-control" name="banosCompletos" id="banosCompletos"/>
+                        <input value="{{ pv($membresia, 'banosCompletos') }}" type="number" class="form-control" name="banosCompletos" id="banosCompletos" min="1" max="15"/>
                     </span>
                 </div>
             </div>
@@ -198,7 +198,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="banosMedios"> Baños Medios </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input  value="{{ pv($membresia, 'banosMedios') }}" type="number" class="form-control" name="banosMedios" id="banosMedios"/>
+                        <input  value="{{ pv($membresia, 'banosMedios') }}" type="number" class="form-control" name="banosMedios" id="banosMedios" min="1" max="15"/>
                     </span>
                 </div>
             </div>
@@ -226,7 +226,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="maxOcupantes"> Máximo de Ocupantes </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'maxOcupantes') }}" type="number" class="form-control"  name="maxOcupantes" id="maxOcupantes" required/>
+                        <input value="{{ pv($membresia, 'maxOcupantes') }}" type="number" class="form-control"  name="maxOcupantes" id="maxOcupantes" min="1" max="15" required/>
                     </span>
                 </div>
             </div>
@@ -236,7 +236,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="maxPrivacidad"> Máximo con Privacidad </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'maxPrivacidad') }}" type="number" class="form-control" id="maxPrivacidad" name="maxPrivacidad" required/>
+                        <input value="{{ pv($membresia, 'maxPrivacidad') }}" type="number" class="form-control" id="maxPrivacidad" name="maxPrivacidad" min="1" max="15" required/>
                     </span>
                 </div>
             </div>
@@ -246,7 +246,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="numCamas"> Número de camas (ind/mat/king) </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'numCamas') }}" type="number" class="form-control" id="numCamas" name="numCamas"/>
+                        <input value="{{ pv($membresia, 'numCamas') }}" type="number" class="form-control" id="numCamas" name="numCamas" min="1" max="15"/>
                     </span>
                 </div>
             </div>
@@ -256,7 +256,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="frecSemanasPorAnio"> ¿Cuántas Semanas Por Año? </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'frecSemanasPorAnio') }}" type="number" class="form-control" min="1" max="10" step="1"  name="frecSemanasPorAnio" id="frecSemanasPorAnio" />
+                        <input value="{{ pv($membresia, 'frecSemanasPorAnio') }}" type="number" class="form-control" min="1" max="52" step="1"  name="frecSemanasPorAnio" id="frecSemanasPorAnio" />
                     </span>
                 </div>
             </div>
@@ -338,17 +338,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+        <div class="form-group existeCuotaMantenimiento" style="display:none;">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoImporte"> Importe de Mantenimiento  </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'mantenimientoImporte') }}" type="number" class="form-control" placeholder="Mantenimiento Importe" name="mantenimientoImporte" id="mantenimientoImporte"/>
+                        <input value="{{ pv($membresia, 'mantenimientoImporte') }}" type="number" class="form-control" min="1" placeholder="Mantenimiento Importe" name="mantenimientoImporte" id="mantenimientoImporte"/>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="form-group existeCuotaMantenimiento" style="display:none;" ng-show="membresia.mantenimiento">
+        <div class="form-group existeCuotaMantenimiento" style="display:none;">
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="mantenimientoMoneda"> Moneda para Costo de Mantenimiento  </label>
                 <div class="col-sm-7">
@@ -376,17 +376,17 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaPrecio"> Precio de venta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input value="{{ pv($membresia, 'ventaPrecio') }}" type="number" class="form-control"  name="ventaPrecio" id="ventaPrecio" />
+                        <input value="{{ pv($membresia, 'ventaPrecio') }}" type="number" min="1" class="form-control"  name="ventaPrecio" id="ventaPrecio" />
                     </span>
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaMoneda"> Moneda para Precio de Venta </label>
                 <div class="col-sm-7">
@@ -404,7 +404,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaOcultarImporte"> Venta Ocultar Importe </label>
                 <div class="col-sm-7">
@@ -414,7 +414,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="ventaNegociable"> ¿La Venta es Negociable? </label>
                 <div class="col-sm-7">
@@ -424,7 +424,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraFecha"> Fecha de Compra </label>
                 <div class="col-sm-7">
@@ -434,7 +434,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.compraFecha">
+        <div class="form-group estaEnVenta" style="display:none;" >
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="ocultarFecha"> ¿Deseas Ocultar la Fecha de Compra? </label>
             <div class="col-sm-7">
@@ -444,7 +444,7 @@
             </div>
         </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.venta">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaduca"> ¿La Compra Tiene Caducidad? </label>
                 <div class="col-sm-7">
@@ -454,7 +454,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnVenta" style="display:none;" ng-show="membresia.compraCaduca">
+        <div class="form-group estaEnVenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="compraCaducidad"> Fecha de Caducidad </label>
                 <div class="col-sm-7">
@@ -474,22 +474,22 @@
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" >
             <div class="row">
                 <label class="col-sm-3 control-label no-padding-right" for="rentaPrecio"> Precio de Renta </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        <input type="number"  value="{{ pv($membresia, 'rentaPrecio') }}" class="form-control" name="rentaPrecio" id="rentaPrecio" />
+                        <input type="number"  value="{{ pv($membresia, 'rentaPrecio') }}" class="form-control" min="1" name="rentaPrecio" id="rentaPrecio" />
                     </span>
                 </div>
             </div>
         </div>
-        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" >
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="rentaMoneda"> Moneda para Precio de Renta </label>
             <div class="col-sm-7">
             <span class="block input-icon input-icon-right">
-                <select class="form-control" placeholder="" name="rentaMoneda" ng-model="membresia.rentaMoneda" >
+                <select class="form-control" placeholder="" name="rentaMoneda" >
                     <option value="DOLARES AMERICANOS">Dolares americanos</option>
                     <option value="PESOS MEXICANOS">Pesos mexicanos</option>
                     <option value="EUROS">Euros</option>
@@ -498,7 +498,7 @@
             </div>
         </div>
         </div> 
-        <div class="form-group estaEnRenta" style="display:none;" ng-show="membresia.renta">
+        <div class="form-group estaEnRenta" style="display:none;" >
         <div class="row">
             <label class="col-sm-3 control-label no-padding-right" for="rentaNegociable"> ¿La Renta es Negociable? </label>
             <div class="col-sm-7">
@@ -523,7 +523,7 @@
                 <label class="col-sm-3 control-label no-padding-right" for="metodoPago"> Método(s) de pago que aceptas para la transacción </label>
                 <div class="col-sm-7">
                     <span class="block input-icon input-icon-right">
-                        {{--  <select name="metodoPago" id="metodoPago" ng-model="membresia.metodoPago" class="form-control" multiple  required>
+                        {{--  <select name="metodoPago" id="metodoPago" class="form-control" multiple  required>
                             <option value="EFECTIVO">Efectivo</option>
                             <option value="CREDITO-DEBITO">Tarjeta Crédito/Débito</option>
                             <option value="TRANSFERENCIA">Transferencia</option>
