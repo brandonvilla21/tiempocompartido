@@ -54,7 +54,7 @@
     <div class="container">
         <p>2017 © Tiempo Compartido Todos los derechos reservados</p>
         <ul class="redes-sociales">
-            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"> </i>  </a></li>
+            <li><a href="https://www.facebook.com/tiempo.compartido.original"><i class="fa fa-facebook" aria-hidden="true"> </i> </a></li>
             <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> </a></li>
             <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i> </a></li>
         </ul>
