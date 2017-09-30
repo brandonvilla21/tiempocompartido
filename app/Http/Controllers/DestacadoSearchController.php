@@ -23,6 +23,10 @@ class DestacadoSearchController extends Controller
             return Redirect::to('/');
         }
         $count = json_decode($response->getBody()->getContents())->count;
+        if ($count == 1) {
+            $init = 0;
+            $final = 1;
+        }
         $paginationNumber = $count / $pagination; // Number of pages
         
         try {
