@@ -18,7 +18,7 @@
                 <div class="col-md-7 col-xl-8"> 
                     <div class="container padding">
                         <h2 class="title margin-bottom">Modifica tu contraseña</h2>
-                         <form ng-controller="MainCtrl as main" method="POST" act ion="/guardar-contrasena" role="form" name="passwordForm">
+                         <form ng-controller="MainCtrl as main" method="POST" action="/guardar-contrasena" role="form" name="passwordForm">
                              {{ csrf_field() }}
 
                             <div class="row">
@@ -34,10 +34,12 @@
                                 <div class="col-md-12">
                                     <div class="form-group " ng-class="{'has-danger': passwordForm.newPassword.$touched && passwordForm.newPassword.$invalid, 'has-success': passwordForm.newPassword.$touched && passwordForm.newPassword.$valid}">
                                         <label>Nueva contraseña</label>
-                                        <input id="newPassword" name="newPassword" ng-model="newPassword" type="password" ng-minlength="5" class="form-control" required ng-class="{'form-control-danger': passwordForm.newPassword.$touched && passwordForm.newPassword.$invalid, 'form-control-success': passwordForm.newPassword.$touched && passwordForm.newPassword.$valid}">
+                                        <input id="newPassword" name="newPassword" ng-model="newPassword" type="password" ng-minlength="7" ng-maxlength="20" ng-pattern="passwordPattern" class="form-control" required ng-class="{'form-control-danger': passwordForm.newPassword.$touched && passwordForm.newPassword.$invalid, 'form-control-success': passwordForm.newPassword.$touched && passwordForm.newPassword.$valid}">
                                         <div class="form-control-feedback" ng-messages="passwordForm.newPassword.$error" ng-show="passwordForm.newPassword.$invalid && passwordForm.newPassword.$touched">
                                             <p ng-show='passwordForm.newPassword.$error.required'>Debes completar este campo.</p>
-                                            <p ng-show='passwordForm.newPassword.$error.minlength'>La contraseña debe tener por lo menos 5 carácteres.</p>
+                                            <p ng-show='passwordForm.newPassword.$error.minlength'>La contraseña debe tener por lo menos 7 carácteres.</p>
+                                            <p ng-show="passwordForm.newPassword.$error.maxlength">La contraseña debe tener máximo 20 carácteres.</p>
+                                            <p ng-show="passwordForm.newPassword.$error.pattern">La contraseña debe tener letras mayúsculas, minúsculas, al menos un número y sin carácteres especiales.</p>
                                         </div>
                                     </div>
                                 </div>

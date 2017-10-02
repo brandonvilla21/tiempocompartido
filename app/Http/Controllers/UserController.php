@@ -111,7 +111,7 @@ class UserController extends Controller
             return Redirect::to('/');
 
         try {
-            $response = User::changePassword($getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
+            $response = User::changePassword(getClient(), $request, Session::get('USER_ID'), Session::get('ACCESS_TOKEN'));
         } catch (RequestException $e) {
             
             $statusCode =  $e->getResponse()->getStatusCode();

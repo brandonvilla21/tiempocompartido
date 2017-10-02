@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Redirect;
+use Illuminate\Http\Request;
+use GuzzleHttp\Exception\RequestException;
+
 class ResetPasswordApiController extends Controller
 {
     public function send(Request $request)
@@ -17,9 +19,9 @@ class ResetPasswordApiController extends Controller
                     'email'  => $request->email
                 ]
             ]);
-        } catch (Exception $e) {
+        } catch (RequestException $e) {
             // In case something went wrong it will redirect to register view
-            session()->flash('error', 'Ha ocurrido un error, por favor intente de nuevo');
+            session()->flash('error', 'Ha ocurrido un error, por favor intente de nuevo. Verifique el correo ingresado');
             return Redirect::back();
         }
         session()->flash('message', 'Hemos enviado un mensaje a tu correo');

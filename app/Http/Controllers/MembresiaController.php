@@ -12,7 +12,6 @@ use Exception;
 use App\Unidad;
 use App\Imagen;
 use App\Ubicado;
-
 use App\Localidad;
 use App\Membresia;
 use GuzzleHttp\Psr7;
@@ -31,6 +30,22 @@ class MembresiaController extends Controller
         // Verify route
         if (!Session::has('ACCESS_TOKEN'))
             return Redirect::to('/');
+        // Check if can create another membresia
+        try {
+            $response = User::countMembresias(getClient(), Session::get('USER_ID'));
+        } catch (RequestException $e) {
+            // In case something went wrong it will redirect to register view
+            session()->flash('error', 'Hubo un error, por favor intente de nuevo');
+            return Redirect::to('/');
+        }
+
+        $countMembresia = json_decode($response->getBody()->getContents())->count;
+        if ( Session::get('USER_TYPE') == 'PROPIETARIO' ) {
+            session()->flash('error', 'Solo puedes crear una membresia');
+            return Redirect::to('/mis-membresias');
+        }
+
+        return var_dump($countMembresia);
 
         $hasUbicados = false;
         $hasUnidades = false;
@@ -165,8 +180,7 @@ class MembresiaController extends Controller
         $relacionados = json_decode($response->getBody()->getContents());
 
         $personInfo = self::getPersonInfo($membresia->messages);
-
-        //Return to /membresias/{titulo}/{id} with the Object: $membresia
+        
         return view('membresia.show', compact(['membresia', 'isFavorito', 'relacionados', 'personInfo']));
     }
      
@@ -347,7 +361,7 @@ class MembresiaController extends Controller
             $client = getClient();
             foreach($post_image as $key => $image ) {
                 $filename = $request->membresiaTitulo . '-' .time(). '-'. $key . '.' . $image->getClientOriginalExtension();
-                $description = $request->{'descripcion-'.$key};
+                $description = $request->{'descripcion-'.$key} || 'Sin descripcion';
             
                 // Save image in original size without oversized up to 1900
                 Image::make($image)->resize(1900, null, function ($constraint) {
@@ -368,7 +382,7 @@ class MembresiaController extends Controller
                 } catch (RequestException $e) {
                     // If something went wrong it will redirect to home page
                     session()->flash('error', 'Ha ocurrido un error inesperado, por favor intente de nuevo');
-                    return dd($e); 
+                    return dd($e);
                 }
             }
         } else {

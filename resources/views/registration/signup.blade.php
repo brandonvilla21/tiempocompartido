@@ -7,9 +7,12 @@
 
             <div class="form-group " ng-class="{'has-danger': signupForm.user.$touched && signupForm.user.$invalid, 'has-success': signupForm.user.$touched && signupForm.user.$valid}">
                 <label>Usuario ó Compañia</label>
-                <input type="text" id="user" name="user" class="form-control " placeholder="Nombre" ng-model="data.user" required ng-class="{'form-control-danger': signupForm.user.$touched && signupForm.user.$invalid, 'form-control-success': signupForm.user.$touched && signupForm.user.$valid}">
+                <input type="text" id="user" name="user" class="form-control " placeholder="Nombre" ng-model="data.user" ng-minlength="2" ng-maxlength="40" required ng-class="{'form-control-danger': signupForm.user.$touched && signupForm.user.$invalid, 'form-control-success': signupForm.user.$touched && signupForm.user.$valid}">
                 <div class="form-control-feedback" ng-messages="signupForm.user.$error" ng-show="signupForm.user.$invalid && signupForm.user.$touched">
-                    <p>Debes completar este campo.</p>
+                    <p ng-show="signupForm.user.$error.required">Debes completar este campo.</p>
+                    <p ng-show="signupForm.user.$error.maxlength">Debe contar con mínimo 2 y máximo 40 caráctres.</p>
+                    <p ng-show="signupForm.user.$error.minlength">Debe contar con mínimo 2 y máximo 40 caráctres.</p>
+                    
                 </div>
             </div>
             <div class="form-group" >

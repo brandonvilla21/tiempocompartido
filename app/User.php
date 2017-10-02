@@ -145,7 +145,7 @@ class User extends Authenticatable
                   'telefono'        => $request->telefono,// Not required in HTML
                   'destinosInteres' => $request->destinosInteres,// Not required in HTML
                   'informacion'     => $request->informacion,// Not required in HTML
-                  'usuarioTipo'     => $request->usuarioTipo,
+                  'usuarioTipo'     => $request->usuarioTipo,// Not required in HTML
                   'datosVisibles'   => $request->datosVisibles,
                   'lenguaje'        => $request->lenguaje,
             ],
@@ -281,4 +281,21 @@ class User extends Authenticatable
             ]
         ]);
      }
+
+     
+    /**
+     * Get count Membresias related to a Person by HTTP Request
+     * Method: GET 
+     * URI: http://0.0.0.0:3000/api/People/{id}/membresias/count
+     */
+     public static function countMembresias($client, $personId)
+     {
+        return $client->request('GET', 'People/'. $personId .'/membresias/count', [
+            'headers' => [
+                'Content-Type' => 'application/json'
+            ]
+        ]);
+     }
+
+
 }

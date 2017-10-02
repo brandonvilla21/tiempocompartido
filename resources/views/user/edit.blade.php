@@ -97,33 +97,6 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-control-default required">
-                                            <label>Tipo de usuario</label>
-                                            <select id="usuarioTipo" name="usuarioTipo" class="form-control" >
-                                                @if( isset($user->usuarioTipo) )
-                                                        @if( $user->usuarioTipo == 'PROPIETARIO' )
-                                                            <option value="PROPIETARIO" selected>PROPIETARIO</option>
-                                                            <option value="NO PROPIETARIO">NO PROPIETARIO</option>
-                                                            <option value="EMPRESA">EMPRESA</option>
-                                                        @elseif( $user->usuarioTipo == 'EMPRESA' )
-                                                            <option value="PROPIETARIO">PROPIETARIO</option>
-                                                            <option value="NO PROPIETARIO">NO PROPIETARIO</option>
-                                                            <option value="EMPRESA" selected>EMPRESA</option>
-                                                        @else
-                                                            <option value="PROPIETARIO">PROPIETARIO</option>
-                                                            <option value="NO PROPIETARIO" selected>NO PROPIETARIO</option>
-                                                            <option value="EMPRESA" >EMPRESA</option>
-                                                        @endif
-                                                    @else
-                                                        <option value="PROPIETARIO" selected>PROPIETARIO</option>
-                                                        <option value="NO PROPIETARIO" >NO PROPIETARIO</option>
-                                                        <option value="EMPRESA" >EMPRESA</option>
-                                                    @endif
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-control-default required">
                                             <label>Mis datos visibles?</label>
                                             <select id="datosVisibles" name="datosVisibles" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" required="">
                                                 @if( isset($user->datosVisibles) )

@@ -160,20 +160,20 @@
                                     </p>
                                 @endif
                                 <p>
-                                @if( isset($membresia->renta) )
+                                @if( isset($membresia->renta) && $membresia->renta == true )
                                     <span>Rento </span>
                                 @endif
-                                @if( isset($membresia->venta) )
+                                @if( isset($membresia->venta) && $membresia->venta == true)
                                     <span>Vendo </span>
                                 @endif
                                 
                                 {{ pv($membresia, 'tipoInmueble') }} vacacional,
                                 tipo de semana {{ pv($membresia, 'semanaTipo') }}  con
-                                {{ pv($membresia, 'dormitorios') }} dormitorios,
-                                {{ pv($membresia, 'banosCompletos') }} baños,
-                                capacidad para {{ pv($membresia, 'maxPrivacidad') }} personas máximo,
-                                capacidad con privacidad de {{ pv($membresia, 'maxOcupantes') }} personas,
-                                {{ pv($membresia, 'tipoCocina') }} y mucho mas..
+                                {{ pv($membresia, 'dormitorios') }} dormitorio(s),
+                                {{ pv($membresia, 'banosCompletos') }} baño(s),
+                                capacidad para {{ pv($membresia, 'maxPrivacidad') }} persona(s) máximo,
+                                capacidad con privacidad de {{ pv($membresia, 'maxOcupantes') }} persona(s),
+                                {{ pv($membresia, 'tipoCocina') }} y mucho más..
                                 </p>
                             </article>
                         </div>
@@ -208,7 +208,7 @@
                         <div class="col-xs-12 col-md-12 col-lg-12 margin-bottom">
                             <div class="Profile__Map">
                                 <div class="Profile__Title">
-                                    <h2><i class="fa fa-map-marker"></i> Ubicación</h2>
+                                    <h2><i class="fa fa-map-marker"></i> Ubicación - {{ pv($membresia->ubicacion, 'ciudad') }} </h2>
                                 </div>
                                 <div class="Map">
                                     <div id="map-component" class="embed-responsive-item"  style="height:70vh; width: 100%;"></div>
@@ -286,8 +286,8 @@
                                     @if( isset($membresia->creador->ciudad) )
                                         <li><strong>Ciudad: </strong> {{ $membresia->creador->ciudad }}</li>
                                     @endif
-                                    @if( isset($membresia->creador->pais) )
-                                        <li><strong>Pais: </strong> {{ $membresia->creador->pais }}</li>
+                                    @if( isset($membresia->creador->paisOrigen->nombre) )
+                                        <li><strong>Pais: </strong> {{ $membresia->creador->paisOrigen->nombre }}</li>
                                     @endif
                                     @if( isset($membresia->creador->lenguaje) )                                    
                                         <li><strong>Lenguaje: </strong> {{ $membresia->creador->lenguaje }}</li>
@@ -296,7 +296,7 @@
                                         <li><strong>Teléfono: </strong> {{ $membresia->creador->telefono }} </li>
                                     @endif
                                     @if( isset($membresia->creador->destinosInteres) )
-                                        <li><strong>Interesado en viajar a: </strong> $membresia->creador->destinosInteres</li>
+                                        <li><strong>Interesado en viajar a: </strong> {{ $membresia->creador->destinosInteres }}</li>
                                     @endif
                                 </ul>
                             </div>

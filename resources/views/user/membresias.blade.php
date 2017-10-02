@@ -19,12 +19,12 @@
                     <div class="col-md-7 col-xl-8 padding">
                         <div class="alert alert-warning">
                             <strong>¡Promociona tu membresia!</strong> </br>
-                            Adicionalmente Aparecera Listado En La Seccion Especial Membresias Destacadas De Nuestra Pagina Principal.</br>
-                            Ademas, Tu Publicacion Sera Listada en La Parte Superior De La Pagina De Resultados Que Los Visitantes Obtengan Buscando Inventario!.</br>
-                            Plan A 3 Meses. Recomendado Para Ofertas.$199 Pesos Mx+Imp.</br>
-                            Plan A 6 Meses. Recomendado Para Renta De Semanas, Intercambios Y Ventas De Inventario De Alta Demanda.$359 Pesos Mx+Imp.</br>
-                            Plan A 12 Meses Recomendado Para Reventas De Menor Demanda,$599 Pesos Mx+Imp.</br>
-                            Para Contratar Este Nuevo Servicio Clic En El Boton Destacar Membresia</br>
+                            Adicionalmente aparecera listado en la sección especial de membresias destacadas de nuestra página principal.</br>
+                            ¡Además, tu publicación será listada en la parte superior de la página de resultados que los visitantes obtengan buscando inventario!.</br>
+                            Plan a 3 meses. recomendado para ofertas. $199 Pesos Mx+Imp.</br>
+                            Plan a 6 meses. recomendado para renta de semanas, intercambios y ventas de inventario de alta demanda. $359 pesos Mx+Imp.</br>
+                            Plan a 12 meses recomendado para reventas de menor demanda, $599 pesos Mx+Imp.</br>
+                            Para contratar este nuevo servicio, haz click en el botón destacar membresia</br>
                         </div>
                         @foreach($membresias as $index => $membresia)
                             {{--  <div class="card">
