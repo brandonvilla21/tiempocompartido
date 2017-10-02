@@ -16,8 +16,12 @@
                 <div class="row pl-1">
                     <div class="col margin-bottom">
                         <h1 class="title">
-                            {{ $membresia->descripcion }} 
-                        </h1>   
+                          Tiempo compartido en {{ isVentaRenta(pv($membresia,'renta'), pv($membresia,'venta')) }}
+                          en {{ pv($membresia, 'localidadNombre')}}, {{ pv($membresia, 'paisNombre') }}. Club "{{ pv($membresia, 'clubNombre')}}"
+                        </h1>
+                        <h3 class="text-muted pt-1">
+                            {{ $membresia->descripcion }}
+                        </h3>
                     </div>
                 </div>
                 <div class="row " >
@@ -261,47 +265,50 @@
                             </article>
                         </div>
                     </div>
-                     <div class="col-xs-12 col-md-5 col-lg-5 margin-bottom">
-                        <div class="Profile__ContactForm">
-                            <div class="Profile__Title">
-                                <h2><i class="fa fa-user-o"></i> Datos del propietario</h2>
+                    @if( isset($membresia->creador->datosVisibles) &&  $membresia->creador->datosVisibles == true )
+                        <div class="col-xs-12 col-md-5 col-lg-5 margin-bottom">
+                            <div class="Profile__ContactForm">
+                                <div class="Profile__Title">
+                                    <h2><i class="fa fa-user-o"></i> Datos del propietario</h2>
+                                </div>
+                                <div class="col-xs-12 col-lg-12">
+                                    <ul class="padding">
+                                        @if( isset($membresia->creador->name) )                            
+                                            <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->nickname) )
+                                            <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->informacion) )
+                                            <li><strong>Información adicional: </strong>{{ $membresia->creador->informacion }}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->usuarioTipo) )
+                                            <li><strong>Tipo de membresia: </strong> {{ $membresia->creador->usuarioTipo }}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->email)  )
+                                            <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->ciudad) )
+                                            <li><strong>Ciudad: </strong> {{ $membresia->creador->ciudad }}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->paisOrigen->nombre) )
+                                            <li><strong>Pais: </strong> {{ $membresia->creador->paisOrigen->nombre }}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->lenguaje) )                                    
+                                            <li><strong>Lenguaje: </strong> {{ $membresia->creador->lenguaje }}</li>
+                                        @endif
+                                        @if( isset($membresia->creador->telefono) )
+                                            <li><strong>Teléfono: </strong> {{ $membresia->creador->telefono }} </li>
+                                        @endif
+                                        @if( isset($membresia->creador->destinosInteres) )
+                                            <li><strong>Interesado en viajar a: </strong> {{ $membresia->creador->destinosInteres }}</li>
+                                        @endif
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-xs-12 col-lg-12">
-                                <ul class="padding">
-                                    @if( isset($membresia->creador->name) )                            
-                                        <li><strong>Nombre: </strong>{{ $membresia->creador->name}}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->nickname) )
-                                        <li><strong>NickName: </strong>{{ $membresia->creador->nickname}}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->informacion) )
-                                        <li><strong>Información adicional: </strong>{{ $membresia->creador->informacion }}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->usuarioTipo) )
-                                        <li><strong>Tipo de membresia: </strong> {{ $membresia->creador->usuarioTipo }}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->email)  )
-                                        <li><strong>Email: </strong>{{ $membresia->creador->email}}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->ciudad) )
-                                        <li><strong>Ciudad: </strong> {{ $membresia->creador->ciudad }}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->paisOrigen->nombre) )
-                                        <li><strong>Pais: </strong> {{ $membresia->creador->paisOrigen->nombre }}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->lenguaje) )                                    
-                                        <li><strong>Lenguaje: </strong> {{ $membresia->creador->lenguaje }}</li>
-                                    @endif
-                                    @if( isset($membresia->creador->telefono) )
-                                        <li><strong>Teléfono: </strong> {{ $membresia->creador->telefono }} </li>
-                                    @endif
-                                    @if( isset($membresia->creador->destinosInteres) )
-                                        <li><strong>Interesado en viajar a: </strong> {{ $membresia->creador->destinosInteres }}</li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    </div> 
+                        </div> 
+
+                    @endif
 
                     <hr width="100%">
                     <div class="col-xs-12 col-lg-12 margin-bottom">

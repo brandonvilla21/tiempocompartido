@@ -60,6 +60,11 @@ function pvDayMonth($object, $attribute)
     } else 
         return '';
 }
+
+function isVentaRenta($renta, $venta)
+{
+    return $renta ? 'renta' : $venta ? 'venta' : ''; 
+}
 /**
 * Create an associative array giving an object.
 *
