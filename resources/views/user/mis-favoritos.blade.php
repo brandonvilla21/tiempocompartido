@@ -24,8 +24,8 @@
                                     <div class="col-md-4">
                                     <a href="/membresia/tiempo-compartido-en-{{ slugify (pv($membresia->membresia, 'localidadNombre')) }}-{{ slugify(pv($membresia->membresia, 'clubNombre')) }}-{{ slugify(pv($membresia->membresia, 'paisNombre')) }}/{{ pv($membresia->membresia, 'id') }}">   
                                         @if ( App\User::getPrincipalImage(getClient(), $membresia->idMembresia) != null)
-                                                <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-desktop">
-                                                <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-mobile w-100">
+                                                <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-desktop">
+                                                <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->idMembresia)->src }}" class="card-image-mobile w-100">
                                         @else 
                                                 <img src="assets/img/sin-imagen.jpg" class="card-image-desktop">
                                                 <img src="assets/img/sin-imagen.jpg" class="card-image-mobile w-100">

@@ -15,8 +15,8 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     @if ( isset($promocion->imagenes[0]) )
-                                        <img src="uploads/promociones/thumbs/{{ $promocion->imagenes[0]->src }}" style="width:100%" class="card-image-mobile w-100">
-                                        <img src="uploads/promociones/thumbs/{{ $promocion->imagenes[0]->src }}" style="width:100%" class="card-image-desktop">
+                                        <img src="{{$_ENV['UPLOAD_FOLDER']}}/promociones/thumbs/{{ $promocion->imagenes[0]->src }}" style="width:100%" class="card-image-mobile w-100">
+                                        <img src="{{$_ENV['UPLOAD_FOLDER']}}/promociones/thumbs/{{ $promocion->imagenes[0]->src }}" style="width:100%" class="card-image-desktop">
                                     @else 
                                         <img src="assets/img/sin-imagen.jpg" class="card-image-desktop">
                                         <img src="assets/img/sin-imagen.jpg" class="card-image-mobile w-100">

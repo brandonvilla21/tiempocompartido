@@ -34,7 +34,7 @@
                                                 @foreach($membresia->imagenes as $imagen)
                                                     @if($imagen->tipo == 'thumb')
                                                         <div>
-                                                            <img src="uploads/membresias-images/{{ $imagen->src }}" alt="imagen" style="width:100%;">
+                                                            <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/{{ $imagen->src }}" alt="imagen" style="width:100%;">
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -317,7 +317,7 @@
                                 <div class="Card col-md-4">
                                     <div class="Card__Image">
                                         @if(isset($relacionado->imagenes[0]))
-                                            <img src="uploads/membresias-images/{{ $relacionado->imagenes[0]->src }}" alt="imagen" style="width:100%;">
+                                            <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/{{ $relacionado->imagenes[0]->src }}" alt="imagen" style="width:100%;">
                                         @else
                                                 <img src="assets/img/sin-imagen-land.jpg" alt="imagen" style="width:100%;">
                                         @endif

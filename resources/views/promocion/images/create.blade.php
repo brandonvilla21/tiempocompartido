@@ -35,8 +35,8 @@
                         @if($image->tipo == 'thumb')
                             <div class="text-center col-md-4 col-sm-6 mb-1">
                                 <div class="thumbnail">
-                                    <a href="uploads/promociones/thumbs/{{ $image->src }}">
-                                        <img style="width:100%;" src="uploads/promociones/thumbs/{{ $image->src }}"/> 
+                                    <a href="{{$_ENV['UPLOAD_FOLDER']}}/promociones/thumbs/{{ $image->src }}">
+                                        <img style="width:100%;" src="{{$_ENV['UPLOAD_FOLDER']}}/promociones/thumbs/{{ $image->src }}"/> 
                                     </a>
                                 </div>
                             </div>

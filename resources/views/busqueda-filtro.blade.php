@@ -14,7 +14,7 @@
                         <div class="col-md-4" style="max-width:100%;">
                             <div class="card">
                                 @if( isset($membresia->imagenes[0]->src) )
-                                    <img src="uploads/membresias-images/thumbs/{{ $membresia->imagenes[0]->src }}" style="width: 100%;"> 
+                                    <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/thumbs/{{ $membresia->imagenes[0]->src }}" style="width: 100%;"> 
                                 @else
                                     <img src="assets/img/sin-imagen-land.jpg" style="width: 100%;">                         
                                 @endif

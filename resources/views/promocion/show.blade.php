@@ -26,7 +26,7 @@
                                     @foreach($promocion->imagenes as $imagen)
                                         @if($imagen->tipo == 'original')
                                             <div class="item">
-                                                <img src="uploads/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">
+                                                <img src="{{$_ENV['UPLOAD_FOLDER']}}/promociones/{{$imagen->src}}" alt="imagen" style="width:100%;">
                                             </div>
                                         @endif
                                     @endforeach

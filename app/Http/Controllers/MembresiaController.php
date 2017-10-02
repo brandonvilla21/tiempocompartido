@@ -327,7 +327,6 @@ class MembresiaController extends Controller
         $membresia = json_decode($response->getBody()->getContents());
 
         return view('membresia.images.create', compact('membresia'));
-        // return view('uploads2', compact('membresia'));
     }
 
     /**
@@ -367,13 +366,13 @@ class MembresiaController extends Controller
                 Image::make($image)->resize(1900, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->save( public_path('/uploads/membresias-images/') . $filename);
+                })->save( public_path('/'.$_ENV['UPLOAD_FOLDER'].'/membresias-images/') . $filename);
     
                 // Save image in thumb folder giving it 300 for height and auto width
                 Image::make($image)->resize(300, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                })->save( public_path('/uploads/membresias-images/thumbs/') . $filename);    
+                })->save( public_path('/'.$_ENV['UPLOAD_FOLDER'].'/membresias-images/thumbs/') . $filename);    
                 
                 //Make POST to API and save image information
                 try {

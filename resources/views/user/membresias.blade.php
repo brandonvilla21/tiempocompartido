@@ -31,8 +31,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         @if ( App\User::getPrincipalImage(getClient(), $membresia->id) != null)
-                                            <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop">
-                                            <img src="uploads/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-mobile w-100">
+                                            <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop">
+                                            <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/thumbs/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-mobile w-100">
                                         @else 
                                             <img src="assets/img/sin-imagen.jpg" class="card-image-desktop">
                                             <img src="assets/img/sin-imagen.jpg" class="card-image-mobile w-100">
@@ -63,7 +63,7 @@
                             <div class="row mt-1 mb-1" style="border-style: solid;border-width: 1px; border-color: #DEDEDE">
                                 <div class="col-md-5 pl-0">
                                     @if ( App\User::getPrincipalImage(getClient(), $membresia->id) != null)
-                                        <img src="uploads/membresias-images/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop" style="max-width:100%">
+                                        <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/{{ App\User::getPrincipalImage(getClient(), $membresia->id)->src }}" class="card-image-desktop" style="max-width:100%">
                                     @else 
                                         <img src="assets/img/sin-imagen.jpg" class="card-image-desktop" style="max-width:100%">
                                     @endif

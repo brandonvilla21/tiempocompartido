@@ -1,5 +1,5 @@
 var endPoint = window.location.hostname == 'localhost' ? 'http://0.0.0.0:3000/api/' : 'http://tiempocompartidolb.herokuapp.com/api/';
-
+var uploadFolder = window.location.hostname == 'localhost' ? 'uploads' : 'server-upload';
 function setDescription(imageNumber) {
     var id = $('#image-' + imageNumber).val();
     var description = $('#modif-descripcion-' + imageNumber).val();
@@ -240,7 +240,7 @@ function searchMembresias() {
             $('.membresias-result').append(resulContent);
             
             membresias.forEach(function(membresia) {
-                var image = membresia.imagenes[0] == null ? 'assets/img/sin-imagen-land.jpg' :  `uploads/membresias-images/thumbs/${membresia.imagenes[0].src}`;
+                var image = membresia.imagenes[0] == null ? 'assets/img/sin-imagen-land.jpg' :  `${uploadFolder}/membresias-images/thumbs/${membresia.imagenes[0].src}`;
                 card = $(`
                     <div class="col-md-4" style="max-width:100%;">
                             <div class="card">

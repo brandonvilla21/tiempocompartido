@@ -13,7 +13,7 @@
                 <div class="col-md-4 col-xl-3 wow bounceIn text-center" data-wow-delay=".6s">
                     <div class="Card__Image">
                         {{--  <img src="promociones/thumbs/{{promocionDestacada[0]->imagenes[0]->src}}" alt="imagen">  --}}
-                        <img src="{{ isset($promocionDestacada[0]->imagenes[0]->src) ?  'uploads/promociones/thumbs/' . $promocionDestacada[0]->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                        <img src="{{ isset($promocionDestacada[0]->imagenes[0]->src) ?  $_ENV['UPLOAD_FOLDER'].'/promociones/thumbs/' . $promocionDestacada[0]->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
                         
                     </div>
                     <div class="Footer__Content">
@@ -114,7 +114,7 @@
                                 <div class="Card">
                                     <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($destacado->membresia, 'localidadNombre') ) }}-{{ slugify( pv($destacado->membresia, 'clubNombre') ) }}-{{ slugify( pv($destacado->membresia, 'paisNombre') ) }}/{{ pv($destacado->membresia, 'id') }}">   
                                         <div class="Card__Image">
-                                            <img src="{{ isset($destacado->membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $destacado->membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                            <img src="{{ isset($destacado->membresia->imagenes[0]->src) ?  $_ENV['UPLOAD_FOLDER'].'/membresias-images/thumbs/' . $destacado->membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
                                         </div>
                                     </a>
                                     <div class="Card__Content">
@@ -157,7 +157,7 @@
                                         <div class="Card">
                                             <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresia, 'localidadNombre') ) }}-{{ slugify( pv($membresia, 'clubNombre') ) }}-{{ slugify( pv($membresia, 'paisNombre') ) }}/{{ pv($membresia, 'id') }}">   
                                                 <div class="Card__Image">
-                                                    <img src="{{ isset($membresia->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                                    <img src="{{ isset($membresia->imagenes[0]->src) ?  $_ENV['UPLOAD_FOLDER'].'/membresias-images/thumbs/' . $membresia->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
                                                 </div>
                                             </a>
                                             <div class="Card__Content">
@@ -195,7 +195,7 @@
                                 <div class="Card">
                                     <a href="/membresia/tiempo-compartido-en-{{ slugify( pv($membresiaCabana, 'localidadNombre' )) }}-{{ slugify( pv($membresiaCabana, 'clubNombre') ) }}-{{ slugify( pv($membresiaCabana, 'paisNombre') ) }}/{{  pv($membresiaCabana, 'id')  }}">   
                                         <div class="Card__Image">
-                                            <img src="{{ isset($membresiaCabana->imagenes[0]->src) ?  'uploads/membresias-images/thumbs/' . $membresiaCabana->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
+                                            <img src="{{ isset($membresiaCabana->imagenes[0]->src) ?  $_ENV['UPLOAD_FOLDER'].'/membresias-images/thumbs/' . $membresiaCabana->imagenes[0]->src : 'assets/img/sin-imagen-land.jpg' }}" alt="imagen"> 
                                         </div>
                                     </a>
                                     <div class="Card__Content">

@@ -21,7 +21,7 @@
                             <div class="row mt-1 mb-1" style="border-style: solid;border-width: 1px; border-color: #DEDEDE">
                                 <div class="col-md-5 pl-0 pr-0">
                                     @if( isset($membresia->imagenes[0]) )
-                                        <img src="uploads/membresias-images/{{$membresia->imagenes[0]->src}}" class="card-image-desktop" style="max-width:100%">                            
+                                        <img src="{{$_ENV['UPLOAD_FOLDER']}}/membresias-images/{{$membresia->imagenes[0]->src}}" class="card-image-desktop" style="max-width:100%">                            
                                     @else
                                         <img src="assets/message-image.png" class="card-image-desktop" style="max-width:100%">
                                     @endif 
